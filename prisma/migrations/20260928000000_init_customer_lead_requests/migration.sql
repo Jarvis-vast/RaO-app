@@ -1,0 +1,31 @@
+-- CreateTable: CustomerLeadRequest for RaO V2.2 Persistent Customer Leads
+CREATE TABLE IF NOT EXISTS "customer_lead_requests" (
+    "requestId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "customerName" TEXT NOT NULL,
+    "phone" TEXT NOT NULL,
+    "email" TEXT,
+    "moods" TEXT[],
+    "budgetPerPerson" TEXT NOT NULL,
+    "budgetMode" TEXT,
+    "datesOption" TEXT NOT NULL,
+    "startDate" TEXT,
+    "endDate" TEXT,
+    "groupType" TEXT NOT NULL,
+    "numTravellers" TEXT NOT NULL,
+    "origin" TEXT NOT NULL,
+    "destinationContext" TEXT,
+    "preferences" TEXT[],
+    "sharingOption" TEXT NOT NULL,
+    "proposalId" TEXT,
+    "proposalTitle" TEXT,
+    "estimatedTotal" DOUBLE PRECISION,
+    "modificationNotes" TEXT[],
+    "specialRequests" TEXT,
+    "rawUserInput" TEXT,
+    "source" TEXT NOT NULL DEFAULT 'PLANNER_WIZARD',
+    "status" TEXT NOT NULL DEFAULT 'NEW',
+
+    CONSTRAINT "customer_lead_requests_pkey" PRIMARY KEY ("requestId")
+);

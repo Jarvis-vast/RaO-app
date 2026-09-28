@@ -13,11 +13,13 @@ export const BUSINESS_CONFIG = {
 
   // Contact Channels
   contact: {
-    // E.164 formatted WhatsApp number without spaces or plus (e.g. 919876543210)
+    // E.164 formatted WhatsApp number without spaces or plus (e.g. 9198XXXXXXXX)
     // Overridable via NEXT_PUBLIC_WHATSAPP_NUMBER in production
-    whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919876543210",
-    phoneDisplay: "+91 98765 43210",
-    supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "concierge@raotravel.com",
+    whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "",
+    phoneDisplay: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER 
+      ? `+${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER.slice(0, 2)} ${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER.slice(2, 7)} ${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER.slice(7)}`
+      : "Contact Concierge on WhatsApp",
+    supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "concierge@rao.travel",
     supportHours: "Monday to Sunday, 9:00 AM – 9:00 PM IST",
   },
 

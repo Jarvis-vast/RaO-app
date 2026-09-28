@@ -14,29 +14,23 @@ export function getPrismaClient(): PrismaClient | null {
     return null;
   }
 
+  // Reuse existing connection pool and PrismaClient across warm serverless invocations
   if (!globalForPrisma.prisma) {
     try {
       const pool =
         globalForPrisma.pgPool ??
         new pg.Pool({
           connectionString,
-          max: 10,
-          idleTimeoutMillis: 30000,
+          max: 3, // Conservative pool limit per Vercel serverless function instance
+          idleTimeoutMillis: 10000,
           connectionTimeoutMillis: 5000,
         });
 
-      if (process.env.NODE_ENV !== "production") {
-        globalForPrisma.pgPool = pool;
-      }
-
+      globalForPrisma.pgPool = pool;
       const adapter = new PrismaPg(pool);
       const client = new PrismaClient({ adapter });
 
-      if (process.env.NODE_ENV !== "production") {
-        globalForPrisma.prisma = client;
-      } else {
-        return client;
-      }
+      globalForPrisma.prisma = client;
     } catch (err) {
       console.error("[RaO Database] Failed to initialize Prisma 7 PostgreSQL adapter:", err);
       return null;
