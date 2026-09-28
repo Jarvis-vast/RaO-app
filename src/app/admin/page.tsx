@@ -5,8 +5,8 @@ import { ArrowRight, Inbox, Plane, Settings, CheckCircle2 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-export default function AdminOverviewPage() {
-  const requests = TripRequestRepository.getAll();
+export default async function AdminOverviewPage() {
+  const requests = await TripRequestRepository.getAll();
   const newRequestsCount = requests.filter((r) => r.status === "NEW").length;
   const reviewingCount = requests.filter((r) => r.status === "REVIEWING").length;
 

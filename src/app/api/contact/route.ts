@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
       source: "CONTACT_PAGE",
     };
 
-    const saved = TripRequestRepository.create(input);
+    const saved = await TripRequestRepository.create(input);
     const whatsappUrl = TripRequestFormatter.buildWhatsAppUrl(saved);
 
     return NextResponse.json({

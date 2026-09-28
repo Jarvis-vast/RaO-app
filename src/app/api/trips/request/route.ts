@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Persist request in repository
-    const savedRequest = TripRequestRepository.create(body);
+    const savedRequest = await TripRequestRepository.create(body);
 
     // Format WhatsApp redirection URL
     const whatsappUrl = TripRequestFormatter.buildWhatsAppUrl(savedRequest);
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
-    const requests = TripRequestRepository.getAll();
+    const requests = await TripRequestRepository.getAll();
     return NextResponse.json({ requests }, { status: 200 });
   } catch (error) {
     console.error("Failed to fetch trip requests:", error);

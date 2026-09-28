@@ -1,11 +1,7 @@
-import fs from "fs";
-import path from "path";
-import { TripRequest, CreateTripRequestInput } from "../types/trip-request";
+import { getPrismaClient } from "../prisma";
+import { TripRequest, CreateTripRequestInput, TripRequestStatus } from "../types/trip-request";
 
-const DATA_DIR = path.join(process.cwd(), "data");
-const DATA_FILE = path.join(DATA_DIR, "trip_requests.json");
-
-// In-memory cache for fast access and fallback
+// Demo in-memory fallback for local development without DATABASE_URL
 let inMemoryStore: TripRequest[] = [
   {
     requestId: "RAO-REQ-1001",
@@ -54,41 +50,98 @@ let inMemoryStore: TripRequest[] = [
   },
 ];
 
-function ensureDataFile() {
-  try {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-    if (!fs.existsSync(DATA_FILE)) {
-      fs.writeFileSync(DATA_FILE, JSON.stringify(inMemoryStore, null, 2), "utf-8");
-    } else {
-      const fileData = fs.readFileSync(DATA_FILE, "utf-8");
-      inMemoryStore = JSON.parse(fileData);
-    }
-  } catch (err) {
-    console.warn("Could not sync with filesystem, using in-memory store:", err);
-  }
-}
-
-// Initial sync
-ensureDataFile();
-
 export class TripRequestRepository {
-  static getAll(): TripRequest[] {
-    ensureDataFile();
+  static async getAll(): Promise<TripRequest[]> {
+    const prisma = getPrismaClient();
+    if (prisma) {
+      try {
+        const records = await prisma.customerLeadRequest.findMany({
+          orderBy: { createdAt: "desc" },
+        });
+
+        return records.map((r) => ({
+          requestId: r.requestId,
+          createdAt: r.createdAt.toISOString(),
+          customerName: r.customerName,
+          phone: r.phone,
+          email: r.email || undefined,
+          moods: r.moods,
+          budgetPerPerson: r.budgetPerPerson,
+          budgetMode: r.budgetMode || undefined,
+          datesOption: r.datesOption,
+          startDate: r.startDate || undefined,
+          endDate: r.endDate || undefined,
+          groupType: r.groupType,
+          numTravellers: r.numTravellers,
+          origin: r.origin,
+          destinationContext: r.destinationContext || undefined,
+          preferences: r.preferences,
+          sharingOption: r.sharingOption,
+          proposalId: r.proposalId || undefined,
+          proposalTitle: r.proposalTitle || undefined,
+          estimatedTotal: r.estimatedTotal || undefined,
+          modificationNotes: r.modificationNotes,
+          specialRequests: r.specialRequests || undefined,
+          rawUserInput: r.rawUserInput || undefined,
+          source: r.source as TripRequest["source"],
+          status: r.status as TripRequestStatus,
+        }));
+      } catch (err) {
+        console.error("Database query error in getAll():", err);
+      }
+    }
+
+    console.warn("DATABASE_URL is not configured. Falling back to local demo array.");
     return [...inMemoryStore].sort(
       (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
   }
 
-  static getById(id: string): TripRequest | undefined {
-    ensureDataFile();
+  static async getById(id: string): Promise<TripRequest | undefined> {
+    const prisma = getPrismaClient();
+    if (prisma) {
+      try {
+        const r = await prisma.customerLeadRequest.findUnique({
+          where: { requestId: id },
+        });
+        if (r) {
+          return {
+            requestId: r.requestId,
+            createdAt: r.createdAt.toISOString(),
+            customerName: r.customerName,
+            phone: r.phone,
+            email: r.email || undefined,
+            moods: r.moods,
+            budgetPerPerson: r.budgetPerPerson,
+            budgetMode: r.budgetMode || undefined,
+            datesOption: r.datesOption,
+            startDate: r.startDate || undefined,
+            endDate: r.endDate || undefined,
+            groupType: r.groupType,
+            numTravellers: r.numTravellers,
+            origin: r.origin,
+            destinationContext: r.destinationContext || undefined,
+            preferences: r.preferences,
+            sharingOption: r.sharingOption,
+            proposalId: r.proposalId || undefined,
+            proposalTitle: r.proposalTitle || undefined,
+            estimatedTotal: r.estimatedTotal || undefined,
+            modificationNotes: r.modificationNotes,
+            specialRequests: r.specialRequests || undefined,
+            rawUserInput: r.rawUserInput || undefined,
+            source: r.source as TripRequest["source"],
+            status: r.status as TripRequestStatus,
+          };
+        }
+      } catch (err) {
+        console.error("Database query error in getById():", err);
+      }
+    }
+
     return inMemoryStore.find((r) => r.requestId === id);
   }
 
-  static create(input: CreateTripRequestInput): TripRequest {
-    ensureDataFile();
-
+  static async create(input: CreateTripRequestInput): Promise<TripRequest> {
     const timestamp = Date.now().toString().slice(-4);
     const randomHex = Math.floor(Math.random() * 1000).toString().padStart(3, "0");
     const requestId = `RAO-REQ-${timestamp}-${randomHex}`;
@@ -121,33 +174,95 @@ export class TripRequestRepository {
       status: "NEW",
     };
 
-    inMemoryStore.unshift(newRequest);
-
-    try {
-      if (!fs.existsSync(DATA_DIR)) {
-        fs.mkdirSync(DATA_DIR, { recursive: true });
+    const prisma = getPrismaClient();
+    if (prisma) {
+      try {
+        await prisma.customerLeadRequest.create({
+          data: {
+            requestId: newRequest.requestId,
+            createdAt: new Date(newRequest.createdAt),
+            customerName: newRequest.customerName,
+            phone: newRequest.phone,
+            email: newRequest.email,
+            moods: newRequest.moods,
+            budgetPerPerson: newRequest.budgetPerPerson,
+            budgetMode: newRequest.budgetMode,
+            datesOption: newRequest.datesOption,
+            startDate: newRequest.startDate,
+            endDate: newRequest.endDate,
+            groupType: newRequest.groupType,
+            numTravellers: newRequest.numTravellers,
+            origin: newRequest.origin,
+            destinationContext: newRequest.destinationContext,
+            preferences: newRequest.preferences,
+            sharingOption: newRequest.sharingOption,
+            proposalId: newRequest.proposalId,
+            proposalTitle: newRequest.proposalTitle,
+            estimatedTotal: newRequest.estimatedTotal,
+            modificationNotes: newRequest.modificationNotes,
+            specialRequests: newRequest.specialRequests,
+            rawUserInput: newRequest.rawUserInput,
+            source: newRequest.source,
+            status: newRequest.status,
+          },
+        });
+        return newRequest;
+      } catch (err) {
+        console.error("Database create error in create():", err);
+        throw new Error("Failed to persist trip request to production database.");
       }
-      fs.writeFileSync(DATA_FILE, JSON.stringify(inMemoryStore, null, 2), "utf-8");
-    } catch (err) {
-      console.warn("Failed to persist trip request to disk:", err);
     }
 
+    console.warn("DATABASE_URL is not configured. Saving lead in memory for demo session.");
+    inMemoryStore.unshift(newRequest);
     return newRequest;
   }
 
-  static updateStatus(id: string, status: TripRequest["status"]): TripRequest | null {
-    ensureDataFile();
-    const req = inMemoryStore.find((r) => r.requestId === id);
-    if (!req) return null;
-
-    req.status = status;
-
-    try {
-      fs.writeFileSync(DATA_FILE, JSON.stringify(inMemoryStore, null, 2), "utf-8");
-    } catch (err) {
-      console.warn("Failed to persist status update:", err);
+  static async updateStatus(id: string, status: TripRequestStatus): Promise<TripRequest | null> {
+    const prisma = getPrismaClient();
+    if (prisma) {
+      try {
+        const updated = await prisma.customerLeadRequest.update({
+          where: { requestId: id },
+          data: { status },
+        });
+        return {
+          requestId: updated.requestId,
+          createdAt: updated.createdAt.toISOString(),
+          customerName: updated.customerName,
+          phone: updated.phone,
+          email: updated.email || undefined,
+          moods: updated.moods,
+          budgetPerPerson: updated.budgetPerPerson,
+          budgetMode: updated.budgetMode || undefined,
+          datesOption: updated.datesOption,
+          startDate: updated.startDate || undefined,
+          endDate: updated.endDate || undefined,
+          groupType: updated.groupType,
+          numTravellers: updated.numTravellers,
+          origin: updated.origin,
+          destinationContext: updated.destinationContext || undefined,
+          preferences: updated.preferences,
+          sharingOption: updated.sharingOption,
+          proposalId: updated.proposalId || undefined,
+          proposalTitle: updated.proposalTitle || undefined,
+          estimatedTotal: updated.estimatedTotal || undefined,
+          modificationNotes: updated.modificationNotes,
+          specialRequests: updated.specialRequests || undefined,
+          rawUserInput: updated.rawUserInput || undefined,
+          source: updated.source as TripRequest["source"],
+          status: updated.status as TripRequestStatus,
+        };
+      } catch (err) {
+        console.error("Database update error in updateStatus():", err);
+        return null;
+      }
     }
 
+    const req = inMemoryStore.find((r) => r.requestId === id);
+    if (!req) return null;
+    req.status = status;
     return req;
   }
 }
+

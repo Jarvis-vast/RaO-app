@@ -4,8 +4,8 @@ import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
-export default function AdminRequestsPage() {
-  const requests = TripRequestRepository.getAll();
+export default async function AdminRequestsPage() {
+  const requests = await TripRequestRepository.getAll();
 
   return (
     <div className="space-y-8">

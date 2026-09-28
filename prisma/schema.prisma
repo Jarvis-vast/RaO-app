@@ -446,3 +446,35 @@ model AuditEvent {
   metadata  Json?
   createdAt DateTime @default(now())
 }
+
+model CustomerLeadRequest {
+  requestId          String   @id
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  customerName       String
+  phone              String
+  email              String?
+  moods              String[]
+  budgetPerPerson    String
+  budgetMode         String?
+  datesOption        String
+  startDate          String?
+  endDate            String?
+  groupType          String
+  numTravellers      String
+  origin             String
+  destinationContext String?
+  preferences        String[]
+  sharingOption      String
+  proposalId         String?
+  proposalTitle      String?
+  estimatedTotal     Float?
+  modificationNotes  String[]
+  specialRequests    String?
+  rawUserInput       String?
+  source             String   @default("PLANNER_WIZARD")
+  status             String   @default("NEW")
+
+  @@map("customer_lead_requests")
+}
+

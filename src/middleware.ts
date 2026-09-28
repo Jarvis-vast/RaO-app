@@ -6,11 +6,17 @@ export function middleware(request: NextRequest) {
 
   // Protect all /admin routes
   if (pathname.startsWith("/admin")) {
-    const authHeader = request.headers.get("authorization");
+    const requiredUser = process.env.ADMIN_USER;
+    const requiredPass = process.env.ADMIN_PASS;
 
-    // Retrieve credentials from environment (server-side only)
-    const requiredUser = process.env.ADMIN_USER || "admin";
-    const requiredPass = process.env.ADMIN_PASS || "rao2026!";
+    // Fail closed: If credentials are not configured on server, block access with 500 error
+    if (!requiredUser || !requiredPass) {
+      return new NextResponse("Server Configuration Error: Admin authentication is not configured.", {
+        status: 500,
+      });
+    }
+
+    const authHeader = request.headers.get("authorization");
 
     if (!authHeader || !authHeader.startsWith("Basic ")) {
       return new NextResponse("Authentication required for RaO Operations", {
