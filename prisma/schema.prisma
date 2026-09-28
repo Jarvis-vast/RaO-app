@@ -1,0 +1,448 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ----------------------------------------
+// USER & IDENTITY
+// ----------------------------------------
+
+model User {
+  id              String           @id @default(uuid())
+  email           String           @unique
+  role            Role             @default(CUSTOMER)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  customerProfile CustomerProfile?
+  auditEvents     AuditEvent[]
+  messages        Message[]        @relation("UserMessages")
+  notifications   Notification[]
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+  PLANNER
+  SUPPORT
+}
+
+model CustomerProfile {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  firstName String?
+  lastName  String?
+  phone     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  travellers     Traveller[]
+  tripRequests   TripRequest[]
+  bookings       Booking[]
+  trips          Trip[]
+}
+
+model Traveller {
+  id                String          @id @default(uuid())
+  customerProfileId String
+  customerProfile   CustomerProfile @relation(fields: [customerProfileId], references: [id])
+  firstName         String
+  lastName          String
+  dateOfBirth       DateTime?
+  passportNumber    String?
+  dietaryNotes      String?
+  medicalNotes      String?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  tripParticipants  TripParticipant[]
+}
+
+// ----------------------------------------
+// PLANNING & REQUESTS
+// ----------------------------------------
+
+model TripRequest {
+  id                String          @id @default(uuid())
+  customerProfileId String
+  customerProfile   CustomerProfile @relation(fields: [customerProfileId], references: [id])
+  status            RequestStatus   @default(NEW)
+  rawInput          String?         // Natural language input
+  structuredInput   Json?           // Extracted intent
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  preferences       TripPreference[]
+  proposals         Proposal[]
+}
+
+enum RequestStatus {
+  NEW
+  EVALUATING
+  PROPOSING
+  REVISING
+  BOOKED
+  CANCELLED
+}
+
+model TripPreference {
+  id            String      @id @default(uuid())
+  tripRequestId String
+  tripRequest   TripRequest @relation(fields: [tripRequestId], references: [id])
+  category      String      // e.g., 'Mood', 'Budget', 'Pace'
+  value         String
+  weight        Int         @default(1)
+}
+
+// ----------------------------------------
+// DESTINATIONS & CATALOG
+// ----------------------------------------
+
+model Destination {
+  id          String   @id @default(uuid())
+  name        String
+  country     String
+  region      String?
+  coordinates Json?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  evidence    DestinationEvidence[]
+  experiences Experience[]
+  accommodations Accommodation[]
+  activities  Activity[]
+}
+
+model DestinationEvidence {
+  id            String      @id @default(uuid())
+  destinationId String
+  destination   Destination @relation(fields: [destinationId], references: [id])
+  source        String      // LLM justification, review site, etc.
+  content       String
+  confidence    Float       @default(1.0)
+  createdAt     DateTime    @default(now())
+}
+
+model Experience {
+  id            String      @id @default(uuid())
+  destinationId String
+  destination   Destination @relation(fields: [destinationId], references: [id])
+  title         String
+  description   String
+  tags          String[]
+}
+
+// ----------------------------------------
+// SUPPLIERS & INVENTORY
+// ----------------------------------------
+
+model Supplier {
+  id          String   @id @default(uuid())
+  name        String
+  type        SupplierType
+  contactInfo Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  accommodations Accommodation[]
+  vehicles       Vehicle[]
+  activities     Activity[]
+  costItems      CostItem[]
+}
+
+enum SupplierType {
+  HOTEL
+  TRANSPORT
+  ACTIVITY
+  LOCAL_EXPERT
+}
+
+model Accommodation {
+  id            String      @id @default(uuid())
+  supplierId    String
+  supplier      Supplier    @relation(fields: [supplierId], references: [id])
+  destinationId String
+  destination   Destination @relation(fields: [destinationId], references: [id])
+  name          String
+  type          String
+  starRating    Float?
+}
+
+model Vehicle {
+  id            String   @id @default(uuid())
+  supplierId    String
+  supplier      Supplier @relation(fields: [supplierId], references: [id])
+  type          String   // e.g., Sedan, SUV
+  capacity      Int
+}
+
+model Activity {
+  id            String      @id @default(uuid())
+  supplierId    String
+  supplier      Supplier    @relation(fields: [supplierId], references: [id])
+  destinationId String
+  destination   Destination @relation(fields: [destinationId], references: [id])
+  name          String
+  durationMins  Int?
+}
+
+// ----------------------------------------
+// ITINERARY & PROPOSAL
+// ----------------------------------------
+
+model Proposal {
+  id            String      @id @default(uuid())
+  tripRequestId String
+  tripRequest   TripRequest @relation(fields: [tripRequestId], references: [id])
+  status        ProposalStatus @default(DRAFT)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  versions      ProposalVersion[]
+}
+
+enum ProposalStatus {
+  DRAFT
+  SENT
+  ACCEPTED
+  REJECTED
+}
+
+model ProposalVersion {
+  id            String    @id @default(uuid())
+  proposalId    String
+  proposal      Proposal  @relation(fields: [proposalId], references: [id])
+  versionNumber Int
+  aiNotes       String?
+  createdAt     DateTime  @default(now())
+
+  itinerary     Itinerary?
+  costs         CostItem[]
+}
+
+model Itinerary {
+  id                String          @id @default(uuid())
+  proposalVersionId String          @unique
+  proposalVersion   ProposalVersion @relation(fields: [proposalVersionId], references: [id])
+  title             String
+  overview          String?
+  startDate         DateTime?
+  endDate           DateTime?
+
+  days              ItineraryDay[]
+}
+
+model ItineraryDay {
+  id          String    @id @default(uuid())
+  itineraryId String
+  itinerary   Itinerary @relation(fields: [itineraryId], references: [id])
+  dayIndex    Int
+  title       String?
+
+  items       ItineraryItem[]
+}
+
+model ItineraryItem {
+  id             String       @id @default(uuid())
+  itineraryDayId String
+  itineraryDay   ItineraryDay @relation(fields: [itineraryDayId], references: [id])
+  startTime      DateTime?
+  endTime        DateTime?
+  type           ItemType
+  title          String
+  description    String?
+}
+
+enum ItemType {
+  ACCOMMODATION
+  TRANSPORT
+  ACTIVITY
+  MEAL
+  NOTE
+}
+
+// ----------------------------------------
+// PRICING & BOOKING
+// ----------------------------------------
+
+model CostItem {
+  id                String          @id @default(uuid())
+  proposalVersionId String
+  proposalVersion   ProposalVersion @relation(fields: [proposalVersionId], references: [id])
+  supplierId        String?
+  supplier          Supplier?       @relation(fields: [supplierId], references: [id])
+  category          CostCategory
+  amount            Float
+  currency          String          @default("INR")
+  isEstimated       Boolean         @default(true)
+}
+
+enum CostCategory {
+  ACCOMMODATION
+  TRANSPORT
+  ACTIVITY
+  MEAL
+  CONTINGENCY
+  MARGIN
+  TAX
+}
+
+model Booking {
+  id                String          @id @default(uuid())
+  customerProfileId String
+  customerProfile   CustomerProfile @relation(fields: [customerProfileId], references: [id])
+  status            BookingStatus   @default(PENDING)
+  totalAmount       Float
+  currency          String          @default("INR")
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  items             BookingItem[]
+  payments          Payment[]
+  trip              Trip?
+}
+
+enum BookingStatus {
+  PENDING
+  PARTIAL_PAID
+  CONFIRMED
+  CANCELLED
+  REFUNDED
+}
+
+model BookingItem {
+  id         String   @id @default(uuid())
+  bookingId  String
+  booking    Booking  @relation(fields: [bookingId], references: [id])
+  type       ItemType
+  supplierId String?
+  status     String
+  cost       Float
+}
+
+model Payment {
+  id            String        @id @default(uuid())
+  bookingId     String
+  booking       Booking       @relation(fields: [bookingId], references: [id])
+  amount        Float
+  currency      String        @default("INR")
+  status        PaymentStatus @default(PENDING)
+  paymentRef    String?
+  receiptUrl    String?
+  createdAt     DateTime      @default(now())
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  REFUNDED
+}
+
+// ----------------------------------------
+// OPERATIONS & EXECUTION
+// ----------------------------------------
+
+model Trip {
+  id                String          @id @default(uuid())
+  bookingId         String          @unique
+  booking           Booking         @relation(fields: [bookingId], references: [id])
+  customerProfileId String
+  customerProfile   CustomerProfile @relation(fields: [customerProfileId], references: [id])
+  status            TripStatus      @default(UPCOMING)
+  startDate         DateTime
+  endDate           DateTime
+
+  participants      TripParticipant[]
+  tasks             OperationalTask[]
+  reviews           Review[]
+  documents         Document[]
+}
+
+enum TripStatus {
+  UPCOMING
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+model TripParticipant {
+  id          String    @id @default(uuid())
+  tripId      String
+  trip        Trip      @relation(fields: [tripId], references: [id])
+  travellerId String
+  traveller   Traveller @relation(fields: [travellerId], references: [id])
+  isLead      Boolean   @default(false)
+}
+
+model OperationalTask {
+  id          String    @id @default(uuid())
+  tripId      String
+  trip        Trip      @relation(fields: [tripId], references: [id])
+  title       String
+  description String?
+  status      TaskStatus @default(TODO)
+  dueDate     DateTime?
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  DONE
+}
+
+model Message {
+  id          String   @id @default(uuid())
+  userId      String?
+  user        User?    @relation("UserMessages", fields: [userId], references: [id])
+  direction   String   // INBOUND, OUTBOUND
+  channel     String   // WHATSAPP, IN_APP
+  content     String
+  metadata    Json?
+  createdAt   DateTime @default(now())
+}
+
+model Notification {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  type        String
+  title       String
+  body        String
+  isRead      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  tripId    String
+  trip      Trip     @relation(fields: [tripId], references: [id])
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+}
+
+model Document {
+  id        String   @id @default(uuid())
+  tripId    String
+  trip      Trip     @relation(fields: [tripId], references: [id])
+  type      String   // VOUCHER, TICKET, ITINERARY_PDF
+  url       String
+  createdAt DateTime @default(now())
+}
+
+model AuditEvent {
+  id        String   @id @default(uuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  action    String
+  entity    String
+  entityId  String?
+  metadata  Json?
+  createdAt DateTime @default(now())
+}
