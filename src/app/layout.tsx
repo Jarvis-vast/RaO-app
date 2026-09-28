@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlobalVideoBackground } from "@/components/layout/GlobalVideoBackground";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { Analytics } from "@vercel/analytics/next";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -40,6 +41,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
