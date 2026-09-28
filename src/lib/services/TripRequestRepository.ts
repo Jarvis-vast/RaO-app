@@ -1,12 +1,20 @@
 import { getPrismaClient } from "../prisma";
 import { TripRequest, CreateTripRequestInput, TripRequestStatus } from "../types/trip-request";
+import crypto from "crypto";
 
-// Demo in-memory fallback for local development without DATABASE_URL
-let inMemoryStore: TripRequest[] = [
+// Collision-resistant request ID generator for concurrent safety
+function generateRequestId(): string {
+  const timestamp = Date.now().toString().slice(-6);
+  const randomHex = crypto.randomBytes(3).toString("hex").toUpperCase();
+  return `RAO-REQ-${timestamp}-${randomHex}`;
+}
+
+// Development-only demo store (used ONLY when explicitly enabled in local dev)
+let devDemoStore: TripRequest[] = [
   {
-    requestId: "RAO-REQ-1001",
+    requestId: "RAO-REQ-1001-DEMO",
     createdAt: new Date(Date.now() - 3600000 * 24).toISOString(),
-    customerName: "Sarah Jenkins",
+    customerName: "Sarah Jenkins (Demo)",
     phone: "+91 98200 11223",
     email: "sarah.j@example.com",
     moods: ["Romance", "Luxury"],
@@ -26,33 +34,23 @@ let inMemoryStore: TripRequest[] = [
     source: "PLANNER_WIZARD",
     status: "NEW",
   },
-  {
-    requestId: "RAO-REQ-1002",
-    createdAt: new Date(Date.now() - 3600000 * 12).toISOString(),
-    customerName: "Rahul Sharma",
-    phone: "+91 99300 44556",
-    email: "rahul.sharma@example.com",
-    moods: ["Adventure", "Peace"],
-    budgetPerPerson: "8000",
-    budgetMode: "Strict",
-    datesOption: "Next Month",
-    groupType: "Friends",
-    numTravellers: "5",
-    origin: "Pune",
-    destinationContext: "Mahabaleshwar",
-    preferences: ["Trekking", "Local Food"],
-    sharingOption: "Private trip only",
-    proposalId: "mountain-sanctuary",
-    proposalTitle: "Misty Mountain Sanctuary",
-    estimatedTotal: 40000,
-    source: "DESCRIBE_IT",
-    status: "REVIEWING",
-  },
 ];
 
+function isLocalDevFallbackAllowed(): boolean {
+  return (
+    process.env.NODE_ENV === "development" &&
+    process.env.ENABLE_LOCAL_DEMO_FALLBACK === "true"
+  );
+}
+
 export class TripRequestRepository {
+  /**
+   * Fetches all customer trip requests from PostgreSQL via Prisma 7.
+   * Fails closed if database connection is unavailable in production.
+   */
   static async getAll(): Promise<TripRequest[]> {
     const prisma = getPrismaClient();
+
     if (prisma) {
       try {
         const records = await prisma.customerLeadRequest.findMany({
@@ -87,18 +85,27 @@ export class TripRequestRepository {
           status: r.status as TripRequestStatus,
         }));
       } catch (err) {
-        console.error("Database query error in getAll():", err);
+        console.error("[RaO Repository] Database query error in getAll():", err);
+        throw new Error("DATABASE_QUERY_ERROR: Unable to fetch trip requests from PostgreSQL.");
       }
     }
 
-    console.warn("DATABASE_URL is not configured. Falling back to local demo array.");
-    return [...inMemoryStore].sort(
-      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
+    if (isLocalDevFallbackAllowed()) {
+      console.warn("[RaO Repository] Local dev fallback active: returning dev demo array.");
+      return [...devDemoStore].sort(
+        (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+    }
+
+    throw new Error("DATABASE_NOT_CONFIGURED: Production database connection URL (DATABASE_URL) is missing.");
   }
 
+  /**
+   * Fetches a single trip request by ID from PostgreSQL.
+   */
   static async getById(id: string): Promise<TripRequest | undefined> {
     const prisma = getPrismaClient();
+
     if (prisma) {
       try {
         const r = await prisma.customerLeadRequest.findUnique({
@@ -133,18 +140,26 @@ export class TripRequestRepository {
             status: r.status as TripRequestStatus,
           };
         }
+        return undefined;
       } catch (err) {
-        console.error("Database query error in getById():", err);
+        console.error("[RaO Repository] Database query error in getById():", err);
+        throw new Error("DATABASE_QUERY_ERROR: Failed to query trip request from database.");
       }
     }
 
-    return inMemoryStore.find((r) => r.requestId === id);
+    if (isLocalDevFallbackAllowed()) {
+      return devDemoStore.find((r) => r.requestId === id);
+    }
+
+    throw new Error("DATABASE_NOT_CONFIGURED: Production database connection URL (DATABASE_URL) is missing.");
   }
 
+  /**
+   * Persists a new customer trip request to PostgreSQL.
+   * Throws if database write fails — NEVER falsely succeeds.
+   */
   static async create(input: CreateTripRequestInput): Promise<TripRequest> {
-    const timestamp = Date.now().toString().slice(-4);
-    const randomHex = Math.floor(Math.random() * 1000).toString().padStart(3, "0");
-    const requestId = `RAO-REQ-${timestamp}-${randomHex}`;
+    const requestId = generateRequestId();
 
     const newRequest: TripRequest = {
       requestId,
@@ -175,6 +190,7 @@ export class TripRequestRepository {
     };
 
     const prisma = getPrismaClient();
+
     if (prisma) {
       try {
         await prisma.customerLeadRequest.create({
@@ -208,18 +224,26 @@ export class TripRequestRepository {
         });
         return newRequest;
       } catch (err) {
-        console.error("Database create error in create():", err);
-        throw new Error("Failed to persist trip request to production database.");
+        console.error("[RaO Repository] Database insert error in create():", err);
+        throw new Error("DATABASE_WRITE_FAILED: Unable to save trip request to PostgreSQL.");
       }
     }
 
-    console.warn("DATABASE_URL is not configured. Saving lead in memory for demo session.");
-    inMemoryStore.unshift(newRequest);
-    return newRequest;
+    if (isLocalDevFallbackAllowed()) {
+      console.warn("[RaO Repository] Local dev mode active: saving lead to dev array.");
+      devDemoStore.unshift(newRequest);
+      return newRequest;
+    }
+
+    throw new Error("DATABASE_NOT_CONFIGURED: Cannot persist lead because DATABASE_URL is missing.");
   }
 
+  /**
+   * Updates the status of a trip request in PostgreSQL.
+   */
   static async updateStatus(id: string, status: TripRequestStatus): Promise<TripRequest | null> {
     const prisma = getPrismaClient();
+
     if (prisma) {
       try {
         const updated = await prisma.customerLeadRequest.update({
@@ -254,15 +278,18 @@ export class TripRequestRepository {
           status: updated.status as TripRequestStatus,
         };
       } catch (err) {
-        console.error("Database update error in updateStatus():", err);
-        return null;
+        console.error("[RaO Repository] Database update error in updateStatus():", err);
+        throw new Error("DATABASE_UPDATE_FAILED: Unable to update request status in PostgreSQL.");
       }
     }
 
-    const req = inMemoryStore.find((r) => r.requestId === id);
-    if (!req) return null;
-    req.status = status;
-    return req;
+    if (isLocalDevFallbackAllowed()) {
+      const req = devDemoStore.find((r) => r.requestId === id);
+      if (!req) return null;
+      req.status = status;
+      return req;
+    }
+
+    throw new Error("DATABASE_NOT_CONFIGURED: Production database is missing.");
   }
 }
-
