@@ -12,6 +12,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://rao-ashy.vercel.app"),
   title: "RaO - Personal Travel Planner",
   description: "Tell RaO your mood, budget, and dates. We'll plan the rest.",
   icons: {

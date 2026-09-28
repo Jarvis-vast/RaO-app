@@ -1,0 +1,133 @@
+[
+  {
+    "requestId": "RAO-REQ-1119-125",
+    "createdAt": "2026-09-28T07:17:11.125Z",
+    "customerName": "Test User",
+    "phone": "9876543210",
+    "email": "test@example.com",
+    "moods": [
+      "Peace",
+      "Nature"
+    ],
+    "budgetPerPerson": "8000",
+    "budgetMode": "Flexible",
+    "datesOption": "Next Weekend",
+    "startDate": "",
+    "endDate": "",
+    "groupType": "Friends",
+    "numTravellers": "6",
+    "origin": "Mumbai",
+    "destinationContext": "Mahabaleshwar",
+    "preferences": [],
+    "sharingOption": "Private trip only",
+    "proposalId": "mountain-sanctuary",
+    "proposalTitle": "Misty Mountain Sanctuary",
+    "estimatedTotal": 57000,
+    "modificationNotes": [],
+    "rawUserInput": "6 friends, around 6 friends, around Rs. 8000 each, next weekend, quiet misty mountains near Mahabaleshwar",
+    "source": "DESCRIBE_IT",
+    "status": "NEW"
+  },
+  {
+    "requestId": "RAO-REQ-1536-112",
+    "createdAt": "2026-09-28T06:49:11.536Z",
+    "customerName": "Meera Joshi",
+    "phone": "+919833322110",
+    "moods": [
+      "Family Vacation"
+    ],
+    "budgetPerPerson": "Flexible",
+    "budgetMode": "Flexible",
+    "datesOption": "To be discussed",
+    "groupType": "Family Vacation",
+    "numTravellers": "To be confirmed",
+    "origin": "Inquiry",
+    "preferences": [],
+    "sharingOption": "Private trip only",
+    "modificationNotes": [],
+    "specialRequests": "Looking for a calm villa in Mahabaleshwar.",
+    "source": "CONTACT_PAGE",
+    "status": "NEW"
+  },
+  {
+    "requestId": "RAO-REQ-0958-964",
+    "createdAt": "2026-09-28T06:49:00.959Z",
+    "customerName": "Aarav Sharma",
+    "phone": "+919820011223",
+    "moods": [
+      "Adventure",
+      "Nature"
+    ],
+    "budgetPerPerson": "15000",
+    "budgetMode": "Flexible",
+    "datesOption": "Next Weekend",
+    "groupType": "Friends",
+    "numTravellers": "4",
+    "origin": "Mumbai",
+    "preferences": [],
+    "sharingOption": "Private trip only",
+    "proposalTitle": "Misty Mountain Sanctuary",
+    "modificationNotes": [],
+    "source": "PLANNER_WIZARD",
+    "status": "NEW"
+  },
+  {
+    "requestId": "RAO-REQ-1001",
+    "createdAt": "2026-09-27T06:48:13.512Z",
+    "customerName": "Sarah Jenkins",
+    "phone": "+91 98200 11223",
+    "email": "sarah.j@example.com",
+    "moods": [
+      "Romance",
+      "Luxury"
+    ],
+    "budgetPerPerson": "25000",
+    "budgetMode": "Flexible",
+    "datesOption": "Upcoming Long Weekend",
+    "groupType": "Couple",
+    "numTravellers": "2",
+    "origin": "Mumbai",
+    "destinationContext": "Nashik",
+    "preferences": [
+      "Boutique Stays",
+      "Private Dining"
+    ],
+    "sharingOption": "Private trip only",
+    "proposalId": "vineyard-retreat",
+    "proposalTitle": "Vineyard Sanctuary",
+    "estimatedTotal": 50000,
+    "modificationNotes": [
+      "Prefers villa with valley view"
+    ],
+    "source": "PLANNER_WIZARD",
+    "status": "NEW"
+  },
+  {
+    "requestId": "RAO-REQ-1002",
+    "createdAt": "2026-09-27T18:48:13.515Z",
+    "customerName": "Rahul Sharma",
+    "phone": "+91 99300 44556",
+    "email": "rahul.sharma@example.com",
+    "moods": [
+      "Adventure",
+      "Peace"
+    ],
+    "budgetPerPerson": "8000",
+    "budgetMode": "Strict",
+    "datesOption": "Next Month",
+    "groupType": "Friends",
+    "numTravellers": "5",
+    "origin": "Pune",
+    "destinationContext": "Mahabaleshwar",
+    "preferences": [
+      "Trekking",
+      "Local Food"
+    ],
+    "sharingOption": "Private trip only",
+    "proposalId": "mountain-sanctuary",
+    "proposalTitle": "Misty Mountain Sanctuary",
+    "estimatedTotal": 40000,
+    "source": "DESCRIBE_IT",
+    "status": "REVIEWING"
+  }
+]

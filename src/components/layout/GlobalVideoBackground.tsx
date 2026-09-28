@@ -82,6 +82,7 @@ export function GlobalVideoBackground() {
           ref={videoRef}
           key={theme === "dark" ? "dark-video" : "light-video"}
           src={theme === "dark" ? "/videos/gemini_generated_video_ae238e90.mp4" : "/videos/rao-hero.mp4"}
+          poster="/images/Logo.jpeg"
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
           muted
           playsInline

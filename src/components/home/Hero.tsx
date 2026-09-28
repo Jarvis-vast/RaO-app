@@ -17,7 +17,7 @@ export function Hero() {
       <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#1C0A0B] via-[#1C0A0B]/60 to-transparent md:bg-gradient-to-l md:from-[#1C0A0B] md:via-[#1C0A0B]/60 md:to-transparent pointer-events-none" />
 
       {/* Content Placed Over the Ocean (Center-Right Desktop, Bottom-Center Mobile) */}
-      <div className="relative z-10 w-full max-w-2xl px-6 pb-20 md:pb-0 md:mr-[8%] xl:mr-[12%] text-center md:text-left space-y-8">
+      <div className="relative z-10 w-full max-w-2xl px-6 pb-20 md:pb-0 md:mr-[8%] xl:mr-[14%] 2xl:mr-[20%] text-center md:text-left space-y-8">
         <div className="space-y-6">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-tight text-[#FAF7F4] drop-shadow-md">
             Your trip doesn&apos;t have to start with a <span className="font-semibold text-[#C88D6A]">destination.</span>

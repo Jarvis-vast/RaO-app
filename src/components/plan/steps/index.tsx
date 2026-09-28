@@ -5,38 +5,44 @@ import { Button } from "@/components/ui/button";
 import { StepId } from "../PlannerCore";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 
+export { StepDescribe } from "./StepDescribe";
+
 interface StepProps {
   state: PlannerState;
   updateState?: (updates: Partial<PlannerState>) => void;
   nextStep?: () => void;
   prevStep?: () => void;
   editStep?: (step: StepId) => void;
+  onSelectGuided?: () => void;
+  onSelectDescribe?: () => void;
 }
 
-export function StepModeSelection({ updateState, nextStep }: StepProps) {
+export function StepModeSelection({ onSelectGuided, onSelectDescribe }: StepProps) {
   return (
     <div className="flex flex-col items-center justify-center space-y-12 py-12">
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-light text-foreground tracking-tight">Tell us how you want to travel.</h1>
-        <p className="text-muted-foreground text-lg font-light">You don't need to know where to go. We'll figure that part out.</p>
+        <p className="text-muted-foreground text-lg font-light">You don&apos;t need to know where to go. We&apos;ll figure that part out.</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6 w-full max-w-3xl">
         <button 
-          onClick={() => { updateState?.({ mode: "guided" }); nextStep?.(); }}
+          onClick={onSelectGuided}
           className="bg-[#1C0A0B]/40 backdrop-blur-xl border border-border p-8 rounded-3xl hover:border-primary transition-all text-left flex flex-col gap-4 group"
         >
-          <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+          <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform font-semibold">
             1
           </div>
           <div>
             <h3 className="text-xl font-medium text-foreground mb-2">Step-by-step</h3>
-            <p className="text-muted-foreground">Answer a few simple questions to help us design your perfect journey.</p>
+            <p className="text-muted-foreground text-sm font-light leading-relaxed">
+              Answer a few simple questions regarding mood, dates, and budget to design your journey.
+            </p>
           </div>
         </button>
 
         <button 
-          onClick={() => { updateState?.({ mode: "describe" }); nextStep?.(); }}
+          onClick={onSelectDescribe}
           className="bg-[#1C0A0B]/40 backdrop-blur-xl border border-border p-8 rounded-3xl hover:border-primary transition-all text-left flex flex-col gap-4 group"
         >
           <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
@@ -44,7 +50,9 @@ export function StepModeSelection({ updateState, nextStep }: StepProps) {
           </div>
           <div>
             <h3 className="text-xl font-medium text-foreground mb-2">Describe it</h3>
-            <p className="text-muted-foreground">"6 friends, ₹7,000 each, next weekend, want adventure and somewhere near the sea."</p>
+            <p className="text-muted-foreground text-sm font-light leading-relaxed">
+              &quot;6 friends, around ₹7,000 each, next weekend, something adventurous near the sea.&quot;
+            </p>
           </div>
         </button>
       </div>
@@ -63,11 +71,13 @@ export function StepMood({ state, updateState, nextStep, prevStep }: StepProps) 
     }
   };
 
+  const isValid = state.moods.length > 0 || (state.customMood && state.customMood.trim().length > 0);
+
   return (
     <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-light text-foreground">How do you want to feel?</h2>
-        <p className="text-muted-foreground">Select all that apply.</p>
+        <p className="text-muted-foreground">Select one or more moods to anchor your experience.</p>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -99,33 +109,39 @@ export function StepMood({ state, updateState, nextStep, prevStep }: StepProps) 
 
       <div className="flex justify-between pt-6 border-t border-border/50">
         <Button variant="ghost" onClick={prevStep} className="text-muted-foreground"><ArrowLeft className="mr-2 w-4 h-4" /> Back</Button>
-        <Button onClick={nextStep} disabled={state.moods.length === 0 && !state.customMood} className="rounded-full px-8 bg-primary text-background hover:bg-primary/90">Next <ArrowRight className="ml-2 w-4 h-4" /></Button>
+        <Button onClick={nextStep} disabled={!isValid} className="rounded-full px-8 bg-primary text-background hover:bg-primary/90 disabled:opacity-40">
+          Next <ArrowRight className="ml-2 w-4 h-4" />
+        </Button>
       </div>
     </div>
   );
 }
 
 export function StepBudget({ state, updateState, nextStep, prevStep }: StepProps) {
+  const budgetVal = parseInt(state.budgetPerPerson || "0", 10);
+  const isValid = !isNaN(budgetVal) && budgetVal >= 1000;
+
   return (
     <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
-        <h2 className="text-3xl font-light text-foreground">What's your budget?</h2>
-        <p className="text-muted-foreground">Your budget helps us design the right experience. It doesn't simply filter destinations.</p>
+        <h2 className="text-3xl font-light text-foreground">What&apos;s your budget?</h2>
+        <p className="text-muted-foreground">Your budget helps us design the right experience without artificial restrictions.</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-4">
-          <label className="text-sm font-medium text-foreground">Budget per person (₹)</label>
+          <label className="text-sm font-medium text-foreground">Budget per person (₹) *</label>
           <input 
             type="number" 
             value={state.budgetPerPerson}
             onChange={(e) => updateState?.({ budgetPerPerson: e.target.value })}
             placeholder="e.g. 15000"
             className="w-full bg-transparent border border-border rounded-xl p-4 focus:outline-none focus:border-primary transition-colors text-foreground text-2xl"
+            min="1000"
           />
         </div>
         <div className="space-y-4">
-          <label className="text-sm font-medium text-foreground">Total overall budget (Optional)</label>
+          <label className="text-sm font-medium text-foreground">Total group budget (Optional)</label>
           <input 
             type="number" 
             value={state.budgetTotal}
@@ -157,17 +173,22 @@ export function StepBudget({ state, updateState, nextStep, prevStep }: StepProps
 
       <div className="flex justify-between pt-6 border-t border-border/50">
         <Button variant="ghost" onClick={prevStep} className="text-muted-foreground"><ArrowLeft className="mr-2 w-4 h-4" /> Back</Button>
-        <Button onClick={nextStep} disabled={!state.budgetPerPerson} className="rounded-full px-8 bg-primary text-background hover:bg-primary/90">Next <ArrowRight className="ml-2 w-4 h-4" /></Button>
+        <Button onClick={nextStep} disabled={!isValid} className="rounded-full px-8 bg-primary text-background hover:bg-primary/90 disabled:opacity-40">
+          Next <ArrowRight className="ml-2 w-4 h-4" />
+        </Button>
       </div>
     </div>
   );
 }
 
 export function StepDates({ state, updateState, nextStep, prevStep }: StepProps) {
+  const isDatesValid = state.datesOption !== "Choose dates" || (Boolean(state.startDate) && Boolean(state.endDate));
+
   return (
     <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-light text-foreground">When are you going?</h2>
+        <p className="text-muted-foreground">Select a timeframe or specify exact calendar days.</p>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
@@ -189,11 +210,11 @@ export function StepDates({ state, updateState, nextStep, prevStep }: StepProps)
       {state.datesOption === "Choose dates" && (
         <div className="grid grid-cols-2 gap-4 pt-4 animate-in fade-in slide-in-from-top-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">Start Date</label>
+            <label className="text-sm font-medium text-muted-foreground">Start Date *</label>
             <input type="date" value={state.startDate} onChange={e => updateState?.({ startDate: e.target.value })} className="w-full bg-transparent border border-border rounded-xl p-4 focus:border-primary text-foreground [color-scheme:dark]" />
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">End Date</label>
+            <label className="text-sm font-medium text-muted-foreground">End Date *</label>
             <input type="date" value={state.endDate} onChange={e => updateState?.({ endDate: e.target.value })} className="w-full bg-transparent border border-border rounded-xl p-4 focus:border-primary text-foreground [color-scheme:dark]" />
           </div>
         </div>
@@ -201,13 +222,18 @@ export function StepDates({ state, updateState, nextStep, prevStep }: StepProps)
 
       <div className="flex justify-between pt-6 border-t border-border/50">
         <Button variant="ghost" onClick={prevStep} className="text-muted-foreground"><ArrowLeft className="mr-2 w-4 h-4" /> Back</Button>
-        <Button onClick={nextStep} className="rounded-full px-8 bg-primary text-background hover:bg-primary/90">Next <ArrowRight className="ml-2 w-4 h-4" /></Button>
+        <Button onClick={nextStep} disabled={!isDatesValid} className="rounded-full px-8 bg-primary text-background hover:bg-primary/90 disabled:opacity-40">
+          Next <ArrowRight className="ml-2 w-4 h-4" />
+        </Button>
       </div>
     </div>
   );
 }
 
 export function StepGroup({ state, updateState, nextStep, prevStep }: StepProps) {
+  const count = parseInt(state.numTravellers || "0", 10);
+  const isValid = !isNaN(count) && count >= 1;
+
   return (
     <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
@@ -215,7 +241,7 @@ export function StepGroup({ state, updateState, nextStep, prevStep }: StepProps)
       </div>
 
       <div className="space-y-4">
-        <label className="text-sm font-medium text-foreground">Number of travellers</label>
+        <label className="text-sm font-medium text-foreground">Number of travellers *</label>
         <input 
           type="number" 
           value={state.numTravellers}
@@ -246,18 +272,22 @@ export function StepGroup({ state, updateState, nextStep, prevStep }: StepProps)
 
       <div className="flex justify-between pt-6 border-t border-border/50">
         <Button variant="ghost" onClick={prevStep} className="text-muted-foreground"><ArrowLeft className="mr-2 w-4 h-4" /> Back</Button>
-        <Button onClick={nextStep} disabled={!state.numTravellers} className="rounded-full px-8 bg-primary text-background hover:bg-primary/90">Next <ArrowRight className="ml-2 w-4 h-4" /></Button>
+        <Button onClick={nextStep} disabled={!isValid} className="rounded-full px-8 bg-primary text-background hover:bg-primary/90 disabled:opacity-40">
+          Next <ArrowRight className="ml-2 w-4 h-4" />
+        </Button>
       </div>
     </div>
   );
 }
 
 export function StepOrigin({ state, updateState, nextStep, prevStep }: StepProps) {
+  const isValid = Boolean(state.origin && state.origin.trim().length > 0);
+
   return (
     <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-light text-foreground">Where are you travelling from?</h2>
-        <p className="text-muted-foreground">This helps us calculate travel time and logistics.</p>
+        <p className="text-muted-foreground">This helps us calculate travel time and logistics accurately.</p>
       </div>
 
       <div className="space-y-4">
@@ -265,14 +295,16 @@ export function StepOrigin({ state, updateState, nextStep, prevStep }: StepProps
           type="text" 
           value={state.origin}
           onChange={(e) => updateState?.({ origin: e.target.value })}
-          placeholder="e.g. Mumbai"
+          placeholder="e.g. Mumbai, Pune, Nagpur"
           className="w-full bg-transparent border border-border rounded-xl p-4 focus:outline-none focus:border-primary transition-colors text-foreground text-2xl"
         />
       </div>
 
       <div className="flex justify-between pt-6 border-t border-border/50">
         <Button variant="ghost" onClick={prevStep} className="text-muted-foreground"><ArrowLeft className="mr-2 w-4 h-4" /> Back</Button>
-        <Button onClick={nextStep} disabled={!state.origin} className="rounded-full px-8 bg-primary text-background hover:bg-primary/90">Next <ArrowRight className="ml-2 w-4 h-4" /></Button>
+        <Button onClick={nextStep} disabled={!isValid} className="rounded-full px-8 bg-primary text-background hover:bg-primary/90 disabled:opacity-40">
+          Next <ArrowRight className="ml-2 w-4 h-4" />
+        </Button>
       </div>
     </div>
   );
@@ -293,6 +325,7 @@ export function StepPreferences({ state, updateState, nextStep, prevStep }: Step
     <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-light text-foreground">Any specific preferences?</h2>
+        <p className="text-muted-foreground">Optional details to help refine accommodation and activities.</p>
       </div>
 
       <div className="flex flex-wrap gap-3">
@@ -312,12 +345,12 @@ export function StepPreferences({ state, updateState, nextStep, prevStep }: Step
       </div>
       
       <div className="space-y-2">
-        <label className="text-sm font-medium text-muted-foreground">Other preferences</label>
+        <label className="text-sm font-medium text-muted-foreground">Other preferences (optional)</label>
         <input 
           type="text" 
           value={state.customPreference}
           onChange={(e) => updateState?.({ customPreference: e.target.value })}
-          placeholder="e.g. Vegetarian food only"
+          placeholder="e.g. Vegetarian meals only, balcony rooms"
           className="w-full bg-transparent border border-border rounded-xl p-4 focus:outline-none focus:border-primary transition-colors text-foreground"
         />
       </div>
@@ -334,14 +367,14 @@ export function StepSharing({ state, updateState, nextStep, prevStep }: StepProp
   return (
     <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
-        <h2 className="text-3xl font-light text-foreground">Would you be comfortable sharing the trip with other travellers?</h2>
-        <p className="text-muted-foreground">Shared trips can lower costs and increase socializing, while private trips offer complete exclusivity.</p>
+        <h2 className="text-3xl font-light text-foreground">Trip Privacy</h2>
+        <p className="text-muted-foreground">Do you prefer complete exclusivity or are you open to curated group sharing?</p>
       </div>
 
       <div className="grid gap-4 max-w-lg">
         {[
-          { id: "Open to a shared trip", desc: "Join other like-minded travellers." },
           { id: "Private trip only", desc: "Exclusive experience for your group." },
+          { id: "Open to a shared trip", desc: "Join other like-minded travellers for cost sharing." },
           { id: "Let RaO decide", desc: "We'll suggest what works best for this specific plan." }
         ].map(opt => (
           <button
@@ -381,35 +414,40 @@ export function StepReview({ state, nextStep, prevStep, editStep }: StepProps) {
   const formatMoods = () => {
     const all = [...state.moods];
     if (state.customMood) all.push(state.customMood);
-    return all.join(", ") || "None selected";
+    return all.join(", ") || "Flexible";
   };
 
   const formatPrefs = () => {
     const all = [...state.preferences];
     if (state.customPreference) all.push(state.customPreference);
-    return all.join(", ") || "None selected";
+    return all.join(", ") || "Standard curated";
   };
 
   return (
     <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-light text-foreground">Review your request</h2>
-        <p className="text-muted-foreground">Make sure everything looks right before we start designing.</p>
+        <p className="text-muted-foreground">Make sure everything looks right before we generate your proposal.</p>
       </div>
 
       <div className="bg-[#1C0A0B]/50 rounded-2xl p-6 border border-border">
         <SummaryRow label="Mood" value={formatMoods()} stepId="mood" />
-        <SummaryRow label="Budget" value={`₹${state.budgetPerPerson} / person (${state.budgetMode})`} stepId="budget" />
-        <SummaryRow label="Dates" value={state.datesOption === "Choose dates" ? `${state.startDate} to ${state.endDate}` : state.datesOption} stepId="dates" />
+        <SummaryRow label="Budget" value={`₹${state.budgetPerPerson || "12000"} / person (${state.budgetMode})`} stepId="budget" />
+        <SummaryRow label="Dates" value={state.datesOption === "Choose dates" && state.startDate ? `${state.startDate} to ${state.endDate}` : state.datesOption} stepId="dates" />
         <SummaryRow label="Travellers" value={`${state.numTravellers} (${state.groupType})`} stepId="group" />
         <SummaryRow label="Origin" value={state.origin} stepId="origin" />
+        {state.destinationContext && (
+          <SummaryRow label="Destination Context" value={state.destinationContext} stepId="origin" />
+        )}
         <SummaryRow label="Preferences" value={formatPrefs()} stepId="preferences" />
         <SummaryRow label="Privacy" value={state.sharingOption} stepId="sharing" />
       </div>
 
       <div className="flex justify-between pt-6 border-t border-border/50">
         <Button variant="ghost" onClick={prevStep} className="text-muted-foreground"><ArrowLeft className="mr-2 w-4 h-4" /> Back</Button>
-        <Button onClick={nextStep} className="rounded-full px-8 bg-primary text-background hover:bg-primary/90">Create My Trip Plan <ArrowRight className="ml-2 w-4 h-4" /></Button>
+        <Button onClick={nextStep} className="rounded-full px-8 bg-primary text-background hover:bg-primary/90 font-medium">
+          Create My Trip Plan <ArrowRight className="ml-2 w-4 h-4" />
+        </Button>
       </div>
     </div>
   );

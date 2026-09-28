@@ -8,8 +8,12 @@ const EXPERIENCES = [
   { id: "beach", name: "Beach Escape", duration: "3-6 Days", desc: "Sun, sand, and coastal relaxation away from crowded tourist traps.", examples: "Alibaug, Tarkarli" },
   { id: "romantic", name: "Romantic Getaway", duration: "2-4 Days", desc: "Private dinners, luxury stays, and moments designed for connection.", examples: "Lonavala, Nashik" },
   { id: "family", name: "Family Time", duration: "3-7 Days", desc: "Safe, engaging, and relaxing environments where every generation finds joy.", examples: "Mahabaleshwar, Ganpatipule" },
-  { id: "friends", name: "Friends Getaway", duration: "2-5 Days", desc: "Villas, barbecues, and shared adventures for the whole group.", examples: "Alibaug, Igatpuri" }
 ];
+
+export const metadata = {
+  title: "Travel by Feeling | Curated RaO Experiences",
+  description: "Browse signature travel experiences curated around your state of mind: Adventure, Peace & Nature, Romantic Getaways, Beach Escapes, and Friends Retreats.",
+};
 
 export default function ExperiencesPage() {
   return (

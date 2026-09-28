@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
+export const metadata = {
+  title: "About RaO | Remarkable Adventure Odyssey",
+  description: "Learn about RaO's mission to make travel deeply personal: designing bespoke journeys around feelings, intent, and people, not catalog packages.",
+};
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen pt-32 pb-24 px-6 flex flex-col items-center">
