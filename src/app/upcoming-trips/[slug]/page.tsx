@@ -40,9 +40,44 @@ export async function generateMetadata({ params }: Props) {
   const resolvedParams = await params;
   const trip = UPCOMING_TRIPS.find((t) => t.slug === resolvedParams.slug);
   if (!trip) return {};
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://rao-ashy.vercel.app";
+  const url = `${baseUrl}/upcoming-trips/${trip.slug}`;
+
   return {
-    title: `${trip.title} — ${trip.subtitle} | RaO Travel Agency`,
+    title: `${trip.title} — ${trip.subtitle}`,
     description: trip.overview,
+    keywords: [
+      trip.title,
+      trip.location,
+      "Mahakaleshwar Jyotirlinga package",
+      "Ujjain tour package from Mumbai",
+      "Harsiddhi Mata temple",
+      "Kal Bhairav Ujjain",
+      "RaO group escapes",
+    ],
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${trip.title} | RaO Travel Agency`,
+      description: trip.overview,
+      url: url,
+      type: "website",
+      images: [
+        {
+          url: `${baseUrl}${trip.heroImage}`,
+          width: 1200,
+          height: 630,
+          alt: trip.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${trip.title} | RaO Travel Agency`,
+      description: trip.overview,
+      images: [`${baseUrl}${trip.heroImage}`],
+    },
   };
 }
 
@@ -54,8 +89,37 @@ export default async function TripDetailPage({ params }: Props) {
     notFound();
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://rao-ashy.vercel.app";
+
+  const tripJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": trip.title,
+    "image": [`${baseUrl}${trip.heroImage}`],
+    "description": trip.overview,
+    "brand": {
+      "@type": "Brand",
+      "name": "RaO Travel Agency",
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": `${baseUrl}/upcoming-trips/${trip.slug}`,
+      "priceCurrency": "INR",
+      "price": trip.price.toString(),
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "RaO Travel Agency",
+      },
+    },
+  };
+
   return (
     <div className="min-h-screen pt-28 pb-24 bg-[#1C0A0B] text-foreground relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tripJsonLd) }}
+      />
       {/* Back Link */}
       <div className="max-w-7xl mx-auto px-6 mb-6">
         <Link
