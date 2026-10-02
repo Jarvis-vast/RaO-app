@@ -34,7 +34,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${montserrat.variable} antialiased h-full`} suppressHydrationWarning>
-      <body className="min-h-full flex flex-col font-sans bg-transparent text-foreground selection:bg-primary/20 selection:text-foreground">
+      <body
+        className="min-h-full flex flex-col font-sans bg-transparent text-foreground selection:bg-primary/20 selection:text-foreground"
+        suppressHydrationWarning
+      >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <GlobalVideoBackground />
           <Navbar />

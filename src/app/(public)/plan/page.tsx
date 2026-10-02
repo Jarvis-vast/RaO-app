@@ -7,7 +7,11 @@ import { PlannerCore } from "@/components/plan/PlannerCore";
 function PlannerWithParams() {
   const searchParams = useSearchParams();
   const moodParam = searchParams.get("mood");
-  const destParam = searchParams.get("dest") || searchParams.get("destination");
+  const tripParam = searchParams.get("trip");
+  const destParam =
+    searchParams.get("dest") ||
+    searchParams.get("destination") ||
+    (tripParam === "ujjain-temple-escape" ? "Ujjain" : null);
 
   return (
     <PlannerCore

@@ -9,6 +9,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
+  { href: "/upcoming-trips", label: "Upcoming Trips" },
   { href: "/experiences", label: "Experiences" },
   { href: "/how-it-works", label: "How It Works" },
   { href: "/destinations", label: "Destinations" },
