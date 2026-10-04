@@ -27,7 +27,8 @@ export class ProposalResolver {
       if (destinationContext) {
         if (
           pkg.primaryDestination.toLowerCase().includes(destinationContext) ||
-          pkg.subtitle.toLowerCase().includes(destinationContext)
+          pkg.subtitle.toLowerCase().includes(destinationContext) ||
+          pkg.state.toLowerCase().includes(destinationContext)
         ) {
           score += 50;
         }
@@ -41,21 +42,30 @@ export class ProposalResolver {
       }
 
       // 3. Keyword heuristic on customMood or rawUserInput
-      const fullText = `${state.customMood || ""} ${state.rawUserInput || ""}`.toLowerCase();
+      const fullText = `${state.customMood || ""} ${state.rawUserInput || ""} ${state.describeText || ""}`.toLowerCase();
+      if (fullText.includes("ujjain") || fullText.includes("mahakal") || fullText.includes("bhasma") || fullText.includes("temple") || fullText.includes("jyotirlinga")) {
+        if (pkg.id === "ujjain-temple-escape") score += 40;
+      }
+      if (fullText.includes("varanasi") || fullText.includes("kashi") || fullText.includes("ganga") || fullText.includes("ghat") || fullText.includes("sarnath")) {
+        if (pkg.id === "varanasi-sacred-ghats") score += 40;
+      }
+      if (fullText.includes("kerala") || fullText.includes("houseboat") || fullText.includes("munnar") || fullText.includes("backwater") || fullText.includes("ayurveda")) {
+        if (pkg.id === "kerala-backwater-sanctuary") score += 40;
+      }
+      if (fullText.includes("kashmir") || fullText.includes("gulmarg") || fullText.includes("srinagar") || fullText.includes("snow") || fullText.includes("gondola")) {
+        if (pkg.id === "kashmir-alpine-odyssey") score += 40;
+      }
       if (fullText.includes("beach") || fullText.includes("sea") || fullText.includes("coast") || fullText.includes("scuba")) {
         if (pkg.id === "coastal-escape") score += 25;
       }
-      if (fullText.includes("mountain") || fullText.includes("hill") || fullText.includes("valley") || fullText.includes("peace")) {
+      if (fullText.includes("mountain") || fullText.includes("hill") || fullText.includes("valley")) {
         if (pkg.id === "mountain-sanctuary") score += 25;
       }
-      if (fullText.includes("wine") || fullText.includes("vineyard") || fullText.includes("luxury") || fullText.includes("romance")) {
+      if (fullText.includes("wine") || fullText.includes("vineyard") || fullText.includes("nashik")) {
         if (pkg.id === "vineyard-retreat") score += 25;
       }
-      if (fullText.includes("tiger") || fullText.includes("safari") || fullText.includes("jungle") || fullText.includes("wildlife")) {
+      if (fullText.includes("tiger") || fullText.includes("safari") || fullText.includes("jungle") || fullText.includes("tadoba")) {
         if (pkg.id === "wildlife-expedition") score += 25;
-      }
-      if (fullText.includes("villa") || fullText.includes("friends") || fullText.includes("barbecue") || fullText.includes("waterfall")) {
-        if (pkg.id === "monsoon-valley-reset") score += 25;
       }
 
       // 4. Budget fit
@@ -78,11 +88,10 @@ export class ProposalResolver {
 
     const customWhyItFits = `${selectedPackage.whyItFitsTemplate} Perfectly tailored for ${moodListText}${groupText}${originText}, keeping well within your planned target of ₹${budgetNum.toLocaleString()} per person.`;
 
-    // Pricing calculation (deterministic)
-    // Base cost adjusted to user's selected budget if higher, else package base
+    // Pricing calculation
     const estimatedCostPerPerson = Math.max(
       selectedPackage.basePricePerPerson,
-      Math.min(budgetNum, Math.round(selectedPackage.basePricePerPerson * 1.5))
+      Math.min(budgetNum, Math.round(selectedPackage.basePricePerPerson * 1.4))
     );
     const estimatedTotalCost = estimatedCostPerPerson * travellersNum;
 

@@ -7,6 +7,8 @@ import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
+import { Bookmark } from "lucide-react";
+import { useTripPlanner } from "@/context/TripPlannerContext";
 
 const NAV_LINKS = [
   { href: "/upcoming-trips", label: "Upcoming Trips" },
@@ -20,6 +22,7 @@ const NAV_LINKS = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { savedTrips } = useTripPlanner();
 
   useEffect(() => {
     const onScroll = () => {
@@ -64,8 +67,22 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2 md:gap-4">
+          <div className="flex items-center gap-2 md:gap-3">
             <ThemeToggle />
+
+            {savedTrips.length > 0 && (
+              <Link
+                href="/plan"
+                className="relative p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-[#FAF7F4] transition-colors flex items-center justify-center"
+                title={`${savedTrips.length} saved trip(s)`}
+              >
+                <Bookmark className="w-4 h-4 text-primary" />
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
+                  {savedTrips.length}
+                </span>
+              </Link>
+            )}
+
             <Button
               asChild
               className="hidden md:inline-flex rounded-full bg-[#C88D6A] text-[#1C0A0B] hover:bg-[#E2B28B] px-6 transition-colors font-medium"

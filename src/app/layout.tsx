@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { GlobalVideoBackground } from "@/components/layout/GlobalVideoBackground";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { TripPlannerProvider } from "@/context/TripPlannerContext";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -134,10 +135,12 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          <GlobalVideoBackground />
-          <Navbar />
-          {children}
-          <Footer />
+          <TripPlannerProvider>
+            <GlobalVideoBackground />
+            <Navbar />
+            {children}
+            <Footer />
+          </TripPlannerProvider>
         </ThemeProvider>
       </body>
     </html>
