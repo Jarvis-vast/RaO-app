@@ -19,8 +19,17 @@ export const BUSINESS_CONFIG = {
     phoneDisplay: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER 
       ? `+${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER.slice(0, 2)} ${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER.slice(2, 7)} ${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER.slice(7)}`
       : "Contact Concierge on WhatsApp",
-    supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "concierge@rao.travel",
+    supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "raotourplanners@gmail.com",
     supportHours: "Monday to Sunday, 9:00 AM – 9:00 PM IST",
+  },
+
+  // Social Links
+  social: {
+    pinterest: "https://www.pinterest.com/raotourplanners/",
+    instagram: "https://www.instagram.com/rao.tour.planners/",
+    twitter: "https://x.com/RaO__travel",
+    threads: "https://www.threads.com/@rao.tour.planners",
+    email: "mailto:raotourplanners@gmail.com",
   },
 
   // Legal & Entity Details (Founder configuration point)

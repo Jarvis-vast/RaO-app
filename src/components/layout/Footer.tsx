@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SocialLinks } from "@/components/layout/SocialLinks";
 
 export function Footer() {
   return (
@@ -10,9 +11,13 @@ export function Footer() {
           </Link>
           <p className="text-xl font-medium tracking-wide">Remarkable Adventure Odyssey</p>
           <p className="text-muted-foreground font-light mt-4">My personal travel planner.</p>
-          <p className="text-primary font-medium tracking-widest uppercase text-sm mt-8">
+          <p className="text-primary font-medium tracking-widest uppercase text-sm mt-6">
             Explore • Experience • Discover
           </p>
+          <div className="pt-4">
+            <p className="text-xs text-muted-foreground font-medium mb-3 uppercase tracking-wider">Connect With Us</p>
+            <SocialLinks />
+          </div>
         </div>
         
         <div className="space-y-4">

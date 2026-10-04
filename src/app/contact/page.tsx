@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check, AlertCircle, MessageCircle } from "lucide-react";
+import { SocialLinks } from "@/components/layout/SocialLinks";
 import { BUSINESS_CONFIG } from "@/lib/config/business";
 
 export default function ContactPage() {
@@ -109,6 +110,16 @@ export default function ContactPage() {
                   <span>Chat on WhatsApp</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
+              </div>
+            </div>
+
+            <div className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 space-y-3">
+              <h3 className="text-lg font-medium text-primary">Follow Our Odysseys</h3>
+              <p className="text-foreground/80 font-light text-sm">
+                Stay inspired with our latest trip stories, itineraries, and updates across social media.
+              </p>
+              <div className="pt-2">
+                <SocialLinks />
               </div>
             </div>
 

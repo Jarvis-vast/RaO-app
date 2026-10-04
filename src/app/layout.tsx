@@ -112,7 +112,13 @@ export default function RootLayout({
       "addressCountry": "IN",
     },
     "priceRange": "₹₹",
-    "sameAs": [baseUrl],
+    "sameAs": [
+      baseUrl,
+      "https://www.pinterest.com/raotourplanners/",
+      "https://www.instagram.com/rao.tour.planners/",
+      "https://x.com/RaO__travel",
+      "https://www.threads.com/@rao.tour.planners"
+    ],
   };
 
   return (
