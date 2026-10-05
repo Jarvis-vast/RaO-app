@@ -1,4 +1,5 @@
 import { Hero } from "@/components/home/Hero";
+import { YourJourneyYourWay } from "@/components/home/YourJourneyYourWay";
 import { AnyTripSection } from "@/components/home/AnyTripSection";
 import { OneDayJourneySection } from "@/components/home/OneDayJourneySection";
 import { PlanningCategoriesSection } from "@/components/home/PlanningCategoriesSection";
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <main className="flex-1 flex flex-col items-center overflow-x-hidden">
       <Hero />
+      <YourJourneyYourWay />
       <AnyTripSection />
       <OneDayJourneySection />
       <PlanningCategoriesSection />

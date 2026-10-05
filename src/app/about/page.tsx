@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Shield, Sparkles, Heart } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 
 export const metadata = {
   title: "About RaO | Your Personal Travel Planner",
-  description: "RaO is your personal travel planner. We design journeys around people, privacy, and preferences — from a one-day return for 6 to a complete travel plan for 50.",
+  description: "RaO is your personal travel planner. Your journey. Your way. Curated or customized. Road, rail or air. Tell us your dates and budget. We'll do the rest.",
 };
 
 export default function AboutPage() {
@@ -16,58 +16,68 @@ export default function AboutPage() {
             YOUR PERSONAL TRAVEL PLANNER
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight">
-            Travel should feel personal.
+            YOUR JOURNEY. <span className="text-primary font-serif italic font-normal">YOUR WAY.</span>
           </h1>
           <p className="text-lg md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto leading-relaxed">
-            Personal travel does not mean expensive travel. It simply means a journey designed around your people, your privacy, and your pace.
+            Not every beautiful journey needs a big group, a long itinerary or a fixed package.
           </p>
         </header>
 
         <div className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-14 space-y-12 shadow-2xl">
-          {/* Core Philosophy Section */}
+          {/* Core Scenario Grid */}
           <section className="space-y-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary">A Personal Journey Can Be...</h2>
-            <div className="grid md:grid-cols-2 gap-6 pt-2">
-              <div className="bg-black/30 border border-white/10 p-6 rounded-2xl space-y-3">
-                <span className="text-xs font-mono uppercase font-semibold text-primary">Small & Focused</span>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-black/30 border border-white/10 p-6 rounded-2xl space-y-2">
+                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-primary">Spontaneous</span>
                 <p className="text-foreground font-medium text-base">
-                  Six people, one day, one destination, and one beautiful reason to go.
-                </p>
-                <p className="text-xs text-muted-foreground font-light leading-relaxed">
-                  No crowded tour buses, no adjusting to strangers, no rigid itineraries. Just private, quality time with your group.
+                  Sometimes it’s a spontaneous day out with the people you love.
                 </p>
               </div>
 
-              <div className="bg-black/30 border border-white/10 p-6 rounded-2xl space-y-3">
-                <span className="text-xs font-mono uppercase font-semibold text-primary">Large & Grand</span>
+              <div className="bg-black/30 border border-white/10 p-6 rounded-2xl space-y-2">
+                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-primary">Quick Reset</span>
                 <p className="text-foreground font-medium text-base">
-                  Fifty people, multiple days, multiple cities, complete transport and coordination.
+                  Sometimes it’s a weekend away to refresh and recharge.
                 </p>
-                <p className="text-xs text-muted-foreground font-light leading-relaxed">
-                  End-to-end logistics, train & road bookings, accommodation, and on-ground assistance handled effortlessly.
+              </div>
+
+              <div className="bg-black/30 border border-white/10 p-6 rounded-2xl space-y-2">
+                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-primary">Full Group</span>
+                <p className="text-foreground font-medium text-base">
+                  Sometimes it’s a journey for an entire group or celebration.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* Mission */}
-          <section className="space-y-4 pt-8 border-t border-white/10">
-            <div className="inline-flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-semibold">
-              <Sparkles className="w-4 h-4" /> Our Mission
-            </div>
-            <h2 className="text-2xl md:text-4xl font-light text-foreground leading-tight">
-              &ldquo;Make travel personal by designing journeys around people, not predefined packages.&rdquo;
-            </h2>
-            <p className="text-muted-foreground font-light leading-relaxed text-sm md:text-base pt-2">
-              RaO stands for <strong>Remarkable Adventure Odyssey</strong>. Whether it is a one-day pilgrimage return to Kolhapur or a multi-day group journey across Kashmir, we make sure the journey feels like an experience, not just transportation from point A to point B.
+          {/* Philosophy Statement */}
+          <section className="space-y-4 pt-6 border-t border-white/10">
+            <p className="text-base md:text-lg text-foreground/90 font-light leading-relaxed">
+              Whatever the size, duration or destination, RaO plans the journey around you — with the privacy, pace and experience you actually want.
+            </p>
+            <p className="text-lg md:text-xl font-semibold text-primary pt-2">
+              Curated or customized. Road, rail or air.
             </p>
           </section>
 
-          <div className="pt-6 flex justify-center">
-            <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-accent px-10 py-6 text-base font-semibold transition-colors shadow-xl">
-              <Link href="/plan">Plan Your Journey With RaO</Link>
-            </Button>
-          </div>
+          {/* Mission & Promise */}
+          <section className="space-y-4 pt-8 border-t border-white/10 text-center">
+            <div className="inline-flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-wider font-semibold">
+              <Sparkles className="w-4 h-4" /> The RaO Promise
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight">
+              Tell us your dates and budget. <br />
+              <span className="text-primary font-serif italic font-normal">We’ll do the rest.</span>
+            </h2>
+            <div className="pt-6 flex justify-center">
+              <Button asChild size="lg" className="rounded-full bg-primary text-primary-foreground hover:bg-accent px-10 py-6 text-base font-semibold transition-colors shadow-xl">
+                <Link href="/plan" className="flex items-center gap-2">
+                  <span>Plan My Trip With RaO</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
+          </section>
         </div>
       </div>
     </div>
