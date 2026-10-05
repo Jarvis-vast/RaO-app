@@ -6,29 +6,29 @@ export function TravelModesSection() {
   const modes = [
     {
       title: "ROADWAYS",
-      subtitle: "Private Cars, Tempo Travellers & Luxury Coaches",
-      desc: "Ideal for door-to-door comfort, one-day temple returns, scenic hill drives, and flexible stops with your own group.",
+      subtitle: "Private Cars, Tempo Travellers & Coaches",
+      desc: "Door-to-door comfort for family day trips, hill station getaways, and private group travel.",
       icon: Car,
       tag: "Road",
     },
     {
       title: "RAILWAYS",
-      subtitle: "Train-Based Journeys & Rail Itineraries",
-      desc: "Perfect for scenic rail odysseys, comfortable overnight sleeper trains, and heritage train routes across India.",
+      subtitle: "Train-Based Journeys & Scenic Routes",
+      desc: "Comfortable rail connections and train itineraries for scenic, relaxed travel across India.",
       icon: Train,
       tag: "Rail",
     },
     {
       title: "AIRWAYS",
-      subtitle: "Domestic Flights & Air Connections",
-      desc: "Fast, seamless travel planning when you want to maximize time at your destination or travel across regions.",
+      subtitle: "Domestic Flights & Regional Connections",
+      desc: "Fast, efficient flight travel planning when maximizing time at your destination matters most.",
       icon: Plane,
       tag: "Air",
     },
   ];
 
   return (
-    <section className="py-24 px-6 bg-black/40 border-t border-white/10 relative z-10">
+    <section className="py-24 px-6 bg-[#1C0A0B]/90 border-t border-white/10 relative z-10">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -39,7 +39,7 @@ export function TravelModesSection() {
             HOW YOU TRAVEL <span className="text-[#C88D6A] font-serif italic">IS UP TO YOU.</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground font-light leading-relaxed">
-            &ldquo;RaO can plan journeys by road, railway or air — depending on your dates, budget, destination and preferences.&rdquo;
+            &ldquo;RaO can plan your journey by road, railway or air — based on your destination, dates, budget and preferences.&rdquo;
           </p>
         </div>
 
@@ -50,7 +50,7 @@ export function TravelModesSection() {
             return (
               <div
                 key={mode.title}
-                className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-6 hover:border-[#C88D6A]/40 transition-all duration-300 relative group shadow-xl"
+                className="bg-black/30 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-6 hover:border-[#C88D6A]/40 transition-all duration-300 relative group shadow-xl"
               >
                 <div className="flex items-center justify-between">
                   <div className="w-14 h-14 rounded-2xl bg-[#C88D6A]/15 border border-[#C88D6A]/30 flex items-center justify-center text-[#C88D6A] group-hover:scale-110 transition-transform">

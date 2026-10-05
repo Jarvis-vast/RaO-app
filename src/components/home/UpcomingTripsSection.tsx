@@ -11,7 +11,7 @@ export function UpcomingTripsSection() {
   const flagshipTrip = UPCOMING_TRIPS[0]; // Ujjain Temple Escape
 
   const whatsappInquiryUrl = `https://wa.me/${BUSINESS_CONFIG.contact.whatsappNumber}?text=${encodeURIComponent(
-    "Hi RaO, I am interested in the Ujjain Temple Escape (Planning for after Diwali 2026). Please notify me when dates are announced!"
+    "Hi RaO, I am interested in the Ujjain Temple Escape concept (Planning for after Diwali 2026). Please notify me when dates are announced!"
   )}`;
 
   return (
@@ -27,7 +27,7 @@ export function UpcomingTripsSection() {
               <Sparkles className="w-3.5 h-3.5" /> Upcoming Odyssey Concepts
             </div>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-              CURATED <span className="text-amber-400 font-serif italic">GROUP JOURNEYS</span>
+              PLANNED <span className="text-amber-400 font-serif italic">GROUP JOURNEYS</span>
             </h2>
             <p className="text-muted-foreground font-light text-base md:text-lg">
               Express your interest for upcoming planned journeys or request a private edition for your own group.
@@ -37,7 +37,7 @@ export function UpcomingTripsSection() {
             href="/upcoming-trips"
             className="flex items-center gap-2 text-[#C88D6A] hover:text-[#E2B28B] transition-colors font-medium text-sm"
           >
-            View All Planned Concepts <ArrowRight className="w-4 h-4" />
+            View All Concepts <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
@@ -57,22 +57,22 @@ export function UpcomingTripsSection() {
               
               {/* Status Badges */}
               <div className="absolute top-5 left-5 flex flex-wrap items-center gap-2">
-                <span className="bg-amber-500 text-[#1C0A0B] text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
-                  {flagshipTrip.badge}
+                <span className="bg-amber-500 text-[#1C0A0B] text-xs font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-lg">
+                  EXPRESSIONS OF INTEREST
                 </span>
-                <span className="bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-medium px-3 py-1 rounded-full backdrop-blur-md">
-                  {flagshipTrip.status}
+                <span className="bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-medium px-3.5 py-1 rounded-full backdrop-blur-md">
+                  PLANNING STAGE
                 </span>
               </div>
 
               {/* Status Note Overlay */}
-              <div className="absolute bottom-5 left-5 bg-[#1C0A0B]/95 backdrop-blur-md border border-amber-500/30 px-4 py-3 rounded-2xl max-w-xs">
+              <div className="absolute bottom-5 left-5 bg-[#1C0A0B]/95 backdrop-blur-md border border-amber-500/30 px-5 py-3.5 rounded-2xl max-w-xs">
                 <div className="text-[10px] text-amber-300/80 uppercase tracking-widest font-semibold">Target Timeline</div>
                 <div className="text-sm font-semibold text-foreground mt-0.5">
-                  After Diwali 2026 (Nov 11 onward)
+                  Planning for after Diwali 2026
                 </div>
-                <div className="text-[11px] text-muted-foreground mt-1 font-light">
-                  Dates & costing subject to final availability
+                <div className="text-[11px] text-amber-200/90 mt-1 font-mono">
+                  DATE: TO BE ANNOUNCED
                 </div>
               </div>
             </div>
@@ -81,26 +81,26 @@ export function UpcomingTripsSection() {
             <div className="lg:col-span-7 p-8 md:p-10 flex flex-col justify-between space-y-8">
               <div className="space-y-6">
                 {/* Meta Bar */}
-                <div className="flex flex-wrap items-center gap-4 text-xs font-medium text-amber-200/80">
-                  <span className="flex items-center gap-1.5 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+                <div className="flex flex-wrap items-center gap-3 text-xs font-medium text-amber-200/90">
+                  <span className="flex items-center gap-1.5 bg-amber-500/10 px-3.5 py-1.5 rounded-full border border-amber-500/20">
                     <MapPin className="w-3.5 h-3.5 text-amber-400" /> {flagshipTrip.location}
                   </span>
-                  <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1 rounded-full border border-white/10">
-                    <Clock className="w-3.5 h-3.5 text-amber-400" /> {flagshipTrip.duration}
+                  <span className="flex items-center gap-1.5 bg-white/5 px-3.5 py-1.5 rounded-full border border-white/10">
+                    <Clock className="w-3.5 h-3.5 text-amber-400" /> 2D / 1N
                   </span>
-                  <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1 rounded-full border border-white/10">
-                    <Calendar className="w-3.5 h-3.5 text-amber-400" /> {flagshipTrip.nextBatchDate}
+                  <span className="flex items-center gap-1.5 bg-white/5 px-3.5 py-1.5 rounded-full border border-white/10">
+                    <Calendar className="w-3.5 h-3.5 text-amber-400" /> Planning: After Diwali 2026
                   </span>
                 </div>
 
                 {/* Title & Description */}
                 <div>
-                  <h3 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight group-hover:text-amber-300 transition-colors">
-                    {flagshipTrip.title}
+                  <h3 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight group-hover:text-amber-300 transition-colors uppercase">
+                    UJJAIN TEMPLE ESCAPE
                   </h3>
                   <p className="text-amber-400/90 text-sm font-serif italic mt-1">{flagshipTrip.subtitle}</p>
                   <p className="text-muted-foreground text-sm leading-relaxed font-light mt-4">
-                    {flagshipTrip.overview}
+                    A sacred spiritual odyssey concept from Mumbai to Ujjain covering Mahakaleshwar Jyotirlinga, Harsiddhi Mata Temple, and Kal Bhairav Temple. Planned with complete transport, stays, and local coordination upon final availability.
                   </p>
                 </div>
 
@@ -116,25 +116,12 @@ export function UpcomingTripsSection() {
                   </div>
                   <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/5 text-xs text-foreground/80">
                     <Utensils className="w-4 h-4 text-amber-400 shrink-0" />
-                    <span>Full Meal Planning</span>
+                    <span>Meal Planning</span>
                   </div>
                   <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/5 text-xs text-foreground/80">
                     <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
                     <span>3 Temples Circuit</span>
                   </div>
-                </div>
-
-                {/* Highlights List */}
-                <div className="space-y-2 pt-1">
-                  <div className="text-xs uppercase font-semibold text-amber-300 tracking-wider">Trip Highlights</div>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground font-light">
-                    {flagshipTrip.highlights.slice(0, 4).map((h, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="text-amber-400 font-bold">•</span>
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </div>
 
@@ -146,7 +133,7 @@ export function UpcomingTripsSection() {
                 >
                   <a href={whatsappInquiryUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                     <MessageCircle className="w-4 h-4 text-black" />
-                    <span>REGISTER INTEREST / ASK ABOUT UJJAIN</span>
+                    <span>REGISTER INTEREST</span>
                   </a>
                 </Button>
                 <Button
@@ -154,9 +141,9 @@ export function UpcomingTripsSection() {
                   variant="outline"
                   className="w-full sm:w-auto rounded-full border-amber-500/40 text-amber-200 hover:bg-amber-500/10 hover:text-amber-100 py-6 px-6 font-medium"
                 >
-                  <Link href={`/upcoming-trips/${flagshipTrip.slug}`}>
-                    View Concept Details
-                  </Link>
+                  <a href={whatsappInquiryUrl} target="_blank" rel="noopener noreferrer">
+                    ASK RAO ABOUT UJJAIN
+                  </a>
                 </Button>
               </div>
             </div>
