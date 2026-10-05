@@ -105,7 +105,7 @@ export default async function TripDetailPage({ params }: Props) {
       "@type": "Offer",
       "url": `${baseUrl}/upcoming-trips/${trip.slug}`,
       "priceCurrency": "INR",
-      "price": trip.price.toString(),
+      "price": trip.price ? trip.price.toString() : "0",
       "availability": "https://schema.org/InStock",
       "seller": {
         "@type": "Organization",
@@ -173,24 +173,32 @@ export default async function TripDetailPage({ params }: Props) {
             </div>
           </div>
 
-          {/* Floating Price Card */}
-          <div className="mt-8 lg:mt-0 lg:absolute lg:top-8 lg:right-8 bg-[#180809]/95 backdrop-blur-xl border border-amber-500/30 p-6 rounded-2xl text-left space-y-3 shadow-2xl z-20 max-w-sm">
-            <div className="text-xs text-amber-200/70 uppercase tracking-widest font-medium">All-Inclusive Fixed Price</div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-bold text-amber-400">₹{trip.price.toLocaleString("en-IN")}</span>
-              {trip.originalPrice && (
-                <span className="text-sm text-white/40 line-through">₹{trip.originalPrice.toLocaleString("en-IN")}</span>
-              )}
-              <span className="text-xs text-white/70">{trip.priceUnit}</span>
+          {/* Floating Planning Stage Card */}
+          <div className="mt-8 lg:mt-0 lg:absolute lg:top-8 lg:right-8 bg-[#180809]/95 backdrop-blur-xl border border-amber-500/30 p-6 rounded-2xl text-left space-y-4 shadow-2xl z-20 max-w-sm">
+            <div className="text-xs text-amber-300 uppercase tracking-widest font-semibold">Expressions of Interest</div>
+            <div>
+              <div className="text-xl font-bold text-foreground">Planning Stage</div>
+              <p className="text-xs text-amber-200/80 mt-1 font-light">
+                Targeting after Diwali 2026 (From Nov 11, 2026 onward). Exact dates & costing will be finalized upon batch availability.
+              </p>
             </div>
-            <p className="text-xs text-muted-foreground font-light">
-              Includes R/T train, hotel stay, all 6 meals & local transport.
+            <p className="text-xs text-muted-foreground font-light border-t border-white/10 pt-3">
+              Covers round-trip transport options, hotel stay, meal planning & guided temple circuit.
             </p>
             <Button
               asChild
               className="w-full rounded-full bg-amber-500 text-black hover:bg-amber-400 font-semibold py-5 transition-all shadow-lg shadow-amber-500/20"
             >
-              <Link href={`/plan?trip=${trip.slug}`}>Reserve Spot Now</Link>
+              <a
+                href={`https://wa.me/919326540456?text=${encodeURIComponent(
+                  `Hi RaO, I want to express interest for the ${trip.title} (Planning for after Diwali 2026). Please keep me updated!`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2"
+              >
+                <span>REGISTER INTEREST ON WHATSAPP</span>
+              </a>
             </Button>
           </div>
         </div>
@@ -350,32 +358,32 @@ export default async function TripDetailPage({ params }: Props) {
 
         {/* Right Sidebar */}
         <div className="lg:col-span-4 space-y-8">
-          {/* Booking Card */}
+          {/* Expressions of Interest Card */}
           <div className="bg-[#180809] border border-amber-500/30 p-8 rounded-3xl space-y-6 sticky top-28 shadow-2xl">
             <div>
-              <div className="text-xs uppercase font-semibold text-amber-400 tracking-wider">Group Booking</div>
-              <h3 className="text-2xl font-semibold text-foreground mt-1">Reserve Your Seats</h3>
+              <div className="text-xs uppercase font-semibold text-amber-400 tracking-wider">Planning Stage</div>
+              <h3 className="text-2xl font-semibold text-foreground mt-1">Express Interest</h3>
               <p className="text-xs text-muted-foreground font-light mt-2">
-                Seats are limited for each batch to ensure comfortable group management.
+                This trip concept is currently in the planning stage for after Diwali 2026. Register early to receive batch updates and lock in preferred dates.
               </p>
             </div>
 
-            <div className="bg-white/5 border border-white/10 p-4 rounded-2xl space-y-2">
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>Per Person Price</span>
-                <span className="text-foreground font-medium">₹3,499</span>
+            <div className="bg-white/5 border border-white/10 p-4 rounded-2xl space-y-2 text-xs">
+              <div className="flex justify-between text-muted-foreground">
+                <span>Target Timeline</span>
+                <span className="text-amber-300 font-medium">Nov 11, 2026 Onward</span>
               </div>
-              <div className="flex justify-between text-xs text-muted-foreground">
+              <div className="flex justify-between text-muted-foreground">
                 <span>Duration</span>
                 <span className="text-foreground font-medium">2D / 1N</span>
               </div>
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>Departure Point</span>
-                <span className="text-foreground font-medium">Mumbai Railway Station</span>
+              <div className="flex justify-between text-muted-foreground">
+                <span>Origin</span>
+                <span className="text-foreground font-medium">Mumbai</span>
               </div>
-              <div className="flex justify-between text-xs text-muted-foreground border-t border-white/10 pt-2 font-medium text-amber-300">
-                <span>Total Budget</span>
-                <span>₹3,499 / person</span>
+              <div className="flex justify-between text-muted-foreground border-t border-white/10 pt-2 font-medium text-amber-300">
+                <span>Pricing</span>
+                <span>Estimate on Request</span>
               </div>
             </div>
 
@@ -383,7 +391,16 @@ export default async function TripDetailPage({ params }: Props) {
               asChild
               className="w-full rounded-full bg-amber-500 text-black hover:bg-amber-400 font-semibold py-6 text-base transition-all shadow-lg shadow-amber-500/20"
             >
-              <Link href={`/plan?trip=${trip.slug}`}>Book This Escape</Link>
+              <a
+                href={`https://wa.me/919326540456?text=${encodeURIComponent(
+                  `Hi RaO, I want to express interest for the ${trip.title} (Planning for after Diwali 2026). Please keep me updated!`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2"
+              >
+                <span>REGISTER INTEREST ON WHATSAPP</span>
+              </a>
             </Button>
 
             {trip.pdfUrl && (

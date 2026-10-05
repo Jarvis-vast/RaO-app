@@ -8,17 +8,15 @@ export const BUSINESS_CONFIG = {
   // Brand
   brandName: "RaO",
   fullName: "Remarkable Adventure Odyssey",
-  tagline: "My personal travel planner.",
-  slogan: "Tell RaO your mood, budget, and dates. We'll plan the rest.",
+  tagline: "Your personal travel planner.",
+  slogan: "Tell us your dates and budget, and RaO will do the rest.",
 
   // Contact Channels
   contact: {
-    // E.164 formatted WhatsApp number without spaces or plus (e.g. 9198XXXXXXXX)
-    // Overridable via NEXT_PUBLIC_WHATSAPP_NUMBER in production
-    whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "",
-    phoneDisplay: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER 
-      ? `+${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER.slice(0, 2)} ${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER.slice(2, 7)} ${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER.slice(7)}`
-      : "Contact Concierge on WhatsApp",
+    // E.164 formatted WhatsApp number without spaces or plus (919326540456)
+    whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919326540456",
+    contactPerson: "Om Bhagwat",
+    phoneDisplay: "+91 93265 40456",
     supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "raotourplanners@gmail.com",
     supportHours: "Monday to Sunday, 9:00 AM – 9:00 PM IST",
   },

@@ -11,10 +11,11 @@ import { Bookmark } from "lucide-react";
 import { useTripPlanner } from "@/context/TripPlannerContext";
 
 const NAV_LINKS = [
-  { href: "/upcoming-trips", label: "Upcoming Trips" },
-  { href: "/experiences", label: "Experiences" },
-  { href: "/how-it-works", label: "How It Works" },
+  { href: "/plan", label: "Plan a Trip" },
+  { href: "/experiences", label: "Journeys / Experiences" },
   { href: "/destinations", label: "Destinations" },
+  { href: "/how-it-works", label: "How It Works" },
+  { href: "/upcoming-trips", label: "Upcoming Trips" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];

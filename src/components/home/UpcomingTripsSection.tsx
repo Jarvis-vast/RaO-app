@@ -2,13 +2,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Calendar, MapPin, Clock, Train, Hotel, Utensils, ShieldCheck, Sparkles } from "lucide-react";
-import { SectionHeading } from "@/components/ui/rao/SectionHeading";
+import { ArrowRight, Calendar, MapPin, Clock, Train, Hotel, Utensils, ShieldCheck, Sparkles, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { UPCOMING_TRIPS } from "@/lib/data/upcomingTrips";
+import { BUSINESS_CONFIG } from "@/lib/config/business";
 
 export function UpcomingTripsSection() {
   const flagshipTrip = UPCOMING_TRIPS[0]; // Ujjain Temple Escape
+
+  const whatsappInquiryUrl = `https://wa.me/${BUSINESS_CONFIG.contact.whatsappNumber}?text=${encodeURIComponent(
+    "Hi RaO, I am interested in the Ujjain Temple Escape (Planning for after Diwali 2026). Please notify me when dates are announced!"
+  )}`;
 
   return (
     <section className="w-full py-28 px-6 bg-gradient-to-b from-[#1C0A0B]/80 via-[#2A1013]/90 to-[#1C0A0B]/80 backdrop-blur-xl border-y border-amber-500/10 relative overflow-hidden">
@@ -20,23 +24,24 @@ export function UpcomingTripsSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="text-left max-w-2xl space-y-3">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold tracking-wider uppercase">
-              <Sparkles className="w-3.5 h-3.5" /> Scheduled Group Departure
+              <Sparkles className="w-3.5 h-3.5" /> Upcoming Odyssey Concepts
             </div>
-            <SectionHeading
-              title="Upcoming"
-              highlight="Escapes"
-              subtitle="Hand-crafted group odysseys with guaranteed departures, curated itineraries, and seamless on-ground coordination."
-            />
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+              CURATED <span className="text-amber-400 font-serif italic">GROUP JOURNEYS</span>
+            </h2>
+            <p className="text-muted-foreground font-light text-base md:text-lg">
+              Express your interest for upcoming planned journeys or request a private edition for your own group.
+            </p>
           </div>
           <Link
             href="/upcoming-trips"
             className="flex items-center gap-2 text-[#C88D6A] hover:text-[#E2B28B] transition-colors font-medium text-sm"
           >
-            View All Upcoming Trips <ArrowRight className="w-4 h-4" />
+            View All Planned Concepts <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        {/* Featured Flagship Trip: Ujjain */}
+        {/* Featured Concept Trip: Ujjain */}
         {flagshipTrip && (
           <div className="bg-[#180809]/90 border border-amber-500/20 rounded-3xl overflow-hidden shadow-2xl hover:border-amber-500/40 transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 group">
             {/* Image Column */}
@@ -50,9 +55,9 @@ export function UpcomingTripsSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#180809] via-transparent to-black/40 lg:bg-gradient-to-r lg:from-transparent lg:to-[#180809]" />
               
-              {/* Status Badge */}
-              <div className="absolute top-5 left-5 flex items-center gap-2">
-                <span className="bg-amber-500/90 text-[#1C0A0B] text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
+              {/* Status Badges */}
+              <div className="absolute top-5 left-5 flex flex-wrap items-center gap-2">
+                <span className="bg-amber-500 text-[#1C0A0B] text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
                   {flagshipTrip.badge}
                 </span>
                 <span className="bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-medium px-3 py-1 rounded-full backdrop-blur-md">
@@ -60,15 +65,14 @@ export function UpcomingTripsSection() {
                 </span>
               </div>
 
-              {/* Price Tag Overlay */}
-              <div className="absolute bottom-5 left-5 bg-[#1C0A0B]/90 backdrop-blur-md border border-amber-500/30 px-4 py-2.5 rounded-2xl">
-                <div className="text-xs text-amber-200/70 uppercase tracking-widest font-medium">Starting at</div>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-2xl font-bold text-amber-400">₹{flagshipTrip.price.toLocaleString("en-IN")}</span>
-                  {flagshipTrip.originalPrice && (
-                    <span className="text-sm text-white/40 line-through">₹{flagshipTrip.originalPrice.toLocaleString("en-IN")}</span>
-                  )}
-                  <span className="text-xs text-white/70">{flagshipTrip.priceUnit}</span>
+              {/* Status Note Overlay */}
+              <div className="absolute bottom-5 left-5 bg-[#1C0A0B]/95 backdrop-blur-md border border-amber-500/30 px-4 py-3 rounded-2xl max-w-xs">
+                <div className="text-[10px] text-amber-300/80 uppercase tracking-widest font-semibold">Target Timeline</div>
+                <div className="text-sm font-semibold text-foreground mt-0.5">
+                  After Diwali 2026 (Nov 11 onward)
+                </div>
+                <div className="text-[11px] text-muted-foreground mt-1 font-light">
+                  Dates & costing subject to final availability
                 </div>
               </div>
             </div>
@@ -104,7 +108,7 @@ export function UpcomingTripsSection() {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
                   <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/5 text-xs text-foreground/80">
                     <Train className="w-4 h-4 text-amber-400 shrink-0" />
-                    <span>R/T Train Included</span>
+                    <span>Rail / Road Transport</span>
                   </div>
                   <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/5 text-xs text-foreground/80">
                     <Hotel className="w-4 h-4 text-amber-400 shrink-0" />
@@ -112,7 +116,7 @@ export function UpcomingTripsSection() {
                   </div>
                   <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/5 text-xs text-foreground/80">
                     <Utensils className="w-4 h-4 text-amber-400 shrink-0" />
-                    <span>All Meals (2B/2L/2D)</span>
+                    <span>Full Meal Planning</span>
                   </div>
                   <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/5 border border-white/5 text-xs text-foreground/80">
                     <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
@@ -140,18 +144,18 @@ export function UpcomingTripsSection() {
                   asChild
                   className="w-full sm:w-auto flex-1 rounded-full bg-amber-500 text-black hover:bg-amber-400 font-semibold transition-all py-6 shadow-lg shadow-amber-500/20"
                 >
-                  <Link href={`/upcoming-trips/${flagshipTrip.slug}`}>
-                    Explore Ujjain Itinerary & Details
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Link>
+                  <a href={whatsappInquiryUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                    <MessageCircle className="w-4 h-4 text-black" />
+                    <span>REGISTER INTEREST / ASK ABOUT UJJAIN</span>
+                  </a>
                 </Button>
                 <Button
                   asChild
                   variant="outline"
                   className="w-full sm:w-auto rounded-full border-amber-500/40 text-amber-200 hover:bg-amber-500/10 hover:text-amber-100 py-6 px-6 font-medium"
                 >
-                  <Link href={`/plan?trip=${flagshipTrip.slug}`}>
-                    Reserve Spot (₹3,499)
+                  <Link href={`/upcoming-trips/${flagshipTrip.slug}`}>
+                    View Concept Details
                   </Link>
                 </Button>
               </div>

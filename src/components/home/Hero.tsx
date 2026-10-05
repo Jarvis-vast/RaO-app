@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -10,33 +11,38 @@ export function Hero() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full h-[100svh] min-h-[600px] flex items-end md:items-center justify-center md:justify-end overflow-hidden"
+      className="relative w-full h-[100svh] min-h-[660px] flex items-end md:items-center justify-center md:justify-end overflow-hidden"
     >
-      {/* Cinematic Gradient Overlay for readability */}
-      {/* Mobile: dark at bottom. Desktop: dark at right. The car/road is on the left. */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#1C0A0B] via-[#1C0A0B]/60 to-transparent md:bg-gradient-to-l md:from-[#1C0A0B] md:via-[#1C0A0B]/60 md:to-transparent pointer-events-none" />
+      {/* Cinematic Gradient Overlay */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#1C0A0B] via-[#1C0A0B]/60 to-transparent md:bg-gradient-to-l md:from-[#1C0A0B] md:via-[#1C0A0B]/70 md:to-transparent pointer-events-none" />
 
-      {/* Content Placed Over the Ocean (Center-Right Desktop, Bottom-Center Mobile) */}
-      <div className="relative z-10 w-full max-w-2xl px-6 pb-20 md:pb-0 md:mr-[8%] xl:mr-[14%] 2xl:mr-[20%] text-center md:text-left space-y-8">
-        <div className="space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D49A7A]/10 border border-[#D49A7A]/30 text-[#F5D6B8] text-xs font-semibold tracking-widest uppercase">
-            EXPLORE • EXPERIENCE • DISCOVER
+      {/* Hero Content */}
+      <div className="relative z-10 w-full max-w-3xl px-6 pb-16 md:pb-0 md:mr-[6%] xl:mr-[10%] 2xl:mr-[16%] text-center md:text-left space-y-8">
+        <div className="space-y-5">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C88D6A]/15 border border-[#C88D6A]/30 text-[#F2EAE4] text-xs font-semibold tracking-widest uppercase">
+            YOUR PERSONAL TRAVEL PLANNER
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight text-white drop-shadow-md">
-            YOUR MOOD. <br className="hidden sm:inline" />
-            <span className="text-[#D49A7A] font-serif italic">YOUR TRIP.</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white drop-shadow-md">
+            YOUR TRIP. <br />
+            <span className="text-[#C88D6A] font-serif italic font-normal">PLANNED AROUND YOU.</span>
           </h1>
-          <p className="text-xl md:text-2xl font-light leading-relaxed text-[#F5D6B8]/90 drop-shadow-sm max-w-xl mx-auto md:mx-0">
-            Tell RaO how you want to feel, what you want to spend, and when you want to go. We&apos;ll plan the rest with bespoke precision.
+          <p className="text-lg md:text-xl font-light leading-relaxed text-[#F2EAE4]/90 drop-shadow-sm max-w-2xl mx-auto md:mx-0">
+            Tell us your dates, budget, group and what you have in mind. RaO will plan the rest — curated or customized for you.
+          </p>
+          <p className="text-sm md:text-base font-medium text-[#E2B28B] tracking-wide">
+            From a one-day journey for 6 to a complete travel plan for 50. Road, rail or air.
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-4">
-          <Button asChild size="lg" className="rounded-full px-10 h-14 text-lg bg-[#D49A7A] text-[#1A0B0E] hover:bg-[#F5D6B8] transition-all font-semibold w-full sm:w-auto shadow-lg shadow-[#D49A7A]/20">
-            <Link href="/plan">Plan My Trip</Link>
+        <div className="flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-4 pt-2">
+          <Button asChild size="lg" className="rounded-full px-8 h-14 text-base bg-[#C88D6A] text-[#1C0A0B] hover:bg-[#E2B28B] transition-all font-semibold w-full sm:w-auto shadow-lg shadow-[#C88D6A]/20">
+            <Link href="/plan" className="flex items-center justify-center gap-2">
+              <span>PLAN MY TRIP</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </Button>
-          <Button asChild size="lg" variant="outline" className="rounded-full px-10 h-14 text-lg border-[#D49A7A]/40 text-white hover:bg-[#D49A7A]/10 bg-transparent backdrop-blur-sm transition-all w-full sm:w-auto font-medium">
-            <Link href="/experiences">Explore Experiences</Link>
+          <Button asChild size="lg" variant="outline" className="rounded-full px-8 h-14 text-base border-[#C88D6A]/40 text-white hover:bg-[#C88D6A]/10 bg-black/20 backdrop-blur-sm transition-all w-full sm:w-auto font-medium">
+            <Link href="#any-trip">SEE WHAT RAO CAN PLAN</Link>
           </Button>
         </div>
       </div>

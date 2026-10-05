@@ -7,11 +7,11 @@ export interface UpcomingTrip {
   location: string;
   startingFrom: string;
   duration: string;
-  price: number;
+  price?: number;
   originalPrice?: number;
-  priceUnit: string;
+  priceUnit?: string;
   badge: string;
-  status: "Upcoming" | "Filling Fast" | "Sold Out";
+  status: "Planning Stage" | "Expressions of Interest" | "Upcoming" | "Confirmed Batch";
   nextBatchDate: string;
   heroImage: string;
   galleryImages: string[];
@@ -44,32 +44,28 @@ export const UPCOMING_TRIPS: UpcomingTrip[] = [
     id: "ujjain-temple-escape",
     slug: "ujjain-temple-escape",
     title: "Ujjain Temple Escape",
-    subtitle: "The Sacred Jyotirlinga & Spiritual Circuit",
-    tagline: "Tell us your mood. We'll plan the trip.",
+    subtitle: "Sacred Jyotirlinga & Spiritual Circuit",
+    tagline: "Tell us your dates and budget, and RaO will do the rest.",
     location: "Ujjain, Madhya Pradesh",
     startingFrom: "Mumbai",
     duration: "2 Days / 1 Night",
-    price: 3499,
-    originalPrice: 4499,
-    priceUnit: "per person",
-    badge: "Upcoming Group Escape",
-    status: "Filling Fast",
-    nextBatchDate: "Oct 18 - Oct 20, 2026",
+    badge: "Planning Stage",
+    status: "Expressions of Interest",
+    nextBatchDate: "Planning for after Diwali 2026 (From Nov 11, 2026 onward)",
     heroImage: "/images/ujjain-hero.jpg",
     galleryImages: [
       "/images/ujjain-hero.jpg",
       "/images/ujjain-mahakal.png",
     ],
     overview:
-      "A sacred 2-Day spiritual escape from Mumbai to Ujjain covering Mahakaleshwar Jyotirlinga, Harsiddhi Mata Temple, and Kal Bhairav Temple. All train travel, hotel stay, meals, and local coordination included for an effortless, serene journey.",
+      "A sacred 2-Day spiritual itinerary concept from Mumbai to Ujjain covering Mahakaleshwar Jyotirlinga, Harsiddhi Mata Temple, and Kal Bhairav Temple. Train travel, hotel stay, meals, and local coordination will be arranged upon final batch confirmation.",
     highlights: [
       "Mahakaleshwar Jyotirlinga Darshan — Sacred Eternal Jyotirlinga",
       "Harsiddhi Mata Temple Visit — Ancient Shakti Peeth blessings",
       "Kal Bhairav Temple Experience — Divine guardian of Ujjain",
-      "Round-Trip Train Tickets (Mumbai – Ujjain – Mumbai)",
-      "1-Night Comfortable Hotel Accommodation",
-      "All Meals Included (2 Breakfasts, 2 Lunches, 2 Dinners)",
-      "Full Local Transport & RaO On-Ground Coordination",
+      "Round-Trip Rail / Road Transport Options (Mumbai – Ujjain)",
+      "Comfortable Hotel Accommodation & All Meals Included",
+      "Full Local Coordination & RaO On-Ground Trip Assistance",
     ],
     temples: [
       {
@@ -99,45 +95,43 @@ export const UPCOMING_TRIPS: UpcomingTrip[] = [
         period: "NIGHT BEFORE",
         title: "DEPARTURE — MUMBAI TO UJJAIN",
         description:
-          "Meet the group at the designated Mumbai railway station and board the confirmed train to Ujjain. Travel together and arrive ready for the temple circuit.",
+          "Meet the group at the designated Mumbai railway station or board private road transport to Ujjain.",
       },
       {
         period: "DAY 1 MORNING",
         title: "ARRIVAL & CHECK-IN SUPPORT",
         description:
-          "Morning arrival in Ujjain, local transfer to hotel, freshen-up/luggage arrangement, and a wholesome group breakfast before starting sightseeing.",
+          "Morning arrival in Ujjain, local transfer to hotel, freshen-up, and breakfast before starting the temple circuit.",
       },
       {
         period: "DAY 1 AFTERNOON",
         title: "MAHAKALESHWAR DARSHAN",
         description:
-          "Visit the sacred Mahakaleshwar Jyotirlinga temple, followed by a group lunch and hotel check-in / rest window.",
+          "Visit the sacred Mahakaleshwar Jyotirlinga temple, followed by lunch and hotel check-in.",
       },
       {
         period: "DAY 1 EVENING",
         title: "TEMPLE CIRCUIT & LOCAL TIME",
         description:
-          "Harsiddhi Mata Temple & Kal Bhairav Temple circuit visits. Enjoy evening group time in Ujjain's heritage markets, followed by dinner.",
+          "Harsiddhi Mata & Kal Bhairav Temple visits, evening heritage market walks, followed by dinner.",
       },
       {
         period: "DAY 2 MORNING",
         title: "RELAXED UJJAIN EXPLORATION",
         description:
-          "Breakfast, hotel checkout, and free time for local shopping, temple markets, or riverside relaxation near Ram Ghat.",
+          "Breakfast, hotel checkout, and free time for local shopping and Ram Ghat exploration.",
       },
       {
         period: "DAY 2 AFTERNOON",
         title: "RETURN JOURNEY TO MUMBAI",
         description:
-          "Group lunch, final souvenirs, early dinner, and transfer to Ujjain railway station for the return journey to Mumbai.",
+          "Lunch, final souvenirs, and transfer to Ujjain station for the return journey to Mumbai.",
       },
     ],
     includes: [
-      "Railway tickets from Mumbai to Ujjain and return (based on selected option)",
-      "1-night comfortable hotel accommodation",
-      "Breakfast on Day 1 & Day 2",
-      "Lunch on Day 1 & Day 2",
-      "Dinner on Day 1 & Day 2",
+      "Transport options from Mumbai to Ujjain and return",
+      "Comfortable hotel accommodation",
+      "Breakfast, Lunch, and Dinner as per itinerary",
       "Local transportation for planned itinerary",
       "Three-temple Ujjain guided circuit",
       "Complete RaO trip planning and group coordination",
@@ -147,7 +141,6 @@ export const UPCOMING_TRIPS: UpcomingTrip[] = [
       "Special VIP darshan / puja donation fees",
       "Room upgrades or additional stay nights",
       "Activities outside agreed itinerary",
-      "Alcohol, illegal drugs or prohibited substances",
     ],
     pdfUrl: "/docs/RAO_UJJAIN_TEMPLE_ESCAPE_PRINT_READY.pdf",
     organizer: {

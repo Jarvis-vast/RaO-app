@@ -1,45 +1,48 @@
 import { Shield, Banknote, PenTool, Users, HeartHandshake } from "lucide-react";
 import { TrustCard } from "@/components/ui/rao/TrustCard";
-import { SectionHeading } from "@/components/ui/rao/SectionHeading";
 
 export function CustomerTrust() {
   const points = [
     {
       icon: <PenTool className="w-8 h-8 text-primary" />,
       title: "Personal Planning",
-      desc: "Every detail crafted around your mood and budget, never a copy-paste template."
-    },
-    {
-      icon: <Banknote className="w-8 h-8 text-primary" />,
-      title: "Clear Package Pricing",
-      desc: "One transparent price. No hidden fees or surprise upcharges."
+      desc: "Every detail crafted around your dates and budget — whether a 1-day return for 6 or a complete plan for 50.",
     },
     {
       icon: <Shield className="w-8 h-8 text-primary" />,
-      title: "Flexible Modifications",
-      desc: "Review our proposal and shape it until it feels exactly right."
+      title: "Private Space & Pace",
+      desc: "Travel with your own group without adjusting to strangers or rigid tour groups.",
+    },
+    {
+      icon: <Banknote className="w-8 h-8 text-primary" />,
+      title: "Transparent Pricing",
+      desc: "Clear budget breakdowns with zero hidden fees or surprise upcharges.",
     },
     {
       icon: <Users className="w-8 h-8 text-primary" />,
-      title: "Human Coordination",
-      desc: "Our team handles the suppliers, bookings, and logistical headaches."
+      title: "Road, Rail or Air",
+      desc: "Customized transport logistics tailored to your exact dates and destination preferences.",
     },
     {
       icon: <HeartHandshake className="w-8 h-8 text-primary" />,
-      title: "Trip Support",
-      desc: "We are with you throughout the journey, ensuring a seamless experience."
-    }
+      title: "End-to-End Support",
+      desc: "From initial idea to your return home, RaO takes care of all bookings and coordination.",
+    },
   ];
 
   return (
-    <section className="w-full py-32 px-6 bg-[#1C0A0B]/50 backdrop-blur-xl border-t border-b border-border/50">
+    <section className="w-full py-24 px-6 bg-[#1C0A0B]/80 backdrop-blur-xl border-t border-b border-white/10 relative z-10">
       <div className="max-w-7xl mx-auto space-y-16">
-        <SectionHeading 
-          title="Built on"
-          highlight="Trust and Transparency"
-        />
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-semibold tracking-widest uppercase">
+            WHY PEOPLE CHOOSE RAO
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+            BUILT ON <span className="text-primary font-serif italic">TRUST & PERSONAL CARE</span>
+          </h2>
+        </div>
         
-        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-8">
+        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
           {points.map((point, i) => (
             <TrustCard key={point.title} {...point} index={i} />
           ))}

@@ -1,16 +1,21 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, MapPin, Clock, Calendar, CheckCircle2, Sparkles, Train, Hotel, Utensils } from "lucide-react";
+import { ArrowRight, MapPin, Clock, Calendar, CheckCircle2, Sparkles, Train, Hotel, Utensils, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { UPCOMING_TRIPS } from "@/lib/data/upcomingTrips";
+import { BUSINESS_CONFIG } from "@/lib/config/business";
 
 export const metadata = {
-  title: "Upcoming Group Trips & Escapes | RaO Travel Agency",
+  title: "Upcoming Journeys & Concepts | RaO Personal Travel Planner",
   description:
-    "Explore scheduled group departures curated by RaO Travel Agency. Features complete itineraries, all meals, stays, and train tickets included. Starting with Ujjain Temple Escape.",
+    "Explore upcoming group odysseys and planned trip concepts by RaO Personal Travel Planner. Express interest or request private dates for your group.",
 };
 
 export default function UpcomingTripsPage() {
+  const whatsappUrl = `https://wa.me/${BUSINESS_CONFIG.contact.whatsappNumber}?text=${encodeURIComponent(
+    "Hi RaO, I am interested in the Ujjain Temple Escape concept (Planning for after Diwali 2026). Please keep me updated!"
+  )}`;
+
   return (
     <div className="min-h-screen pt-32 pb-24 px-6 flex flex-col items-center bg-[#1C0A0B] text-foreground relative overflow-hidden">
       {/* Glow Backdrops */}
@@ -21,13 +26,13 @@ export default function UpcomingTripsPage() {
         {/* Header */}
         <header className="text-center space-y-6 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold uppercase tracking-widest shadow-inner">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" /> Fixed Departure Odysseys
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" /> Planned Odysseys
           </div>
-          <h1 className="text-5xl md:text-6xl font-semibold tracking-tight text-foreground">
-            Upcoming <span className="text-amber-400 font-serif italic">Group Escapes</span>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
+            Upcoming <span className="text-amber-400 font-serif italic">Group Concepts</span>
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed">
-            All-inclusive group journeys designed for peace of mind, community, and unforgettable memories.
+          <p className="text-lg md:text-xl text-muted-foreground font-light leading-relaxed">
+            Curated group concepts currently in the planning stage. Express your interest early or request private dates for your own group.
           </p>
         </header>
 
@@ -59,15 +64,11 @@ export default function UpcomingTripsPage() {
                   </span>
                 </div>
 
-                {/* Price Tag */}
-                <div className="absolute bottom-5 left-5 bg-[#1C0A0B]/90 backdrop-blur-md border border-amber-500/30 px-5 py-3 rounded-2xl">
-                  <div className="text-xs text-amber-200/70 uppercase tracking-widest font-medium">All-Inclusive Price</div>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold text-amber-400">₹{trip.price.toLocaleString("en-IN")}</span>
-                    {trip.originalPrice && (
-                      <span className="text-sm text-white/40 line-through">₹{trip.originalPrice.toLocaleString("en-IN")}</span>
-                    )}
-                    <span className="text-xs text-white/70">{trip.priceUnit}</span>
+                {/* Timeline Tag */}
+                <div className="absolute bottom-5 left-5 bg-[#1C0A0B]/95 backdrop-blur-md border border-amber-500/30 px-5 py-3 rounded-2xl max-w-xs">
+                  <div className="text-[10px] text-amber-200/70 uppercase tracking-widest font-medium">Planning Stage</div>
+                  <div className="text-sm font-semibold text-amber-400 mt-0.5">
+                    After Diwali 2026 (Nov 11 onward)
                   </div>
                 </div>
               </div>
@@ -100,7 +101,7 @@ export default function UpcomingTripsPage() {
 
                   {/* Highlights Grid */}
                   <div className="space-y-3">
-                    <div className="text-xs uppercase font-semibold text-amber-300 tracking-wider">Included Highlights</div>
+                    <div className="text-xs uppercase font-semibold text-amber-300 tracking-wider">Planned Highlights</div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground font-light">
                       {trip.highlights.map((h, i) => (
                         <div key={i} className="flex items-start gap-2">
@@ -118,18 +119,18 @@ export default function UpcomingTripsPage() {
                     asChild
                     className="w-full sm:w-auto flex-1 rounded-full bg-amber-500 text-black hover:bg-amber-400 font-semibold transition-all py-6 shadow-lg shadow-amber-500/20"
                   >
-                    <Link href={`/upcoming-trips/${trip.slug}`}>
-                      View Full Itinerary & Details
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Link>
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                      <MessageCircle className="w-4 h-4 text-black" />
+                      <span>REGISTER INTEREST / ASK ABOUT UJJAIN</span>
+                    </a>
                   </Button>
                   <Button
                     asChild
                     variant="outline"
                     className="w-full sm:w-auto rounded-full border-amber-500/40 text-amber-200 hover:bg-amber-500/10 py-6 px-6 font-medium"
                   >
-                    <Link href={`/plan?trip=${trip.slug}`}>
-                      Book / Reserve Spot
+                    <Link href={`/upcoming-trips/${trip.slug}`}>
+                      View Concept Details
                     </Link>
                   </Button>
                 </div>
@@ -140,16 +141,16 @@ export default function UpcomingTripsPage() {
 
         {/* Custom Group Banner */}
         <div className="bg-[#2A1013]/60 border border-amber-500/30 rounded-3xl p-8 md:p-12 text-center space-y-6">
-          <h3 className="text-2xl md:text-3xl font-semibold text-amber-300">Looking for a custom private departure?</h3>
+          <h3 className="text-2xl md:text-3xl font-semibold text-amber-300">Want a private journey for your own group?</h3>
           <p className="text-muted-foreground max-w-xl mx-auto font-light text-sm">
-            Have a family, friends, or corporate group? We can organize private dates for Ujjain or build a completely bespoke itinerary around your preferences.
+            Whether it is 6 people for a one-day return or 30 people for a multi-day getaway, RaO will plan around your exact dates and budget.
           </p>
           <div>
             <Button
               asChild
-              className="rounded-full bg-[#C88D6A] text-[#1C0A0B] hover:bg-[#E2B28B] px-8 py-6 text-base font-medium"
+              className="rounded-full bg-[#C88D6A] text-[#1C0A0B] hover:bg-[#E2B28B] px-8 py-6 text-base font-semibold"
             >
-              <Link href="/plan">Request Custom Group Trip</Link>
+              <Link href="/plan">Plan My Private Trip</Link>
             </Button>
           </div>
         </div>
