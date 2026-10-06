@@ -133,6 +133,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} antialiased h-full`} suppressHydrationWarning>
       <head>
+        <meta name="rao-verification-marker" content="RAO-PROD-3D3B471" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(travelAgencyJsonLd) }}
