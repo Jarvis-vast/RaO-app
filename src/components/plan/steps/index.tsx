@@ -21,7 +21,7 @@ export function StepModeSelection({ onSelectGuided, onSelectDescribe }: StepProp
   return (
     <div className="flex flex-col items-center justify-center space-y-12 py-12">
       <div className="text-center space-y-4">
-        <h1 className="text-4xl font-light text-foreground tracking-tight">Tell us how you want to travel.</h1>
+        <h2 className="text-4xl font-light text-foreground tracking-tight">Tell us how you want to travel.</h2>
         <p className="text-muted-foreground text-lg font-light">You don&apos;t need to know where to go. We&apos;ll figure that part out.</p>
       </div>
 

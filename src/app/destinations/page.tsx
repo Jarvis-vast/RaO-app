@@ -6,9 +6,19 @@ import { ArrowRight, MapPin } from "lucide-react";
 export const metadata = {
   title: "RaO Destinations | Custom Travel Across Maharashtra & India",
   description:
-    "Explore travel destinations with RaO. Custom road, rail, and air itineraries planned around your dates, budget, group, and pace.",
+    "Explore destinations with RaO and discover curated or customized journeys across Maharashtra, India and beyond.",
   alternates: {
     canonical: "https://rao-ashy.vercel.app/destinations",
+  },
+  openGraph: {
+    title: "RaO Destinations | Custom Travel Across Maharashtra & India",
+    description:
+      "Explore destinations with RaO and discover curated or customized journeys across Maharashtra, India and beyond.",
+    url: "https://rao-ashy.vercel.app/destinations",
+    siteName: "RaO Travel Agency",
+    locale: "en_IN",
+    type: "website",
+    images: [{ url: "https://rao-ashy.vercel.app/images/Logo.jpeg", width: 800, height: 800, alt: "RaO Destinations" }],
   },
 };
 

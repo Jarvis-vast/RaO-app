@@ -21,7 +21,7 @@ const EXPERIENCES = [
     id: "spiritual",
     name: "Spiritual & Pilgrimage",
     duration: "1 to 4 Days",
-    desc: "Sacred temple circuits, Jyotirlinga darshan, and riverfront aarti with complete transport & VIP support.",
+    desc: "Sacred temple circuits, Jyotirlinga darshan, and riverfront aarti with thoughtfully planned transport and local darshan coordination.",
     examples: "Ujjain Mahakal, Kolhapur Mahalakshmi, Varanasi Ghats",
   },
   {
@@ -85,9 +85,19 @@ const EXPERIENCES = [
 export const metadata = {
   title: "RaO Experiences | One-Day, Weekend & Custom Journeys",
   description:
-    "Discover curated travel experience categories by RaO. From one-day return escapes to multi-day odysseys across Maharashtra and India.",
+    "Explore RaO journeys from one-day escapes and weekends to pilgrimage, private, family, corporate and customized travel.",
   alternates: {
     canonical: "https://rao-ashy.vercel.app/experiences",
+  },
+  openGraph: {
+    title: "RaO Experiences | One-Day, Weekend & Custom Journeys",
+    description:
+      "Explore RaO journeys from one-day escapes and weekends to pilgrimage, private, family, corporate and customized travel.",
+    url: "https://rao-ashy.vercel.app/experiences",
+    siteName: "RaO Travel Agency",
+    locale: "en_IN",
+    type: "website",
+    images: [{ url: "https://rao-ashy.vercel.app/images/Logo.jpeg", width: 800, height: 800, alt: "RaO Experiences" }],
   },
 };
 

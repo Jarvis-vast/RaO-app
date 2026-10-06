@@ -1,11 +1,21 @@
 import { BUSINESS_CONFIG } from "@/lib/config/business";
 
 export const metadata = {
-  title: "Cancellation & Refund Policy | RaO Travel Agency",
+  title: "Cancellation & Refund Policy | RaO",
   description:
     "Clear, transparent cancellation and refund policy for travel bookings and custom itineraries with RaO.",
   alternates: {
     canonical: "https://rao-ashy.vercel.app/cancellation",
+  },
+  openGraph: {
+    title: "Cancellation & Refund Policy | RaO",
+    description:
+      "Clear, transparent cancellation and refund policy for travel bookings and custom itineraries with RaO.",
+    url: "https://rao-ashy.vercel.app/cancellation",
+    siteName: "RaO Travel Agency",
+    locale: "en_IN",
+    type: "website",
+    images: [{ url: "https://rao-ashy.vercel.app/images/Logo.jpeg", width: 800, height: 800, alt: "Cancellation & Refund Policy" }],
   },
 };
 

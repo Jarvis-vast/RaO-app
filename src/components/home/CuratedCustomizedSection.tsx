@@ -39,7 +39,7 @@ export function CuratedCustomizedSection() {
                 &ldquo;Thoughtfully planned journeys, ready to discover.&rdquo;
               </p>
               <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                Handcrafted itineraries designed by our travel experts with pre-arranged stays, experiences, and transport highlights ready for instant booking or group departure.
+                Handcrafted itineraries with pre-arranged stays, experiences, and transport highlights ready to explore or request.
               </p>
             </div>
 

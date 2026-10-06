@@ -1,11 +1,21 @@
 import { BUSINESS_CONFIG } from "@/lib/config/business";
 
 export const metadata = {
-  title: "Terms & Conditions | RaO Travel Agency",
+  title: "Terms & Conditions | RaO",
   description:
     "Review the official terms and conditions for personal travel planning services provided by RaO.",
   alternates: {
     canonical: "https://rao-ashy.vercel.app/terms",
+  },
+  openGraph: {
+    title: "Terms & Conditions | RaO",
+    description:
+      "Review the official terms and conditions for personal travel planning services provided by RaO.",
+    url: "https://rao-ashy.vercel.app/terms",
+    siteName: "RaO Travel Agency",
+    locale: "en_IN",
+    type: "website",
+    images: [{ url: "https://rao-ashy.vercel.app/images/Logo.jpeg", width: 800, height: 800, alt: "Terms & Conditions" }],
   },
 };
 

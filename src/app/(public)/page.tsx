@@ -12,11 +12,21 @@ import { CustomerTrust } from "@/components/home/CustomerTrust";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 export const metadata: Metadata = {
-  title: "RaO Travel | Personal Travel Planner for Private & Custom Journeys",
+  title: "RaO | Personal Travel Planner in Mumbai",
   description:
     "RaO is your personal travel planner in Mumbai. Tell us your dates, budget, destination or idea and we’ll plan a curated or customized journey by road, rail or air.",
   alternates: {
     canonical: "https://rao-ashy.vercel.app/",
+  },
+  openGraph: {
+    title: "RaO | Personal Travel Planner in Mumbai",
+    description:
+      "RaO is your personal travel planner in Mumbai. Tell us your dates, budget, destination or idea and we’ll plan a curated or customized journey by road, rail or air.",
+    url: "https://rao-ashy.vercel.app/",
+    siteName: "RaO Travel Agency",
+    locale: "en_IN",
+    type: "website",
+    images: [{ url: "https://rao-ashy.vercel.app/images/Logo.jpeg", width: 800, height: 800, alt: "RaO Personal Travel Planner" }],
   },
 };
 

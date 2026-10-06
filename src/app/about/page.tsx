@@ -5,9 +5,19 @@ import { Sparkles, ArrowRight } from "lucide-react";
 export const metadata = {
   title: "About RaO | Personal Travel Planning & Philosophy",
   description:
-    "Learn about RaO (Remarkable Adventure Odyssey) — your personal travel planner for private, family, one-day escapes, and group journeys across India.",
+    "Discover RaO (Remarkable Adventure Odyssey), a personal travel planner designing curated and customized journeys around people, not fixed packages.",
   alternates: {
     canonical: "https://rao-ashy.vercel.app/about",
+  },
+  openGraph: {
+    title: "About RaO | Personal Travel Planning & Philosophy",
+    description:
+      "Discover RaO (Remarkable Adventure Odyssey), a personal travel planner designing curated and customized journeys around people, not fixed packages.",
+    url: "https://rao-ashy.vercel.app/about",
+    siteName: "RaO Travel Agency",
+    locale: "en_IN",
+    type: "website",
+    images: [{ url: "https://rao-ashy.vercel.app/images/Logo.jpeg", width: 800, height: 800, alt: "About RaO Personal Travel Planner" }],
   },
 };
 

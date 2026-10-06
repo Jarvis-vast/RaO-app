@@ -3,11 +3,21 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Compass, ShieldCheck } from "lucide-react";
 
 export const metadata = {
-  title: "How RaO Works | 4-Step Personal Travel Planning",
+  title: "How RaO Works | Personal Travel Planning",
   description:
-    "Understand how RaO plans travel: You bring the idea, RaO designs transport, stays, and itinerary, you shape it, and we handle the details.",
+    "See how RaO plans travel: tell us what you want, we design the journey, you shape it, and we handle the coordination.",
   alternates: {
     canonical: "https://rao-ashy.vercel.app/how-it-works",
+  },
+  openGraph: {
+    title: "How RaO Works | Personal Travel Planning",
+    description:
+      "See how RaO plans travel: tell us what you want, we design the journey, you shape it, and we handle the coordination.",
+    url: "https://rao-ashy.vercel.app/how-it-works",
+    siteName: "RaO Travel Agency",
+    locale: "en_IN",
+    type: "website",
+    images: [{ url: "https://rao-ashy.vercel.app/images/Logo.jpeg", width: 800, height: 800, alt: "How RaO Works" }],
   },
 };
 

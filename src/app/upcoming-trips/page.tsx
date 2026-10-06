@@ -6,11 +6,21 @@ import { UPCOMING_TRIPS } from "@/lib/data/upcomingTrips";
 import { BUSINESS_CONFIG } from "@/lib/config/business";
 
 export const metadata = {
-  title: "Upcoming Journeys & Odyssey Concepts | RaO Travel Planner",
+  title: "Upcoming Journeys | RaO Personal Travel Planner",
   description:
-    "Explore upcoming planned group odysseys by RaO and express your interest for custom private editions.",
+    "Explore upcoming RaO journey concepts and express interest in planned departures or request a private journey for your group.",
   alternates: {
     canonical: "https://rao-ashy.vercel.app/upcoming-trips",
+  },
+  openGraph: {
+    title: "Upcoming Journeys | RaO Personal Travel Planner",
+    description:
+      "Explore upcoming RaO journey concepts and express interest in planned departures or request a private journey for your group.",
+    url: "https://rao-ashy.vercel.app/upcoming-trips",
+    siteName: "RaO Travel Agency",
+    locale: "en_IN",
+    type: "website",
+    images: [{ url: "https://rao-ashy.vercel.app/images/Logo.jpeg", width: 800, height: 800, alt: "Upcoming Journeys" }],
   },
 };
 

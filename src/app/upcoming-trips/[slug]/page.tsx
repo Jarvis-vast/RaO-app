@@ -43,9 +43,17 @@ export async function generateMetadata({ params }: Props) {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://rao-ashy.vercel.app";
   const url = `${baseUrl}/upcoming-trips/${trip.slug}`;
 
+  const title = resolvedParams.slug === "ujjain-temple-escape"
+    ? "Ujjain Temple Escape | RaO Personal Travel Planner"
+    : `${trip.title} | RaO Personal Travel Planner`;
+
+  const description = resolvedParams.slug === "ujjain-temple-escape"
+    ? "Explore RaO’s Ujjain Temple Escape concept, a 2D/1N spiritual journey from Mumbai planned for after Diwali 2026."
+    : trip.overview;
+
   return {
-    title: `${trip.title} — ${trip.subtitle}`,
-    description: trip.overview,
+    title,
+    description,
     keywords: [
       trip.title,
       trip.location,
@@ -59,9 +67,11 @@ export async function generateMetadata({ params }: Props) {
       canonical: url,
     },
     openGraph: {
-      title: `${trip.title} | RaO Travel Agency`,
-      description: trip.overview,
+      title,
+      description,
       url: url,
+      siteName: "RaO Travel Agency",
+      locale: "en_IN",
       type: "website",
       images: [
         {
@@ -74,8 +84,8 @@ export async function generateMetadata({ params }: Props) {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${trip.title} | RaO Travel Agency`,
-      description: trip.overview,
+      title,
+      description,
       images: [`${baseUrl}${trip.heroImage}`],
     },
   };
@@ -90,28 +100,54 @@ export default async function TripDetailPage({ params }: Props) {
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://rao-ashy.vercel.app";
+  const url = `${baseUrl}/upcoming-trips/${trip.slug}`;
 
   const tripJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Product",
+    "@type": "TouristTrip",
     "name": trip.title,
-    "image": [`${baseUrl}${trip.heroImage}`],
     "description": trip.overview,
-    "brand": {
-      "@type": "Brand",
+    "provider": {
+      "@type": "TravelAgency",
       "name": "RaO Travel Agency",
+      "url": baseUrl,
     },
-    "offers": {
-      "@type": "Offer",
-      "url": `${baseUrl}/upcoming-trips/${trip.slug}`,
-      "priceCurrency": "INR",
-      "price": trip.price ? trip.price.toString() : "0",
-      "availability": "https://schema.org/InStock",
-      "seller": {
-        "@type": "Organization",
-        "name": "RaO Travel Agency",
+    "touristType": "Spiritual / Pilgrimage Travelers",
+    "itinerary": {
+      "@type": "ItemList",
+      "numberOfItems": trip.itinerary.length,
+      "itemListElement": trip.itinerary.map((item, idx) => ({
+        "@type": "ListItem",
+        "position": idx + 1,
+        "name": item.title,
+        "description": item.description,
+      })),
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": baseUrl,
       },
-    },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Upcoming Journeys",
+        "item": `${baseUrl}/upcoming-trips`,
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": trip.title,
+        "item": url,
+      },
+    ],
   };
 
   return (
@@ -119,6 +155,10 @@ export default async function TripDetailPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(tripJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {/* Back Link */}
       <div className="max-w-7xl mx-auto px-6 mb-6">

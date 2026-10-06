@@ -6,9 +6,19 @@ import { Sparkles } from "lucide-react";
 export const metadata: Metadata = {
   title: "Plan a Journey with RaO | Personal Travel Planner",
   description:
-    "Tell us what you have in mind — your dates, budget, destination, group or simply an idea. RaO will plan the rest.",
+    "Tell RaO what you have in mind — your dates, budget, destination, group or simply an idea. We’ll help shape the journey around you.",
   alternates: {
     canonical: "https://rao-ashy.vercel.app/plan",
+  },
+  openGraph: {
+    title: "Plan a Journey with RaO | Personal Travel Planner",
+    description:
+      "Tell RaO what you have in mind — your dates, budget, destination, group or simply an idea. We’ll help shape the journey around you.",
+    url: "https://rao-ashy.vercel.app/plan",
+    siteName: "RaO Travel Agency",
+    locale: "en_IN",
+    type: "website",
+    images: [{ url: "https://rao-ashy.vercel.app/images/Logo.jpeg", width: 800, height: 800, alt: "Plan a Journey with RaO" }],
   },
 };
 
