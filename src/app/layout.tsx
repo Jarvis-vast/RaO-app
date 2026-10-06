@@ -17,8 +17,8 @@ const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://rao-ashy.vercel.app"
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "RaO Travel | Personal Travel Planner in Mumbai",
-    template: "%s | RaO Travel",
+    default: "RaO | Personal Travel Planner in Mumbai",
+    template: "%s | RaO — Personal Travel Planner",
   },
   description:
     "RaO is your personal travel planner in Mumbai. Tell us your dates, budget, destination or idea and we’ll plan a curated or customized journey by road, rail or air.",

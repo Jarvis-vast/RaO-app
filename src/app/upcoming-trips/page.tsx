@@ -146,7 +146,7 @@ export default function UpcomingTripsPage() {
         <div className="bg-[#2A1013]/60 border border-amber-500/30 rounded-3xl p-8 md:p-12 text-center space-y-6">
           <h3 className="text-2xl md:text-3xl font-semibold text-amber-300">Want a private journey for your own group?</h3>
           <p className="text-muted-foreground max-w-xl mx-auto font-light text-sm">
-            Whether it is 6 people for a one-day return or 30 people for a multi-day getaway, RaO will plan around your exact dates and budget.
+            Whether it is a simple one-day return or a multi-day getaway for a large group, RaO will plan around your exact dates and budget.
           </p>
           <div>
             <Button

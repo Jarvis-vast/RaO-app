@@ -12,7 +12,7 @@ export function Footer() {
           <p className="text-xl font-medium tracking-wide">Remarkable Adventure Odyssey</p>
           <p className="text-muted-foreground font-light text-base mt-2">Your personal travel planner.</p>
           <p className="text-sm font-light text-foreground/90 italic pt-1">
-            &ldquo;From a one-day journey for six to a complete journey for fifty, RaO plans around you.&rdquo;
+            &ldquo;From a simple one-day journey to a complete journey for a large group, RaO plans around you.&rdquo;
           </p>
           <p className="text-primary font-medium tracking-widest uppercase text-xs pt-2">
             Explore • Experience • Discover
