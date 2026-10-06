@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { WhatInMindSection } from "@/components/home/WhatInMindSection";
 import { YourJourneyYourWay } from "@/components/home/YourJourneyYourWay";
@@ -9,6 +10,15 @@ import { FeaturedExperiences } from "@/components/home/FeaturedExperiences";
 import { Destinations } from "@/components/home/Destinations";
 import { CustomerTrust } from "@/components/home/CustomerTrust";
 import { FinalCTA } from "@/components/home/FinalCTA";
+
+export const metadata: Metadata = {
+  title: "RaO Travel | Personal Travel Planner for Private & Custom Journeys",
+  description:
+    "RaO is your personal travel planner in Mumbai. Tell us your dates, budget, destination or idea and we’ll plan a curated or customized journey by road, rail or air.",
+  alternates: {
+    canonical: "https://rao-ashy.vercel.app/",
+  },
+};
 
 export default function Home() {
   return (

@@ -17,20 +17,20 @@ const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://rao-ashy.vercel.app"
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "RaO Travel Agency — Remarkable Adventure Odyssey",
-    template: "%s | RaO Travel Agency",
+    default: "RaO Travel | Personal Travel Planner in Mumbai",
+    template: "%s | RaO Travel",
   },
   description:
-    "Tell RaO your mood, budget, and dates. We plan remarkable custom itineraries, Ujjain temple escapes, and group travel odysseys across India.",
+    "RaO is your personal travel planner in Mumbai. Tell us your dates, budget, destination or idea and we’ll plan a curated or customized journey by road, rail or air.",
   keywords: [
-    "RaO Travel Agency",
+    "RaO Travel",
     "Remarkable Adventure Odyssey",
-    "Ujjain temple escape package",
-    "Mahakaleshwar Jyotirlinga tour from Mumbai",
+    "Personal Travel Planner Mumbai",
     "custom travel planner India",
-    "group travel escapes India",
-    "Mumbai to Ujjain train package",
-    "temple tour package Ujjain",
+    "one day trips from Mumbai",
+    "private travel planner",
+    "family travel planner",
+    "group travel planning",
   ],
   authors: [{ name: "RaO Travel Agency", url: baseUrl }],
   creator: "RaO Travel Agency",
@@ -53,9 +53,9 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: baseUrl,
     siteName: "RaO Travel Agency",
-    title: "RaO Travel Agency — Remarkable Adventure Odyssey",
+    title: "RaO Travel | Personal Travel Planner in Mumbai",
     description:
-      "Tell RaO your mood, budget, and dates. We plan remarkable custom itineraries, Ujjain temple escapes, and group travel odysseys across India.",
+      "RaO is your personal travel planner in Mumbai. Tell us your dates, budget, destination or idea and we’ll plan a curated or customized journey by road, rail or air.",
     images: [
       {
         url: `${baseUrl}/images/Logo.jpeg`,
@@ -67,9 +67,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "RaO Travel Agency — Remarkable Adventure Odyssey",
+    title: "RaO Travel | Personal Travel Planner in Mumbai",
     description:
-      "Tell RaO your mood, budget, and dates. We plan remarkable custom itineraries, Ujjain temple escapes, and group travel odysseys across India.",
+      "RaO is your personal travel planner in Mumbai. Tell us your dates, budget, destination or idea and we’ll plan a curated or customized journey by road, rail or air.",
     images: [`${baseUrl}/images/Logo.jpeg`],
   },
   robots: {
@@ -95,7 +95,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = {
+  const travelAgencyJsonLd = {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
     "name": "RaO Travel Agency",
@@ -103,7 +103,7 @@ export default function RootLayout({
     "url": baseUrl,
     "logo": `${baseUrl}/images/Logo.jpeg`,
     "image": `${baseUrl}/images/Logo.jpeg`,
-    "description": "Tell RaO your mood, budget, and dates. We plan remarkable custom itineraries & group travel odysseys across India.",
+    "description": "RaO is your personal travel planner in Mumbai. Tell us your dates, budget, destination or idea and we'll plan a curated or customized journey by road, rail or air.",
     "telephone": "+91-9326540456",
     "email": "raotourplanners@gmail.com",
     "address": {
@@ -122,12 +122,24 @@ export default function RootLayout({
     ],
   };
 
+  const webSiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "RaO Travel",
+    "alternateName": "Remarkable Adventure Odyssey",
+    "url": baseUrl,
+  };
+
   return (
     <html lang="en" className={`${montserrat.variable} antialiased h-full`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(travelAgencyJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
         />
       </head>
       <body

@@ -3,8 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Sparkles, ArrowRight } from "lucide-react";
 
 export const metadata = {
-  title: "About RaO | Your Personal Travel Planner",
-  description: "RaO is your personal travel planner. Your journey. Your way. Curated or customized. Road, rail or air. Tell us your dates and budget. We'll do the rest.",
+  title: "About RaO | Personal Travel Planning & Philosophy",
+  description:
+    "Learn about RaO (Remarkable Adventure Odyssey) — your personal travel planner for private, family, one-day escapes, and group journeys across India.",
+  alternates: {
+    canonical: "https://rao-ashy.vercel.app/about",
+  },
 };
 
 export default function AboutPage() {

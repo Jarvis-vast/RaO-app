@@ -1,8 +1,12 @@
 import { BUSINESS_CONFIG } from "@/lib/config/business";
 
 export const metadata = {
-  title: "Cancellation & Refund Policy | RaO Travel Planner",
-  description: "Transparent, timeline-based cancellation and refund guidelines for curated trips planned through RaO.",
+  title: "Cancellation & Refund Policy | RaO Travel Agency",
+  description:
+    "Clear, transparent cancellation and refund policy for travel bookings and custom itineraries with RaO.",
+  alternates: {
+    canonical: "https://rao-ashy.vercel.app/cancellation",
+  },
 };
 
 export default function CancellationPage() {

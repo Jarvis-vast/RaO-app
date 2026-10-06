@@ -1,6 +1,16 @@
 import { ReactNode } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { LayoutDashboard, Plane, Users, Settings } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "RaO Operations Admin",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+  },
+};
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (

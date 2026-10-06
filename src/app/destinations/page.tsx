@@ -4,8 +4,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin } from "lucide-react";
 
 export const metadata = {
-  title: "Destinations & Inspirations | RaO Personal Travel Planner",
-  description: "Already know where to go or need inspiration? Explore sample destinations across Maharashtra and India that RaO builds custom journeys around.",
+  title: "RaO Destinations | Custom Travel Across Maharashtra & India",
+  description:
+    "Explore travel destinations with RaO. Custom road, rail, and air itineraries planned around your dates, budget, group, and pace.",
+  alternates: {
+    canonical: "https://rao-ashy.vercel.app/destinations",
+  },
 };
 
 const DESTINATIONS = [

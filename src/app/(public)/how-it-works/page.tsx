@@ -3,8 +3,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Compass, ShieldCheck } from "lucide-react";
 
 export const metadata = {
-  title: "How It Works | RaO Personal Travel Planner",
-  description: "Learn how RaO turns your feelings, budget, and travel dates into a complete, personalized journey without the stress of traditional catalog planning.",
+  title: "How RaO Works | 4-Step Personal Travel Planning",
+  description:
+    "Understand how RaO plans travel: You bring the idea, RaO designs transport, stays, and itinerary, you shape it, and we handle the details.",
+  alternates: {
+    canonical: "https://rao-ashy.vercel.app/how-it-works",
+  },
 };
 
 export default function HowItWorks() {

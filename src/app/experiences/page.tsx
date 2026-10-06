@@ -83,8 +83,12 @@ const EXPERIENCES = [
 ];
 
 export const metadata = {
-  title: "Travel by Experience | RaO Personal Travel Planner",
-  description: "Some journeys last a day. Some last a week. Browse RaO travel experience categories designed around you.",
+  title: "RaO Experiences | One-Day, Weekend & Custom Journeys",
+  description:
+    "Discover curated travel experience categories by RaO. From one-day return escapes to multi-day odysseys across Maharashtra and India.",
+  alternates: {
+    canonical: "https://rao-ashy.vercel.app/experiences",
+  },
 };
 
 export default function ExperiencesPage() {

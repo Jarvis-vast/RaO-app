@@ -6,9 +6,12 @@ import { UPCOMING_TRIPS } from "@/lib/data/upcomingTrips";
 import { BUSINESS_CONFIG } from "@/lib/config/business";
 
 export const metadata = {
-  title: "Upcoming Journeys & Concepts | RaO Personal Travel Planner",
+  title: "Upcoming Journeys & Odyssey Concepts | RaO Travel Planner",
   description:
-    "Explore upcoming group odysseys and planned trip concepts by RaO Personal Travel Planner. Express interest or request private dates for your group.",
+    "Explore upcoming planned group odysseys by RaO and express your interest for custom private editions.",
+  alternates: {
+    canonical: "https://rao-ashy.vercel.app/upcoming-trips",
+  },
 };
 
 export default function UpcomingTripsPage() {

@@ -1,8 +1,12 @@
 import { BUSINESS_CONFIG } from "@/lib/config/business";
 
 export const metadata = {
-  title: "Terms & Conditions | RaO Travel Planner",
-  description: "Terms and conditions governing the use of RaO's travel planning services, bookings, and third-party supplier arrangements.",
+  title: "Terms & Conditions | RaO Travel Agency",
+  description:
+    "Review the official terms and conditions for personal travel planning services provided by RaO.",
+  alternates: {
+    canonical: "https://rao-ashy.vercel.app/terms",
+  },
 };
 
 export default function TermsPage() {

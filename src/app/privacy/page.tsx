@@ -1,8 +1,12 @@
 import { BUSINESS_CONFIG } from "@/lib/config/business";
 
 export const metadata = {
-  title: "Privacy Policy | RaO Travel Planner",
-  description: "How RaO protects your personal contact details, trip preferences, and customer data with industry-standard security.",
+  title: "Privacy Policy | RaO Travel Agency",
+  description:
+    "Understand how RaO protects your personal information and travel data.",
+  alternates: {
+    canonical: "https://rao-ashy.vercel.app/privacy",
+  },
 };
 
 export default function PrivacyPage() {
