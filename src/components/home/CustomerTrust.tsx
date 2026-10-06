@@ -6,7 +6,7 @@ export function CustomerTrust() {
     {
       icon: <PenTool className="w-8 h-8 text-primary" />,
       title: "Personal Planning",
-      desc: "Every detail crafted around your dates and budget — whether a 1-day return for 6 or a complete plan for 50.",
+      desc: "Every detail is crafted around your dates, budget and the journey you want to take.",
     },
     {
       icon: <Shield className="w-8 h-8 text-primary" />,
@@ -16,7 +16,7 @@ export function CustomerTrust() {
     {
       icon: <Banknote className="w-8 h-8 text-primary" />,
       title: "Transparent Pricing",
-      desc: "Clear budget breakdowns with zero hidden fees or surprise upcharges.",
+      desc: "Clear budget breakdowns with transparent costs upfront.",
     },
     {
       icon: <Users className="w-8 h-8 text-primary" />,

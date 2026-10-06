@@ -21,7 +21,7 @@ const EXPERIENCES = [
     id: "spiritual",
     name: "Spiritual & Pilgrimage",
     duration: "1 to 4 Days",
-    desc: "Sacred temple circuits, Jyotirlinga darshan, and riverfront aarti with thoughtfully planned transport and local darshan coordination.",
+    desc: "Sacred temple circuits, Jyotirlinga darshan, and riverfront aarti with thoughtful coordination and travel support.",
     examples: "Ujjain Mahakal, Kolhapur Mahalakshmi, Varanasi Ghats",
   },
   {

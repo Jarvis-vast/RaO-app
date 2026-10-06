@@ -36,10 +36,10 @@ export function CuratedCustomizedSection() {
                 CURATED
               </h3>
               <p className="text-lg text-foreground/90 font-light leading-relaxed">
-                &ldquo;Thoughtfully planned journeys, ready to discover.&rdquo;
+                &ldquo;Thoughtfully planned journeys, ready to explore or request.&rdquo;
               </p>
               <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                Handcrafted itineraries with pre-arranged stays, experiences, and transport highlights ready to explore or request.
+                Handcrafted itineraries with pre-arranged stays, experiences, and transport highlights.
               </p>
             </div>
 
