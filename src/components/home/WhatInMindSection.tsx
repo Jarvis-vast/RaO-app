@@ -41,8 +41,9 @@ export function WhatInMindSection() {
         {/* Suggestion Chips */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 max-w-4xl mx-auto">
           {SUGGESTION_CHIPS.map((chip) => (
-            <button
+            <Link
               key={chip}
+              href={`/plan?idea=${encodeURIComponent(chip)}`}
               onClick={() => setSelectedChip(chip)}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm transition-all duration-300 ${
                 selectedChip === chip
@@ -51,7 +52,7 @@ export function WhatInMindSection() {
               }`}
             >
               &ldquo;{chip}&rdquo;
-            </button>
+            </Link>
           ))}
         </div>
 
@@ -123,8 +124,14 @@ export function WhatInMindSection() {
               </ul>
             </div>
 
-            <div className="pt-4 border-t border-white/10 text-[11px] text-muted-foreground/80 italic">
-              *Sample journey concept. Your trip will be built around your specific dates & budget.
+            <div className="pt-4 border-t border-white/10 text-[11px] text-muted-foreground/80 italic flex items-center justify-between">
+              <span>*Illustrative sample concept.</span>
+              <Link 
+                href="/plan?idea=Sunday%20in%20Kolhapur" 
+                className="text-[#C88D6A] hover:underline font-medium not-italic"
+              >
+                Plan this trip →
+              </Link>
             </div>
           </div>
         </div>
@@ -136,7 +143,7 @@ export function WhatInMindSection() {
           </p>
           <div>
             <Button asChild size="lg" className="rounded-full px-10 h-14 text-base bg-[#C88D6A] text-[#1C0A0B] hover:bg-[#E2B28B] font-semibold transition-all shadow-xl shadow-[#C88D6A]/20">
-              <Link href="/plan" className="flex items-center gap-2">
+              <Link href={`/plan?idea=${encodeURIComponent(selectedChip)}`} className="flex items-center gap-2">
                 <span>START PLANNING</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
