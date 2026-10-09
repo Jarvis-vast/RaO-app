@@ -6,6 +6,7 @@ import { HowItWorksSection } from "@/components/home/HowItWorksSection";
 import { CuratedCustomizedSection } from "@/components/home/CuratedCustomizedSection";
 import { TravelModesSection } from "@/components/home/TravelModesSection";
 import { UpcomingTripsSection } from "@/components/home/UpcomingTripsSection";
+import { CouplesEscapesSection } from "@/components/home/CouplesEscapesSection";
 import { FeaturedExperiences } from "@/components/home/FeaturedExperiences";
 import { Destinations } from "@/components/home/Destinations";
 import { CustomerTrust } from "@/components/home/CustomerTrust";
@@ -51,19 +52,22 @@ export default function Home() {
       {/* 6. ROAD • RAIL • AIR */}
       <TravelModesSection />
 
-      {/* 7. UPCOMING JOURNEYS */}
+      {/* 7. UPCOMING JOURNEYS (Kolhapur, Akkalkot, Vaishno Devi, Ujjain) */}
       <UpcomingTripsSection />
 
-      {/* 8. CURATED EXPERIENCES */}
+      {/* 8. DEDICATED COUPLES ESCAPES (Coorg, Hampi, Gokarna) */}
+      <CouplesEscapesSection />
+
+      {/* 9. CURATED EXPERIENCES */}
       <FeaturedExperiences />
 
-      {/* 9. DESTINATIONS */}
+      {/* 10. DESTINATIONS */}
       <Destinations />
 
-      {/* 10. TRUST / SUPPORT */}
+      {/* 11. TRUST / SUPPORT */}
       <CustomerTrust />
 
-      {/* 11. FINAL CTA */}
+      {/* 12. FINAL CTA */}
       <FinalCTA />
     </main>
   );

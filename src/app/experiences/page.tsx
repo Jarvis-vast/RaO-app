@@ -1,8 +1,17 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Heart } from "lucide-react";
+import { CouplesEscapesSection } from "@/components/home/CouplesEscapesSection";
 
 const EXPERIENCES = [
+  {
+    id: "couples-escapes",
+    name: "Couples Escapes",
+    duration: "Flexible (3 to 4 Days)",
+    desc: "Scenic stays, privacy, beautiful sunsets, and unhurried discoveries made for two.",
+    examples: "Coorg Coffee Estates, Hampi Sunsets, Gokarna Beaches",
+    featured: true,
+  },
   {
     id: "one-day",
     name: "One-Day Escapes",
@@ -20,9 +29,9 @@ const EXPERIENCES = [
   {
     id: "spiritual",
     name: "Spiritual & Pilgrimage",
-    duration: "1 to 4 Days",
+    duration: "1 to 5 Days",
     desc: "Sacred temple circuits, Jyotirlinga darshan, and riverfront aarti with thoughtful coordination and travel support.",
-    examples: "Ujjain Mahakal, Kolhapur Mahalakshmi, Varanasi Ghats",
+    examples: "Ujjain Mahakal, Kolhapur Mahalakshmi, Akkalkot, Vaishno Devi",
   },
   {
     id: "family",
@@ -64,7 +73,7 @@ const EXPERIENCES = [
     name: "Nature & Beach",
     duration: "Custom Duration",
     desc: "Sun, sand, backwaters, and coastal relaxation away from crowded tourist traps.",
-    examples: "Tarkarli, Kerala Backwaters",
+    examples: "Gokarna, Tarkarli, Kerala Backwaters",
   },
   {
     id: "corporate",
@@ -83,16 +92,16 @@ const EXPERIENCES = [
 ];
 
 export const metadata = {
-  title: "RaO Experiences | One-Day, Weekend & Custom Journeys",
+  title: "RaO Experiences | Couples Escapes, One-Day, Pilgrimage & Custom Trips",
   description:
-    "Explore RaO journeys from one-day escapes and weekends to pilgrimage, private, family, corporate and customized travel.",
+    "Explore RaO travel experiences: Couples Escapes (Coorg, Hampi, Gokarna), One-Day Escapes (Kolhapur), Pilgrimage Yatras (Ujjain, Akkalkot, Vaishno Devi), and custom trips.",
   alternates: {
     canonical: "https://rao-ashy.vercel.app/experiences",
   },
   openGraph: {
-    title: "RaO Experiences | One-Day, Weekend & Custom Journeys",
+    title: "RaO Experiences | Couples Escapes, One-Day, Pilgrimage & Custom Trips",
     description:
-      "Explore RaO journeys from one-day escapes and weekends to pilgrimage, private, family, corporate and customized travel.",
+      "Explore RaO travel experiences: Couples Escapes (Coorg, Hampi, Gokarna), One-Day Escapes (Kolhapur), Pilgrimage Yatras (Ujjain, Akkalkot, Vaishno Devi), and custom trips.",
     url: "https://rao-ashy.vercel.app/experiences",
     siteName: "RaO Travel Agency",
     locale: "en_IN",
@@ -103,8 +112,8 @@ export const metadata = {
 
 export default function ExperiencesPage() {
   return (
-    <div className="min-h-screen pt-32 pb-24 px-6 flex flex-col items-center">
-      <div className="max-w-7xl w-full space-y-16">
+    <div className="min-h-screen pt-32 pb-24 flex flex-col items-center">
+      <div className="max-w-7xl w-full space-y-20 px-6">
         <header className="text-center space-y-6 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-semibold tracking-widest uppercase">
             EXPERIENCE-DRIVEN TRAVEL
@@ -118,27 +127,60 @@ export default function ExperiencesPage() {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {EXPERIENCES.map((exp) => (
-            <div key={exp.id} className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 flex flex-col justify-between hover:bg-[#1C0A0B]/90 transition-all hover:border-primary/40 group shadow-xl">
-              <div className="space-y-4">
-                <div className="flex justify-between items-start">
-                  <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">{exp.name}</h3>
-                  <span className="text-[11px] font-mono font-medium uppercase tracking-wider text-primary/80 bg-primary/10 px-3 py-1 rounded-full border border-primary/20">{exp.duration}</span>
+        {/* Featured Dedicated Experience: Couples Escapes */}
+        <CouplesEscapesSection />
+
+        {/* All Experiences Grid */}
+        <div className="space-y-8 pt-8 border-t border-white/10">
+          <div className="text-center space-y-2 max-w-xl mx-auto">
+            <h2 className="text-3xl font-bold text-foreground">All Travel Categories</h2>
+            <p className="text-sm text-muted-foreground font-light">
+              Explore the full spectrum of journey styles planned by RaO.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {EXPERIENCES.map((exp) => (
+              <div
+                key={exp.id}
+                className={`backdrop-blur-xl border rounded-3xl p-8 flex flex-col justify-between transition-all group shadow-xl ${
+                  exp.featured
+                    ? "bg-[#2D1215]/90 border-[#C88D6A]/50 hover:border-[#C88D6A]"
+                    : "bg-[#1C0A0B]/80 border-white/10 hover:bg-[#1C0A0B]/90 hover:border-primary/40"
+                }`}
+              >
+                <div className="space-y-4">
+                  <div className="flex justify-between items-start">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+                        {exp.name}
+                      </h3>
+                      {exp.featured && <Heart className="w-4 h-4 text-[#C88D6A] fill-[#C88D6A]/40" />}
+                    </div>
+                    <span className="text-[11px] font-mono font-medium uppercase tracking-wider text-primary/80 bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+                      {exp.duration}
+                    </span>
+                  </div>
+                  <p className="text-muted-foreground font-light text-sm leading-relaxed">{exp.desc}</p>
+                  <p className="text-xs text-foreground/70">
+                    <strong className="text-foreground/90 font-medium">Popular:</strong> {exp.examples}
+                  </p>
                 </div>
-                <p className="text-muted-foreground font-light text-sm leading-relaxed">{exp.desc}</p>
-                <p className="text-xs text-foreground/70"><strong className="text-foreground/90 font-medium">Popular:</strong> {exp.examples}</p>
+                <div className="pt-8 border-t border-white/10 mt-6">
+                  <Button
+                    asChild
+                    variant="ghost"
+                    className="w-full justify-between group-hover:bg-primary group-hover:text-primary-foreground rounded-full transition-all"
+                  >
+                    <Link href={`/plan?experience=${exp.id}`}>
+                      <span>Plan {exp.name}</span>
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Link>
+                  </Button>
+                </div>
               </div>
-              <div className="pt-8 border-t border-white/10 mt-6">
-                <Button asChild variant="ghost" className="w-full justify-between group-hover:bg-primary group-hover:text-primary-foreground rounded-full transition-all">
-                  <Link href={`/plan?experience=${exp.id}`}>
-                    <span>Plan {exp.name}</span>
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>

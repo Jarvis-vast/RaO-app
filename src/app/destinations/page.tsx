@@ -1,19 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, MapPin, Heart, Sparkles, Info } from "lucide-react";
+import { PhotoCreditsSection } from "@/components/ui/rao/PhotoCreditBadge";
 
 export const metadata = {
-  title: "RaO Destinations | Custom Travel Across Maharashtra & India",
+  title: "RaO Destinations | Kolhapur, Akkalkot, Vaishno Devi, Coorg, Hampi, Gokarna & More",
   description:
-    "Explore destinations with RaO and discover curated or customized journeys across Maharashtra, India and beyond.",
+    "Discover travel destinations across Maharashtra, Karnataka, Jammu & Kashmir and India with RaO. From spiritual pilgrimages to romantic couples escapes.",
   alternates: {
     canonical: "https://rao-ashy.vercel.app/destinations",
   },
   openGraph: {
-    title: "RaO Destinations | Custom Travel Across Maharashtra & India",
+    title: "RaO Destinations | Custom Travel Across India",
     description:
-      "Explore destinations with RaO and discover curated or customized journeys across Maharashtra, India and beyond.",
+      "Discover travel destinations across Maharashtra, Karnataka, Jammu & Kashmir and India with RaO.",
     url: "https://rao-ashy.vercel.app/destinations",
     siteName: "RaO Travel Agency",
     locale: "en_IN",
@@ -26,10 +27,65 @@ const DESTINATIONS = [
   {
     id: "kolhapur",
     name: "Kolhapur",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-    desc: "Mahalakshmi Temple Darshan, royal heritage, and authentic Kolhapuri cuisine. Perfect for 1-day return or weekend journeys.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Mahalakshmi_temple%2C_Kolhapur.jpg",
+    desc: "Mahalakshmi (Ambabai) Temple Darshan, Bhavani Mandap, New Palace royal heritage, and authentic Kolhapuri cuisine.",
     moods: "Spiritual • Heritage • 1-Day Return",
     format: "1-Day or Weekend",
+    badge: "Upcoming Journey",
+  },
+  {
+    id: "akkalkot",
+    name: "Akkalkot",
+    image: null, // Image-less card per Rule 5 (unverified photograph policy)
+    desc: "Shri Swami Samarth Maharaj Math pilgrimage. Peaceful devotional atmosphere, Vatavruksha temple meditation, and quiet reflection.",
+    moods: "Spiritual Pilgrimage • Devotion • Solace",
+    format: "1 to 2 Days",
+    badge: "Upcoming Journey",
+  },
+  {
+    id: "vaishno-devi",
+    name: "Vaishno Devi",
+    image: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Shri_Mata_Vaishno_Devi_Bhawan%2C_Katra_Jammu_%26_Kashmir_INDIA.jpg",
+    desc: "Holy cave shrine of Shri Mata Vaishno Devi in Katra and Trikuta Mountains. Helicopter or trek support and Yatra registration passes.",
+    moods: "Pilgrimage • Devotion • Mountain Scenery",
+    format: "5 Days (Winter Yatra)",
+    badge: "Upcoming Journey",
+  },
+  {
+    id: "coorg",
+    name: "Coorg",
+    image: "https://upload.wikimedia.org/wikipedia/commons/0/09/Plantation_road_Coorg_Karnataka.jpg",
+    desc: "Private coffee estate stays, misty hill views, Abbey Falls, Raja's Seat sunsets, and slow romantic escapes.",
+    moods: "Couples Escape • Coffee Estates • Nature",
+    format: "3 to 4 Days",
+    badge: "Couples Escape",
+  },
+  {
+    id: "hampi",
+    name: "Hampi",
+    image: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Hampi_Vitthala_Temple_3465.jpg",
+    desc: "Ancient Vijayanagara ruins, Vitthala Temple Stone Chariot, Matanga Hill sunsets, and river coracle rides together.",
+    moods: "Couples Escape • Heritage • Sunsets",
+    format: "3 to 4 Days",
+    badge: "Couples Escape",
+  },
+  {
+    id: "gokarna",
+    name: "Gokarna",
+    image: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Om_beach_Gokarna.JPG",
+    desc: "Tranquil Om Beach and Kudle Beach sunsets, quiet cliffside oceanview cottages, and peaceful coastal resets.",
+    moods: "Couples Escape • Coastal Beach • Reset",
+    format: "3 to 4 Days",
+    badge: "Couples Escape",
+  },
+  {
+    id: "ujjain",
+    name: "Ujjain & Omkareshwar",
+    image: "/images/ujjain-hero.jpg",
+    desc: "Mahakaleshwar Jyotirlinga, Harsiddhi Mata, Kal Bhairav circuit, Shipra River Ghat Aarti, and divine temple coordination.",
+    moods: "Spiritual • Pilgrimage • Heritage",
+    format: "2 to 3 Days",
+    badge: "Upcoming Journey",
   },
   {
     id: "mahabaleshwar",
@@ -71,39 +127,15 @@ const DESTINATIONS = [
     moods: "Adventure • Nature • Reset",
     format: "1 to 2 Days",
   },
-  {
-    id: "ganpatipule",
-    name: "Ganpatipule",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-    desc: "Pracheen Ganesh seaside temple, tranquil white sands, and authentic Konkani hospitality.",
-    moods: "Spiritual • Beach • Family",
-    format: "3 to 4 Days",
-  },
-  {
-    id: "tarkarli",
-    name: "Tarkarli & Malvan",
-    image: "https://images.pexels.com/photos/1295138/pexels-photo-1295138.jpeg?auto=compress&cs=tinysrgb&w=800",
-    desc: "White-sand shorelines, certified scuba diving around Sindhudurg reef, and Karli backwaters.",
-    moods: "Beach • Adventure • Family",
-    format: "3 to 4 Days",
-  },
-  {
-    id: "ujjain",
-    name: "Ujjain & Omkareshwar",
-    image: "/images/ujjain-hero.jpg",
-    desc: "Mahakaleshwar Jyotirlinga, Shipra River Ghat Aarti, and divine temple circuit coordination.",
-    moods: "Spiritual • Pilgrimage • Heritage",
-    format: "2 to 3 Days",
-  },
 ];
 
 export default function DestinationsPage() {
   return (
-    <div className="min-h-screen pt-32 pb-24 px-6 flex flex-col items-center">
+    <div className="min-h-screen pt-32 pb-24 px-6 flex flex-col items-center bg-[#1C0A0B] text-foreground">
       <div className="max-w-7xl w-full space-y-16">
         <header className="text-center space-y-6 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-semibold tracking-widest uppercase">
-            FLEXIBLE DESTINATION PLANNING
+            FLEXIBLE DESTINATION CATALOGUE
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight">
             START WITH A DESTINATION <br />
@@ -122,20 +154,46 @@ export default function DestinationsPage() {
               key={dest.id}
               className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden group hover:border-primary/40 transition-all hover:shadow-2xl flex flex-col justify-between"
             >
-              {/* Destination Visual */}
-              <div className="h-56 relative overflow-hidden bg-black/40">
-                <Image
-                  src={dest.image}
-                  alt={dest.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1C0A0B] via-transparent to-transparent opacity-80" />
-                <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono font-medium text-primary border border-white/10">
-                  {dest.format}
+              {/* Destination Visual Section */}
+              {dest.image ? (
+                <div className="h-56 relative overflow-hidden bg-black/40">
+                  <Image
+                    src={dest.image}
+                    alt={dest.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1C0A0B] via-transparent to-transparent opacity-80" />
+                  
+                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+                    {dest.badge ? (
+                      <span className="bg-[#C88D6A]/90 text-[#1C0A0B] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
+                        {dest.badge}
+                      </span>
+                    ) : <span />}
+                    <span className="bg-black/70 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono font-medium text-primary border border-white/10">
+                      {dest.format}
+                    </span>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                /* Text-led card design for unverified photograph destinations per Rule 5 */
+                <div className="p-8 bg-gradient-to-br from-[#2D1215] to-[#180809] border-b border-white/10 relative overflow-hidden">
+                  <div className="flex justify-between items-start mb-4">
+                    <span className="bg-amber-500/15 border border-amber-500/30 text-amber-300 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                      {dest.badge || "Upcoming Journey"}
+                    </span>
+                    <span className="bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono font-medium text-primary border border-white/10">
+                      {dest.format}
+                    </span>
+                  </div>
+                  <h3 className="text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
+                    {dest.name}
+                  </h3>
+                  <p className="text-xs text-amber-300/80 font-mono mt-1">Authentic Text-Led Card</p>
+                </div>
+              )}
 
               {/* Destination Content */}
               <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
@@ -157,6 +215,9 @@ export default function DestinationsPage() {
             </div>
           ))}
         </div>
+
+        {/* Photo Credits & Licensing Transparency Section */}
+        <PhotoCreditsSection />
       </div>
     </div>
   );
