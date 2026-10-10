@@ -38,7 +38,7 @@ function PlannerCrawlableFallback() {
         </p>
       </div>
 
-      <div className="bg-[#1C0A0B]/80 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 text-center space-y-4 shadow-2xl">
+      <div className="bg-black/60 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 text-center space-y-4 shadow-2xl">
         <div className="w-8 h-8 rounded-full border-2 border-[#C88D6A]/30 border-t-[#C88D6A] animate-spin mx-auto" />
         <p className="text-sm font-light text-[#F2EAE4]/80">
           Loading interactive planner...

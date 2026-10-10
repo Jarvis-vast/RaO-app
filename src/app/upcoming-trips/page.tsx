@@ -27,7 +27,7 @@ export const metadata = {
 
 export default function UpcomingTripsPage() {
   return (
-    <div className="min-h-screen pt-32 pb-24 px-6 flex flex-col items-center bg-[#1C0A0B] text-foreground relative overflow-hidden">
+    <div className="min-h-screen pt-32 pb-24 px-6 flex flex-col items-center bg-transparent text-foreground relative overflow-hidden">
       {/* Glow Backdrops */}
       <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-amber-600/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-red-900/10 rounded-full blur-[100px] pointer-events-none" />
@@ -56,7 +56,7 @@ export default function UpcomingTripsPage() {
             return (
               <div
                 key={trip.id}
-                className="bg-[#180809]/80 backdrop-blur-xl border border-amber-500/20 rounded-3xl overflow-hidden shadow-2xl hover:border-amber-500/40 transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 group"
+                className="bg-black/60 backdrop-blur-xl border border-amber-500/20 rounded-3xl overflow-hidden shadow-2xl hover:border-amber-500/40 transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 group"
               >
                 {/* Visual Section */}
                 <div className="lg:col-span-5 relative min-h-[340px] lg:min-h-full overflow-hidden bg-gradient-to-br from-[#2A1013] to-[#180809]">

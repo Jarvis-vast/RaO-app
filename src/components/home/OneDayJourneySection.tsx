@@ -24,7 +24,7 @@ export function OneDayJourneySection() {
         {/* Inspirational One-Day Examples Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Example 1: Kolhapur Mahalakshmi */}
-          <div className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-6 hover:border-primary/40 transition-all duration-300 relative overflow-hidden shadow-xl">
+          <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-6 hover:border-primary/40 transition-all duration-300 relative overflow-hidden shadow-xl">
             <div className="flex items-center justify-between text-xs text-primary font-mono font-semibold uppercase tracking-wider">
               <span>Pilgrimage & Sacred Return</span>
               <span className="px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20">Sample Journey</span>
@@ -43,7 +43,7 @@ export function OneDayJourneySection() {
           </div>
 
           {/* Example 2: Coastal / Nature Reset */}
-          <div className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-6 hover:border-primary/40 transition-all duration-300 relative overflow-hidden shadow-xl">
+          <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-6 hover:border-primary/40 transition-all duration-300 relative overflow-hidden shadow-xl">
             <div className="flex items-center justify-between text-xs text-primary font-mono font-semibold uppercase tracking-wider">
               <span>Weekend & Leisure Reset</span>
               <span className="px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20">Sample Journey</span>

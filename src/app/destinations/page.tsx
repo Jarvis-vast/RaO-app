@@ -131,7 +131,7 @@ const DESTINATIONS = [
 
 export default function DestinationsPage() {
   return (
-    <div className="min-h-screen pt-32 pb-24 px-6 flex flex-col items-center bg-[#1C0A0B] text-foreground">
+    <div className="min-h-screen pt-32 pb-24 px-6 flex flex-col items-center bg-transparent text-foreground">
       <div className="max-w-7xl w-full space-y-16">
         <header className="text-center space-y-6 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-semibold tracking-widest uppercase">
@@ -152,7 +152,7 @@ export default function DestinationsPage() {
           {DESTINATIONS.map((dest) => (
             <div
               key={dest.id}
-              className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden group hover:border-primary/40 transition-all hover:shadow-2xl flex flex-col justify-between"
+              className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden group hover:border-primary/40 transition-all hover:shadow-2xl flex flex-col justify-between"
             >
               {/* Destination Visual Section */}
               {dest.image ? (
@@ -164,11 +164,11 @@ export default function DestinationsPage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1C0A0B] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
                   
                   <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
                     {dest.badge ? (
-                      <span className="bg-[#C88D6A]/90 text-[#1C0A0B] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
+                      <span className="bg-[#C88D6A]/90 text-black text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
                         {dest.badge}
                       </span>
                     ) : <span />}
@@ -179,7 +179,7 @@ export default function DestinationsPage() {
                 </div>
               ) : (
                 /* Text-led card design for unverified photograph destinations per Rule 5 */
-                <div className="p-8 bg-gradient-to-br from-[#2D1215] to-[#180809] border-b border-white/10 relative overflow-hidden">
+                <div className="p-8 bg-gradient-to-br from-neutral-900 to-black border-b border-white/10 relative overflow-hidden">
                   <div className="flex justify-between items-start mb-4">
                     <span className="bg-amber-500/15 border border-amber-500/30 text-amber-300 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                       {dest.badge || "Upcoming Journey"}

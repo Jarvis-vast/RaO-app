@@ -22,7 +22,7 @@ export const metadata = {
 export default function TermsPage() {
   return (
     <div className="min-h-screen pt-32 pb-24 px-6 flex justify-center">
-      <div className="max-w-4xl w-full bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-10 md:p-16 space-y-10 shadow-2xl">
+      <div className="max-w-4xl w-full bg-black/60 backdrop-blur-xl border border-white/10 rounded-3xl p-10 md:p-16 space-y-10 shadow-2xl">
         <header className="space-y-4">
           <span className="text-xs uppercase tracking-widest text-primary font-medium">Legal Agreement</span>
           <h1 className="text-4xl font-semibold text-foreground tracking-tight">Terms & Conditions</h1>

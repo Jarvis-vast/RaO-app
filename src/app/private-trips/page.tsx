@@ -117,11 +117,11 @@ export default function PrivateTripsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <div className="min-h-screen pt-28 sm:pt-32 pb-24 px-4 sm:px-6 bg-[#1C0A0B] text-foreground flex flex-col items-center">
+      <div className="min-h-screen pt-28 sm:pt-32 pb-24 px-4 sm:px-6 bg-transparent text-foreground flex flex-col items-center">
         <div className="max-w-7xl w-full space-y-24">
           
           {/* 1. HERO SECTION */}
-          <section className="relative rounded-3xl bg-gradient-to-b from-[#2A1013] via-[#1C0A0B] to-[#1C0A0B] border border-white/10 p-8 sm:p-14 md:p-16 overflow-hidden shadow-2xl">
+          <section className="relative rounded-3xl bg-black/60 backdrop-blur-xl border border-white/10 p-8 sm:p-14 md:p-16 overflow-hidden shadow-2xl">
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#C88D6A]/10 rounded-full blur-3xl pointer-events-none" />
             
             <div className="max-w-3xl space-y-6 relative z-10">

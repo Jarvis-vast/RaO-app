@@ -28,7 +28,7 @@ export function StepModeSelection({ onSelectGuided, onSelectDescribe }: StepProp
       <div className="grid md:grid-cols-2 gap-6 w-full max-w-3xl">
         <button 
           onClick={onSelectGuided}
-          className="bg-[#1C0A0B]/40 backdrop-blur-xl border border-border p-8 rounded-3xl hover:border-primary transition-all text-left flex flex-col gap-4 group"
+          className="bg-black/40 backdrop-blur-xl border border-border p-8 rounded-3xl hover:border-primary transition-all text-left flex flex-col gap-4 group"
         >
           <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform font-semibold">
             1
@@ -43,7 +43,7 @@ export function StepModeSelection({ onSelectGuided, onSelectDescribe }: StepProp
 
         <button 
           onClick={onSelectDescribe}
-          className="bg-[#1C0A0B]/40 backdrop-blur-xl border border-border p-8 rounded-3xl hover:border-primary transition-all text-left flex flex-col gap-4 group"
+          className="bg-black/40 backdrop-blur-xl border border-border p-8 rounded-3xl hover:border-primary transition-all text-left flex flex-col gap-4 group"
         >
           <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
             <span className="text-2xl">✨</span>
@@ -74,7 +74,7 @@ export function StepMood({ state, updateState, nextStep, prevStep }: StepProps) 
   const isValid = state.moods.length > 0 || (state.customMood && state.customMood.trim().length > 0);
 
   return (
-    <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
+    <div className="bg-black/40 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-light text-foreground">How do you want to feel?</h2>
         <p className="text-muted-foreground">Select one or more moods to anchor your experience.</p>
@@ -122,7 +122,7 @@ export function StepBudget({ state, updateState, nextStep, prevStep }: StepProps
   const isValid = !isNaN(budgetVal) && budgetVal >= 1000;
 
   return (
-    <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
+    <div className="bg-black/40 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-light text-foreground">What&apos;s your budget?</h2>
         <p className="text-muted-foreground">Your budget helps us design the right experience without artificial restrictions.</p>
@@ -185,7 +185,7 @@ export function StepDates({ state, updateState, nextStep, prevStep }: StepProps)
   const isDatesValid = state.datesOption !== "Choose dates" || (Boolean(state.startDate) && Boolean(state.endDate));
 
   return (
-    <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
+    <div className="bg-black/40 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-light text-foreground">When are you going?</h2>
         <p className="text-muted-foreground">Select a timeframe or specify exact calendar days.</p>
@@ -235,7 +235,7 @@ export function StepGroup({ state, updateState, nextStep, prevStep }: StepProps)
   const isValid = !isNaN(count) && count >= 1;
 
   return (
-    <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
+    <div className="bg-black/40 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-light text-foreground">Who is travelling?</h2>
       </div>
@@ -284,7 +284,7 @@ export function StepOrigin({ state, updateState, nextStep, prevStep }: StepProps
   const isValid = Boolean(state.origin && state.origin.trim().length > 0);
 
   return (
-    <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
+    <div className="bg-black/40 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-light text-foreground">Where are you travelling from?</h2>
         <p className="text-muted-foreground">This helps us calculate travel time and logistics accurately.</p>
@@ -322,7 +322,7 @@ export function StepPreferences({ state, updateState, nextStep, prevStep }: Step
   };
 
   return (
-    <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
+    <div className="bg-black/40 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-light text-foreground">Any specific preferences?</h2>
         <p className="text-muted-foreground">Optional details to help refine accommodation and activities.</p>
@@ -365,7 +365,7 @@ export function StepPreferences({ state, updateState, nextStep, prevStep }: Step
 
 export function StepSharing({ state, updateState, nextStep, prevStep }: StepProps) {
   return (
-    <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
+    <div className="bg-black/40 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-light text-foreground">Trip Privacy</h2>
         <p className="text-muted-foreground">Do you prefer complete exclusivity or are you open to curated group sharing?</p>
@@ -424,13 +424,13 @@ export function StepReview({ state, nextStep, prevStep, editStep }: StepProps) {
   };
 
   return (
-    <div className="bg-[#1C0A0B]/60 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
+    <div className="bg-black/40 backdrop-blur-xl border border-border p-8 md:p-12 rounded-3xl space-y-8">
       <div className="space-y-2">
         <h2 className="text-3xl font-light text-foreground">Review your request</h2>
         <p className="text-muted-foreground">Make sure everything looks right before we generate your proposal.</p>
       </div>
 
-      <div className="bg-[#1C0A0B]/50 rounded-2xl p-6 border border-border">
+      <div className="bg-black/30 rounded-2xl p-6 border border-border">
         <SummaryRow label="Mood" value={formatMoods()} stepId="mood" />
         <SummaryRow label="Budget" value={`₹${state.budgetPerPerson || "12000"} / person (${state.budgetMode})`} stepId="budget" />
         <SummaryRow label="Dates" value={state.datesOption === "Choose dates" && state.startDate ? `${state.startDate} to ${state.endDate}` : state.datesOption} stepId="dates" />

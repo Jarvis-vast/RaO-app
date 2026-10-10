@@ -14,7 +14,7 @@ const DESTINATIONS = [
 
 export function Destinations() {
   return (
-    <section className="w-full py-24 px-6 bg-[#1C0A0B]/80 backdrop-blur-xl border-t border-white/10 relative z-10">
+    <section className="w-full py-24 px-6 bg-black/40 backdrop-blur-md border-t border-white/10 relative z-10">
       <div className="max-w-7xl mx-auto space-y-16">
         <SectionHeading 
           title="Destinations as"

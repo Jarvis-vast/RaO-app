@@ -2,7 +2,7 @@ import { ArrowRight, MapPin, Anchor, Sunrise, IndianRupee } from "lucide-react";
 
 export function TransformationSection() {
   return (
-    <section className="w-full py-32 px-6 bg-[#1C0A0B]/50 backdrop-blur-xl">
+    <section className="w-full py-32 px-6 bg-black/30 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto">
         <div className="text-center space-y-4 mb-20">
           <h2 className="text-4xl md:text-5xl font-light text-foreground tracking-tight">

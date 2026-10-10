@@ -6,7 +6,7 @@ import { ArrowRight, ShieldCheck } from "lucide-react";
 
 export function YourJourneyYourWay() {
   return (
-    <section className="py-24 px-6 bg-[#1C0A0B]/90 border-t border-white/10 relative z-10 overflow-hidden">
+    <section className="py-24 px-6 bg-black/40 backdrop-blur-md border-t border-white/10 relative z-10 overflow-hidden">
       <div className="max-w-5xl mx-auto space-y-12 relative z-10 text-center">
         {/* Eyebrow */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C88D6A]/15 border border-[#C88D6A]/30 text-[#C88D6A] text-xs font-semibold tracking-widest uppercase">
@@ -19,7 +19,7 @@ export function YourJourneyYourWay() {
         </h2>
 
         {/* Manifesto Content Box */}
-        <div className="bg-[#180809]/90 backdrop-blur-2xl border border-[#C88D6A]/30 rounded-3xl p-8 sm:p-12 space-y-8 shadow-2xl text-left md:text-center max-w-4xl mx-auto">
+        <div className="bg-black/60 backdrop-blur-2xl border border-[#C88D6A]/30 rounded-3xl p-8 sm:p-12 space-y-8 shadow-2xl text-left md:text-center max-w-4xl mx-auto">
           <p className="text-xl sm:text-2xl font-light text-foreground/90 leading-relaxed italic">
             &ldquo;Not every beautiful journey needs a big group, a long itinerary or a fixed package.&rdquo;
           </p>

@@ -29,7 +29,7 @@ const GROUP_SCALES = [
 
 export function AnyTripSection() {
   return (
-    <section id="any-trip" className="py-24 px-6 bg-[#1C0A0B]/90 border-t border-white/10 relative z-10">
+    <section id="any-trip" className="py-24 px-6 bg-black/40 backdrop-blur-md border-t border-white/10 relative z-10">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -65,7 +65,7 @@ export function AnyTripSection() {
         </div>
 
         {/* Highlight Philosophy Card */}
-        <div className="bg-gradient-to-r from-[#2A0E10] via-[#1C0A0B] to-[#2A0E10] border border-[#C88D6A]/30 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
+        <div className="bg-black/60 backdrop-blur-2xl border border-[#C88D6A]/30 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
           <div className="max-w-3xl space-y-6 relative z-10">
             <div className="inline-flex items-center gap-2 text-[#C88D6A] text-xs uppercase tracking-widest font-semibold">
               <Shield className="w-4 h-4" /> Privacy & Personal Space

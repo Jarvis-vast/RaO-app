@@ -145,8 +145,8 @@ export default function ExperiencesPage() {
                 key={exp.id}
                 className={`backdrop-blur-xl border rounded-3xl p-8 flex flex-col justify-between transition-all group shadow-xl ${
                   exp.featured
-                    ? "bg-[#2D1215]/90 border-[#C88D6A]/50 hover:border-[#C88D6A]"
-                    : "bg-[#1C0A0B]/80 border-white/10 hover:bg-[#1C0A0B]/90 hover:border-primary/40"
+                    ? "bg-black/60 border-[#C88D6A]/50 hover:border-[#C88D6A]"
+                    : "bg-black/40 border-white/10 hover:bg-black/60 hover:border-primary/40"
                 }`}
               >
                 <div className="space-y-4">

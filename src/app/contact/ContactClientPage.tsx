@@ -113,7 +113,7 @@ export default function ContactClientPage() {
               </div>
             </div>
 
-            <div className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 space-y-3">
+            <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 space-y-3">
               <h3 className="text-lg font-medium text-primary">Follow Our Odysseys</h3>
               <p className="text-foreground/80 font-light text-sm">
                 Stay inspired with our latest trip stories, itineraries, and updates across social media.
@@ -123,7 +123,7 @@ export default function ContactClientPage() {
               </div>
             </div>
 
-            <div className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 space-y-3">
+            <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 space-y-3">
               <h3 className="text-lg font-medium text-primary">Ready to plan?</h3>
               <p className="text-foreground/80 font-light text-sm">
                 Jump straight into our interactive planner. Choose your mood, dates, and budget.
@@ -138,7 +138,7 @@ export default function ContactClientPage() {
         </div>
 
         {/* Right Column: Contact Enquiry Form */}
-        <div className="bg-[#1C0A0B]/90 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-10 shadow-2xl">
+        <div className="bg-black/60 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-10 shadow-2xl">
           {!successData ? (
             <>
               <h2 className="text-2xl font-medium text-foreground mb-2">Send an Enquiry</h2>

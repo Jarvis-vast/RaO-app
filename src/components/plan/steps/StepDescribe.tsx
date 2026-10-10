@@ -132,7 +132,7 @@ export function StepDescribe({
   const isInputValid = inputText.trim().length >= 10;
 
   return (
-    <div className="bg-[#1C0A0B]/70 backdrop-blur-xl border border-white/10 p-8 md:p-12 rounded-3xl space-y-8 shadow-2xl max-w-3xl mx-auto">
+    <div className="bg-black/40 backdrop-blur-xl border border-white/10 p-8 md:p-12 rounded-3xl space-y-8 shadow-2xl max-w-3xl mx-auto">
       <div className="space-y-2">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium uppercase tracking-wider border border-primary/20">
           <Sparkles className="w-3.5 h-3.5" /> Natural Travel Intent

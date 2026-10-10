@@ -37,7 +37,7 @@ export default function AboutPage() {
           </p>
         </header>
 
-        <div className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-14 space-y-12 shadow-2xl">
+        <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-14 space-y-12 shadow-2xl">
           {/* Core Scenario Grid */}
           <section className="space-y-6">
             <div className="grid md:grid-cols-3 gap-6">

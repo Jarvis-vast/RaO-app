@@ -184,7 +184,7 @@ export function ProposalView({
   return (
     <div className="grid lg:grid-cols-[1fr_380px] gap-8 items-start relative">
       {/* Proposal Details Card */}
-      <div className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 p-8 rounded-3xl space-y-8 relative overflow-hidden shadow-2xl">
+      <div className="bg-black/60 backdrop-blur-xl border border-white/10 p-8 rounded-3xl space-y-8 relative overflow-hidden shadow-2xl">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium tracking-wide uppercase mb-3 border border-primary/20">
@@ -309,7 +309,7 @@ export function ProposalView({
         )}
 
         {/* Estimated Price & Primary Action */}
-        <div className="bg-[#1C0A0B]/90 rounded-2xl p-6 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <div className="bg-black/70 rounded-2xl p-6 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <div>
             <p className="text-xs uppercase tracking-wider text-muted-foreground mb-1">Estimated Complete Package</p>
             <h4 className="text-3xl font-semibold text-foreground tracking-tight">₹{estimatedTotalCost.toLocaleString()}</h4>
@@ -328,7 +328,7 @@ export function ProposalView({
       </div>
 
       {/* Interactive Trip Modification Drawer/Chat */}
-      <div className="bg-[#1C0A0B]/90 backdrop-blur-2xl border border-white/10 rounded-3xl flex flex-col h-[600px] sticky top-28 shadow-2xl">
+      <div className="bg-black/70 backdrop-blur-2xl border border-white/10 rounded-3xl flex flex-col h-[600px] sticky top-28 shadow-2xl">
         <div className="p-5 border-b border-white/10">
           <div className="flex items-center gap-2">
             <MessageSquare className="w-4 h-4 text-primary" />
@@ -408,7 +408,7 @@ export function ProposalView({
       {/* Request This Trip Submission Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-[#1C0A0B] border border-white/15 rounded-3xl max-w-lg w-full p-8 relative shadow-2xl text-foreground space-y-6">
+          <div className="bg-neutral-900 border border-white/15 rounded-3xl max-w-lg w-full p-8 relative shadow-2xl text-foreground space-y-6">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-6 right-6 text-muted-foreground hover:text-foreground transition-colors"

@@ -34,7 +34,7 @@ export default function HowItWorks() {
         </header>
 
         <div className="grid md:grid-cols-3 gap-8 text-left">
-          <div className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-4">
+          <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-4">
             <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-semibold text-lg border border-primary/30">
               1
             </div>
@@ -44,7 +44,7 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <div className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-4">
+          <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-4">
             <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-semibold text-lg border border-primary/30">
               2
             </div>
@@ -54,7 +54,7 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <div className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-4">
+          <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 space-y-4">
             <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-semibold text-lg border border-primary/30">
               3
             </div>
@@ -66,7 +66,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Bottom CTA Card */}
-        <div className="bg-[#1C0A0B]/90 backdrop-blur-2xl border border-white/15 rounded-3xl p-10 space-y-6 max-w-2xl mx-auto shadow-2xl">
+        <div className="bg-black/60 backdrop-blur-2xl border border-white/15 rounded-3xl p-10 space-y-6 max-w-2xl mx-auto shadow-2xl">
           <div className="space-y-2">
             <h3 className="text-3xl font-light text-foreground tracking-tight">Ready to experience travel differently?</h3>
             <p className="text-sm text-muted-foreground font-light">

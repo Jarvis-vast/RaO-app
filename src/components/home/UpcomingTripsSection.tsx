@@ -84,9 +84,9 @@ export function UpcomingTripsSection() {
 
         {/* Active Concept Card Showcase */}
         {activeTrip && (
-          <div className="bg-[#180809]/90 border border-amber-500/20 rounded-3xl overflow-hidden shadow-2xl hover:border-amber-500/40 transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 group">
+          <div className="bg-black/60 backdrop-blur-xl border border-amber-500/20 rounded-3xl overflow-hidden shadow-2xl hover:border-amber-500/40 transition-all duration-300 grid grid-cols-1 lg:grid-cols-12 group">
             {/* Visual Column */}
-            <div className="lg:col-span-5 relative min-h-[320px] lg:min-h-full overflow-hidden bg-gradient-to-br from-[#2A1013] to-[#180809]">
+            <div className="lg:col-span-5 relative min-h-[320px] lg:min-h-full overflow-hidden bg-gradient-to-br from-neutral-900 to-black">
               {activeTrip.heroImage ? (
                 <>
                   <Image
@@ -96,7 +96,7 @@ export function UpcomingTripsSection() {
                     className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
                     sizes="(max-width: 1024px) 100vw, 40vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#180809] via-transparent to-black/40 lg:bg-gradient-to-r lg:from-transparent lg:to-[#180809]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 lg:bg-gradient-to-r lg:from-transparent lg:to-black/80" />
                 </>
               ) : (
                 /* Image-less text-led showcase per Rule 5 */
@@ -115,7 +115,7 @@ export function UpcomingTripsSection() {
 
               {/* Status Badges */}
               <div className="absolute top-5 left-5 right-5 flex flex-wrap items-center justify-between gap-2 z-20">
-                <span className="bg-amber-500 text-[#1C0A0B] text-xs font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-lg">
+                <span className="bg-amber-500 text-black text-xs font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-lg">
                   {activeTrip.badge}
                 </span>
                 <span className="bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-medium px-3.5 py-1 rounded-full backdrop-blur-md">
@@ -124,7 +124,7 @@ export function UpcomingTripsSection() {
               </div>
 
               {/* Status Note Overlay */}
-              <div className="absolute bottom-5 left-5 z-20 bg-[#1C0A0B]/95 backdrop-blur-md border border-amber-500/30 px-5 py-3.5 rounded-2xl max-w-xs">
+              <div className="absolute bottom-5 left-5 z-20 bg-black/90 backdrop-blur-md border border-amber-500/30 px-5 py-3.5 rounded-2xl max-w-xs">
                 <div className="text-[10px] text-amber-300/80 uppercase tracking-widest font-semibold">Target Timeline</div>
                 <div className="text-sm font-semibold text-foreground mt-0.5">
                   {activeTrip.nextBatchDate}
@@ -214,8 +214,8 @@ export function UpcomingTripsSection() {
               onClick={() => setActiveTripId(t.id)}
               className={`p-5 rounded-2xl border text-left transition-all duration-300 flex flex-col justify-between space-y-4 ${
                 activeTripId === t.id
-                  ? "bg-[#2A1013] border-amber-500/50 shadow-xl"
-                  : "bg-[#180809]/80 border-white/10 hover:border-amber-500/30"
+                  ? "bg-black/90 border-amber-500/50 shadow-xl"
+                  : "bg-black/60 border-white/10 hover:border-amber-500/30"
               }`}
             >
               <div className="space-y-2">

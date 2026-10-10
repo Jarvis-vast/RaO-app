@@ -24,7 +24,7 @@ export function CuratedCustomizedSection() {
         {/* Dual Split Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* CURATED */}
-          <div className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 sm:p-10 space-y-6 hover:border-[#C88D6A]/40 transition-all duration-300 flex flex-col justify-between shadow-2xl group">
+          <div className="bg-black/60 backdrop-blur-xl border border-white/10 rounded-3xl p-8 sm:p-10 space-y-6 hover:border-[#C88D6A]/40 transition-all duration-300 flex flex-col justify-between shadow-2xl group">
             <div className="space-y-4">
               <div className="w-14 h-14 rounded-2xl bg-[#C88D6A]/15 border border-[#C88D6A]/30 flex items-center justify-center text-[#C88D6A] group-hover:scale-110 transition-transform">
                 <Compass className="w-7 h-7" />
@@ -54,7 +54,7 @@ export function CuratedCustomizedSection() {
           </div>
 
           {/* CUSTOMIZED */}
-          <div className="bg-[#1C0A0B]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 sm:p-10 space-y-6 hover:border-[#C88D6A]/40 transition-all duration-300 flex flex-col justify-between shadow-2xl group">
+          <div className="bg-black/60 backdrop-blur-xl border border-white/10 rounded-3xl p-8 sm:p-10 space-y-6 hover:border-[#C88D6A]/40 transition-all duration-300 flex flex-col justify-between shadow-2xl group">
             <div className="space-y-4">
               <div className="w-14 h-14 rounded-2xl bg-[#C88D6A]/15 border border-[#C88D6A]/30 flex items-center justify-center text-[#C88D6A] group-hover:scale-110 transition-transform">
                 <SlidersHorizontal className="w-7 h-7" />

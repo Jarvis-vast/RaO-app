@@ -76,7 +76,7 @@ export function GlobalVideoBackground() {
   }, [prefersReducedMotion, isLoaded]);
 
   return (
-    <div className="fixed inset-0 w-full h-full -z-50 pointer-events-none bg-[#1C0A0B]">
+    <div className="fixed inset-0 w-full h-full -z-50 pointer-events-none bg-black">
       {mounted && (
         <video
           ref={videoRef}

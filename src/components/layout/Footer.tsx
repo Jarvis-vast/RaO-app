@@ -3,7 +3,7 @@ import { SocialLinks } from "@/components/layout/SocialLinks";
 
 export function Footer() {
   return (
-    <footer className="w-full bg-[#1C0A0B]/80 backdrop-blur-xl border-t border-white/10 text-foreground py-16 px-6 relative z-10">
+    <footer className="w-full bg-black/40 backdrop-blur-xl border-t border-white/10 text-foreground py-16 px-6 relative z-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="md:col-span-2 space-y-4">
           <Link href="/" className="inline-block">

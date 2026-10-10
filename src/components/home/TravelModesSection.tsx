@@ -28,7 +28,7 @@ export function TravelModesSection() {
   ];
 
   return (
-    <section className="py-24 px-6 bg-[#1C0A0B]/90 border-t border-white/10 relative z-10">
+    <section className="py-24 px-6 bg-black/40 backdrop-blur-md border-t border-white/10 relative z-10">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">

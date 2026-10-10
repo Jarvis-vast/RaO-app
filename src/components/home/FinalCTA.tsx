@@ -10,7 +10,7 @@ export function FinalCTA() {
   )}`;
 
   return (
-    <section className="w-full py-28 px-6 bg-gradient-to-b from-[#1C0A0B]/90 via-[#2A1013] to-[#1C0A0B] backdrop-blur-xl border-t border-white/10 relative z-10">
+    <section className="w-full py-28 px-6 bg-black/40 backdrop-blur-xl border-t border-white/10 relative z-10">
       <div className="max-w-4xl mx-auto text-center space-y-8">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C88D6A]/15 border border-[#C88D6A]/30 text-[#C88D6A] text-xs font-semibold tracking-widest uppercase">
           YOUR PERSONAL TRAVEL PLANNER

@@ -312,7 +312,7 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -15 }}
-          className="bg-[#1C0A0B]/80 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 sm:p-10 space-y-8 shadow-2xl"
+          className="bg-black/60 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 sm:p-10 space-y-8 shadow-2xl"
         >
           <div className="space-y-3">
             <label htmlFor="rawIdeaInput" className="block text-xl font-semibold text-foreground">
@@ -418,7 +418,7 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -15 }}
-          className="bg-[#1C0A0B]/80 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 sm:p-10 space-y-8 shadow-2xl"
+          className="bg-black/60 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 sm:p-10 space-y-8 shadow-2xl"
         >
           <div className="space-y-2 border-b border-white/10 pb-4">
             <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
@@ -656,7 +656,7 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -15 }}
-          className="bg-[#1C0A0B]/80 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 sm:p-10 space-y-8 shadow-2xl"
+          className="bg-black/60 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 sm:p-10 space-y-8 shadow-2xl"
         >
           <div className="space-y-2 border-b border-white/10 pb-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C88D6A]/15 border border-[#C88D6A]/30 text-[#C88D6A] text-xs font-semibold tracking-wider uppercase">
@@ -671,7 +671,7 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
           </div>
 
           {/* Summary Card */}
-          <div className="bg-[#180809] border border-[#C88D6A]/30 rounded-2xl p-6 space-y-6 shadow-xl">
+          <div className="bg-black/50 border border-[#C88D6A]/30 rounded-2xl p-6 space-y-6 shadow-xl">
             <div className="space-y-2">
               <span className="text-[10px] font-mono uppercase tracking-wider text-[#C88D6A]">Initial Request / Idea</span>
               <p className="text-base text-[#F2EAE4] italic bg-black/40 p-4 rounded-xl border border-white/5">
@@ -811,7 +811,7 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-[#180809] border border-[#C88D6A]/40 rounded-3xl p-8 sm:p-12 text-center space-y-8 shadow-2xl relative overflow-hidden"
+          className="bg-black/70 backdrop-blur-2xl border border-[#C88D6A]/40 rounded-3xl p-8 sm:p-12 text-center space-y-8 shadow-2xl relative overflow-hidden"
         >
           <div className="w-16 h-16 rounded-full bg-[#C88D6A]/20 border border-[#C88D6A]/40 flex items-center justify-center text-[#C88D6A] mx-auto">
             <CheckCircle2 className="w-9 h-9" />

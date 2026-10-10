@@ -29,7 +29,7 @@ const EXPERIENCES = [
 
 export function FeaturedExperiences() {
   return (
-    <section className="w-full py-32 px-6 bg-[#1C0A0B]/50 backdrop-blur-xl">
+    <section className="w-full py-32 px-6 bg-black/30 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="text-left max-w-xl">

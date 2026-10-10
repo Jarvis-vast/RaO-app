@@ -44,7 +44,7 @@ export function Navbar() {
       <header
         className={`fixed top-0 z-50 w-full transition-all duration-300 ${
           isScrolled
-            ? "bg-[#1C0A0B]/90 backdrop-blur-md border-b border-border/20 py-2 shadow-sm"
+            ? "bg-black/80 backdrop-blur-md border-b border-border/20 py-2 shadow-sm"
             : "bg-transparent border-transparent py-4"
         }`}
       >
@@ -133,7 +133,7 @@ export function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 z-50 h-full w-[80%] max-w-xs bg-[#1C0A0B] border-l border-white/10 flex flex-col md:hidden"
+              className="fixed top-0 right-0 z-50 h-full w-[80%] max-w-xs bg-neutral-950/95 backdrop-blur-2xl border-l border-white/10 flex flex-col md:hidden"
             >
               {/* Drawer Header */}
               <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">

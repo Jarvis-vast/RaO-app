@@ -31,7 +31,7 @@ export function CustomerTrust() {
   ];
 
   return (
-    <section className="w-full py-24 px-6 bg-[#1C0A0B]/80 backdrop-blur-xl border-t border-b border-white/10 relative z-10">
+    <section className="w-full py-24 px-6 bg-black/40 backdrop-blur-md border-t border-b border-white/10 relative z-10">
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-semibold tracking-widest uppercase">

@@ -55,7 +55,7 @@ export function CouplesEscapesSection() {
             return (
               <div
                 key={item.id}
-                className="bg-[#180809]/90 backdrop-blur-xl border border-[#C88D6A]/25 rounded-3xl overflow-hidden shadow-2xl hover:border-[#C88D6A]/60 transition-all duration-300 flex flex-col justify-between group"
+                className="bg-black/60 backdrop-blur-xl border border-[#C88D6A]/25 rounded-3xl overflow-hidden shadow-2xl hover:border-[#C88D6A]/60 transition-all duration-300 flex flex-col justify-between group"
               >
                 {/* Image or Text-Led Visual */}
                 {item.heroImage ? (
@@ -67,14 +67,14 @@ export function CouplesEscapesSection() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#180809] via-[#180809]/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
                     
                     {/* Top Badges */}
                     <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                      <span className="bg-[#1C0A0B]/90 border border-[#C88D6A]/40 text-[#E2B28B] text-[11px] font-medium px-3 py-1 rounded-full backdrop-blur-md">
+                      <span className="bg-black/80 border border-[#C88D6A]/40 text-[#E2B28B] text-[11px] font-medium px-3 py-1 rounded-full backdrop-blur-md">
                         {item.category}
                       </span>
-                      <span className="bg-[#C88D6A]/90 text-[#1C0A0B] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                      <span className="bg-[#C88D6A]/90 text-black text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                         {item.duration}
                       </span>
                     </div>
@@ -91,7 +91,7 @@ export function CouplesEscapesSection() {
                   </div>
                 ) : (
                   /* Text-led card styling for image-less entries */
-                  <div className="p-8 bg-gradient-to-br from-[#2A1013] to-[#180809] border-b border-[#C88D6A]/20 relative overflow-hidden">
+                  <div className="p-8 bg-gradient-to-br from-neutral-900 to-black border-b border-[#C88D6A]/20 relative overflow-hidden">
                     <div className="absolute -top-6 -right-6 w-24 h-24 bg-[#C88D6A]/10 rounded-full blur-xl pointer-events-none" />
                     <div className="flex items-center justify-between mb-4">
                       <span className="bg-[#C88D6A]/15 border border-[#C88D6A]/30 text-[#E2B28B] text-[11px] font-medium px-3 py-1 rounded-full">
@@ -160,7 +160,7 @@ export function CouplesEscapesSection() {
         </div>
 
         {/* Future-proof Note */}
-        <div className="bg-[#180809]/60 border border-[#C88D6A]/20 rounded-2xl p-6 text-center text-xs text-muted-foreground font-light max-w-2xl mx-auto space-y-2">
+        <div className="bg-black/40 border border-[#C88D6A]/20 rounded-2xl p-6 text-center text-xs text-muted-foreground font-light max-w-2xl mx-auto space-y-2">
           <p className="text-[#E2B28B] font-medium">Have a specific romantic destination in mind?</p>
           <p>
             Whether it is Kerala backwaters, Udaipur lake palaces, or a private hillside cottage in Maharashtra, RaO designs customized escapes around your dates, budget, and travel mood.

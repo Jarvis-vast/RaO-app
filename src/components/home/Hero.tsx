@@ -14,7 +14,7 @@ export function Hero() {
       className="relative w-full h-[100svh] min-h-[660px] flex items-end md:items-center justify-center md:justify-end overflow-hidden"
     >
       {/* Cinematic Gradient Overlay */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#1C0A0B] via-[#1C0A0B]/60 to-transparent md:bg-gradient-to-l md:from-[#1C0A0B] md:via-[#1C0A0B]/75 md:to-transparent pointer-events-none" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent md:bg-gradient-to-l md:from-black/80 md:via-black/40 md:to-transparent pointer-events-none" />
 
       {/* Hero Content */}
       <div className="relative z-10 w-full max-w-3xl px-6 pb-16 md:pb-0 md:mr-[6%] xl:mr-[10%] 2xl:mr-[16%] text-center md:text-left space-y-8">

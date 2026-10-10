@@ -20,7 +20,7 @@ export function WhatInMindSection() {
   const [selectedChip, setSelectedChip] = useState("Sunday in Kolhapur");
 
   return (
-    <section id="mind" className="py-24 px-6 bg-gradient-to-b from-[#1C0A0B] via-[#2A1013]/90 to-[#1C0A0B] border-t border-white/10 relative z-10 overflow-hidden">
+    <section id="mind" className="py-24 px-6 bg-black/40 backdrop-blur-md border-t border-white/10 relative z-10 overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C88D6A]/10 rounded-full blur-[140px] pointer-events-none" />
 
@@ -89,7 +89,7 @@ export function WhatInMindSection() {
           </div>
 
           {/* RIGHT SIDE: RAO CREATES */}
-          <div className="lg:col-span-5 bg-[#180809] border border-[#C88D6A]/30 rounded-3xl p-8 space-y-6 shadow-2xl relative overflow-hidden">
+          <div className="lg:col-span-5 bg-black/60 backdrop-blur-xl border border-[#C88D6A]/30 rounded-3xl p-8 space-y-6 shadow-2xl relative overflow-hidden">
             <div className="flex items-center justify-between">
               <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[#E2B28B]">
                 RaO Creates

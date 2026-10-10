@@ -151,7 +151,7 @@ export default async function TripDetailPage({ params }: Props) {
   };
 
   return (
-    <div className="min-h-screen pt-28 pb-24 bg-[#1C0A0B] text-foreground relative">
+    <div className="min-h-screen pt-28 pb-24 bg-transparent text-foreground relative">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(tripJsonLd) }}
@@ -172,7 +172,7 @@ export default async function TripDetailPage({ params }: Props) {
 
       {/* Hero Banner */}
       <div className="max-w-7xl mx-auto px-6">
-        <div className="relative rounded-3xl overflow-hidden border border-amber-500/20 shadow-2xl min-h-[460px] flex flex-col justify-end p-8 md:p-12 group bg-gradient-to-br from-[#2A1013] to-[#180809]">
+        <div className="relative rounded-3xl overflow-hidden border border-amber-500/20 shadow-2xl min-h-[460px] flex flex-col justify-end p-8 md:p-12 group bg-gradient-to-br from-neutral-900 to-black">
           {trip.heroImage ? (
             <>
               <Image
@@ -183,7 +183,7 @@ export default async function TripDetailPage({ params }: Props) {
                 priority
                 sizes="100vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1C0A0B] via-[#1C0A0B]/60 to-black/30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
             </>
           ) : (
             <div className="absolute inset-0 p-8 flex flex-col justify-between z-10">
@@ -222,7 +222,7 @@ export default async function TripDetailPage({ params }: Props) {
           </div>
 
           {/* Floating Planning Stage Card */}
-          <div className="mt-8 lg:mt-0 lg:absolute lg:top-8 lg:right-8 bg-[#180809]/95 backdrop-blur-xl border border-amber-500/30 p-6 rounded-2xl text-left space-y-4 shadow-2xl z-20 max-w-sm">
+          <div className="mt-8 lg:mt-0 lg:absolute lg:top-8 lg:right-8 bg-black/90 backdrop-blur-xl border border-amber-500/30 p-6 rounded-2xl text-left space-y-4 shadow-2xl z-20 max-w-sm">
             <div className="text-xs text-amber-300 uppercase tracking-widest font-semibold">{trip.badge}</div>
             <div>
               <div className="text-xl font-bold text-foreground">{trip.status}</div>
@@ -265,22 +265,22 @@ export default async function TripDetailPage({ params }: Props) {
 
             {/* Quick Feature Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
-              <div className="bg-[#180809] border border-amber-500/20 p-4 rounded-2xl text-center space-y-1">
+              <div className="bg-black/60 border border-amber-500/20 p-4 rounded-2xl text-center space-y-1">
                 <Train className="w-5 h-5 text-amber-400 mx-auto" />
                 <div className="text-xs font-medium text-foreground">Transport</div>
                 <div className="text-[11px] text-muted-foreground">Rail / Road</div>
               </div>
-              <div className="bg-[#180809] border border-amber-500/20 p-4 rounded-2xl text-center space-y-1">
+              <div className="bg-black/60 border border-amber-500/20 p-4 rounded-2xl text-center space-y-1">
                 <Hotel className="w-5 h-5 text-amber-400 mx-auto" />
                 <div className="text-xs font-medium text-foreground">Stay Options</div>
                 <div className="text-[11px] text-muted-foreground">Comfort Hotel</div>
               </div>
-              <div className="bg-[#180809] border border-amber-500/20 p-4 rounded-2xl text-center space-y-1">
+              <div className="bg-black/60 border border-amber-500/20 p-4 rounded-2xl text-center space-y-1">
                 <Utensils className="w-5 h-5 text-amber-400 mx-auto" />
                 <div className="text-xs font-medium text-foreground">Meals</div>
                 <div className="text-[11px] text-muted-foreground">Planned Meals</div>
               </div>
-              <div className="bg-[#180809] border border-amber-500/20 p-4 rounded-2xl text-center space-y-1">
+              <div className="bg-black/60 border border-amber-500/20 p-4 rounded-2xl text-center space-y-1">
                 <Building2 className="w-5 h-5 text-amber-400 mx-auto" />
                 <div className="text-xs font-medium text-foreground">Circuit</div>
                 <div className="text-[11px] text-muted-foreground">Guided Stops</div>

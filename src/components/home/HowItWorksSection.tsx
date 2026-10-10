@@ -25,7 +25,7 @@ export function HowItWorksSection() {
   ];
 
   return (
-    <section className="w-full py-24 px-6 bg-[#1C0A0B]/80 backdrop-blur-xl border-t border-white/10 relative z-10">
+    <section className="w-full py-24 px-6 bg-black/40 backdrop-blur-xl border-t border-white/10 relative z-10">
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-6">
