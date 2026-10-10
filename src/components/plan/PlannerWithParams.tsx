@@ -1,10 +1,17 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { PlannerCore } from "@/components/plan/PlannerCore";
+import { storeCurrentAttribution } from "@/lib/utils/attribution";
 
 export function PlannerWithParams() {
   const searchParams = useSearchParams();
+
+  useEffect(() => {
+    storeCurrentAttribution();
+  }, [searchParams]);
+
   const ideaParam =
     searchParams.get("idea") ||
     searchParams.get("topic") ||

@@ -83,6 +83,11 @@ export class TripRequestRepository {
           rawUserInput: r.rawUserInput || undefined,
           source: r.source as TripRequest["source"],
           status: r.status as TripRequestStatus,
+          utmSource: (r as unknown as { utmSource?: string }).utmSource || undefined,
+          utmMedium: (r as unknown as { utmMedium?: string }).utmMedium || undefined,
+          utmCampaign: (r as unknown as { utmCampaign?: string }).utmCampaign || undefined,
+          landingPage: (r as unknown as { landingPage?: string }).landingPage || undefined,
+          referrer: (r as unknown as { referrer?: string }).referrer || undefined,
         }));
       } catch (err) {
         console.error("[RaO Repository] Database query error in getAll():", err);
@@ -138,6 +143,11 @@ export class TripRequestRepository {
             rawUserInput: r.rawUserInput || undefined,
             source: r.source as TripRequest["source"],
             status: r.status as TripRequestStatus,
+            utmSource: (r as unknown as { utmSource?: string }).utmSource || undefined,
+            utmMedium: (r as unknown as { utmMedium?: string }).utmMedium || undefined,
+            utmCampaign: (r as unknown as { utmCampaign?: string }).utmCampaign || undefined,
+            landingPage: (r as unknown as { landingPage?: string }).landingPage || undefined,
+            referrer: (r as unknown as { referrer?: string }).referrer || undefined,
           };
         }
         return undefined;
@@ -187,6 +197,11 @@ export class TripRequestRepository {
       rawUserInput: input.rawUserInput,
       source: input.source || "PLANNER_WIZARD",
       status: "NEW",
+      utmSource: input.utmSource,
+      utmMedium: input.utmMedium,
+      utmCampaign: input.utmCampaign,
+      landingPage: input.landingPage,
+      referrer: input.referrer,
     };
 
     const prisma = getPrismaClient();
@@ -220,6 +235,11 @@ export class TripRequestRepository {
             rawUserInput: newRequest.rawUserInput,
             source: newRequest.source,
             status: newRequest.status,
+            utmSource: newRequest.utmSource,
+            utmMedium: newRequest.utmMedium,
+            utmCampaign: newRequest.utmCampaign,
+            landingPage: newRequest.landingPage,
+            referrer: newRequest.referrer,
           },
         });
         return newRequest;

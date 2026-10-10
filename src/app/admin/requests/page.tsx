@@ -44,12 +44,20 @@ export default async function AdminRequestsPage() {
 
                 return (
                   <tr key={req.requestId} className="hover:bg-white/5 transition-colors">
-                    {/* Customer Info */}
+                    {/* Customer Info & Attribution */}
                     <td className="px-6 py-4">
                       <p className="font-medium text-foreground">{req.customerName}</p>
                       <p className="text-xs text-primary font-mono mt-0.5">{req.requestId}</p>
                       <p className="text-xs text-muted-foreground mt-1 font-mono">{req.phone}</p>
                       {req.email && <p className="text-[11px] text-muted-foreground/70">{req.email}</p>}
+                      <div className="mt-2 text-[10px] space-y-0.5 border-t border-white/5 pt-1.5 text-muted-foreground font-mono">
+                        <p><span className="text-primary/70">Src:</span> {req.utmSource || req.source || "Direct"}</p>
+                        {req.utmCampaign && <p><span className="text-primary/70">Camp:</span> {req.utmCampaign}</p>}
+                        {req.landingPage && <p><span className="text-primary/70">Land:</span> {req.landingPage}</p>}
+                        {req.referrer && req.referrer !== "Direct website" && (
+                          <p className="truncate max-w-[150px]"><span className="text-primary/70">Ref:</span> {req.referrer}</p>
+                        )}
+                      </div>
                     </td>
 
                     {/* Proposal Details */}

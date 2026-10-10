@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PlannerState, PlannerStep, StepId, initialPlannerState } from "./types";
 export type { StepId };
+import { getAttributionData } from "@/lib/utils/attribution";
 import { 
   Sparkles, 
   ArrowRight, 
@@ -58,6 +59,17 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
 
   useEffect(() => {
     setMounted(true);
+    const attr = getAttributionData();
+    if (attr.utmSource || attr.landingPage || attr.referrer) {
+      setState((prev) => ({
+        ...prev,
+        utmSource: attr.utmSource,
+        utmMedium: attr.utmMedium,
+        utmCampaign: attr.utmCampaign,
+        landingPage: attr.landingPage,
+        referrer: attr.referrer,
+      }));
+    }
   }, []);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -177,6 +189,7 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
     setIsSubmitting(true);
 
     try {
+      const attr = getAttributionData();
       const res = await fetch("/api/trips/request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -194,6 +207,12 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
           travelMode: state.travelMode,
           specialRequests: state.specialRequests,
           origin: state.origin || "Mumbai",
+          utmSource: attr.utmSource || state.utmSource,
+          utmMedium: attr.utmMedium || state.utmMedium,
+          utmCampaign: attr.utmCampaign || state.utmCampaign,
+          landingPage: attr.landingPage || state.landingPage || "/plan",
+          referrer: attr.referrer || state.referrer,
+          source: attr.source || "PLANNER_WIZARD",
         }),
       });
 
@@ -208,8 +227,7 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
       }
     } catch (err) {
       console.error("Submission error:", err);
-      setServerWhatsAppUrl(buildWhatsAppUrl());
-      setStep("submitted");
+      setSubmitError("Unable to save your trip request due to a network or server issue. Please try again or reach out directly on WhatsApp.");
     } finally {
       setIsSubmitting(false);
     }

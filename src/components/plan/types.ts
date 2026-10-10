@@ -53,6 +53,13 @@ export interface PlannerState {
   rawUserInput?: string;
   modificationNotes?: string[];
   selectedProposalId?: string;
+
+  // Attribution
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  landingPage?: string;
+  referrer?: string;
 }
 
 export const initialPlannerState: PlannerState = {
@@ -90,4 +97,11 @@ export const initialPlannerState: PlannerState = {
   rawUserInput: "",
   modificationNotes: [],
   selectedProposalId: "",
+
+  // Attribution defaults
+  utmSource: "",
+  utmMedium: "",
+  utmCampaign: "",
+  landingPage: "",
+  referrer: "",
 };

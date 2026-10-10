@@ -146,7 +146,7 @@ export default function PrivateTripsPage() {
                 </div>
                 <div className="flex items-center gap-1.5 bg-black/40 px-3 py-2 rounded-xl border border-white/5">
                   <Car className="w-4 h-4 text-[#C88D6A]" />
-                  <span>Door-to-Door Transport</span>
+                  <span>Curated Pickup &amp; Transport</span>
                 </div>
                 <div className="flex items-center gap-1.5 bg-black/40 px-3 py-2 rounded-xl border border-white/5">
                   <Clock className="w-4 h-4 text-[#C88D6A]" />
@@ -156,7 +156,7 @@ export default function PrivateTripsPage() {
                   <Wallet className="w-4 h-4 text-[#C88D6A]" />
                   <span>Tailored Budget</span>
                 </div>
-              </div>
+                </div>
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">

@@ -30,8 +30,13 @@ export interface TripRequest {
   modificationNotes?: string[];
   specialRequests?: string;
   rawUserInput?: string;
-  source: "PLANNER_WIZARD" | "DESCRIBE_IT" | "DIRECT_EXPERIENCE" | "CONTACT_PAGE";
+  source: "PLANNER_WIZARD" | "DESCRIBE_IT" | "DIRECT_EXPERIENCE" | "CONTACT_PAGE" | string;
   status: TripRequestStatus;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  landingPage?: string;
+  referrer?: string;
 }
 
 export interface CreateTripRequestInput {
@@ -56,5 +61,10 @@ export interface CreateTripRequestInput {
   modificationNotes?: string[];
   specialRequests?: string;
   rawUserInput?: string;
-  source?: "PLANNER_WIZARD" | "DESCRIBE_IT" | "DIRECT_EXPERIENCE" | "CONTACT_PAGE";
+  source?: "PLANNER_WIZARD" | "DESCRIBE_IT" | "DIRECT_EXPERIENCE" | "CONTACT_PAGE" | string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  landingPage?: string;
+  referrer?: string;
 }

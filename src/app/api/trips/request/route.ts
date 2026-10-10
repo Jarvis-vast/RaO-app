@@ -5,7 +5,7 @@ import { CreateTripRequestInput } from "@/lib/types/trip-request";
 
 export async function POST(request: NextRequest) {
   try {
-    const body = (await request.json()) as CreateTripRequestInput;
+    const body = await request.json();
 
     // Validate required fields
     if (!body.customerName || !body.customerName.trim()) {
@@ -42,8 +42,41 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Normalize input fields supporting both PlannerCore and ProposalView payloads
+    const input: CreateTripRequestInput = {
+      customerName: body.customerName.trim(),
+      phone: cleanPhone,
+      email: body.email?.trim() || undefined,
+      moods: Array.isArray(body.moods) && body.moods.length > 0 
+        ? body.moods 
+        : [body.journeyType || "Custom Trip"],
+      budgetPerPerson: body.budgetPerPerson || body.budgetValue || "Flexible",
+      budgetMode: body.budgetMode || "Flexible",
+      datesOption: body.datesOption || "Flexible",
+      startDate: body.startDate,
+      endDate: body.endDate,
+      groupType: body.groupType || "Private group",
+      numTravellers: body.numTravellers || "2",
+      origin: body.origin || "Mumbai",
+      destinationContext: body.destinationContext || body.destination || undefined,
+      preferences: Array.isArray(body.preferences) ? body.preferences : [],
+      sharingOption: body.sharingOption || "Private trip only",
+      proposalId: body.proposalId,
+      proposalTitle: body.proposalTitle,
+      estimatedTotal: typeof body.estimatedTotal === "number" ? body.estimatedTotal : undefined,
+      modificationNotes: Array.isArray(body.modificationNotes) ? body.modificationNotes : [],
+      specialRequests: body.specialRequests,
+      rawUserInput: body.rawUserInput || body.rawIdea,
+      source: body.source || "PLANNER_WIZARD",
+      utmSource: body.utmSource,
+      utmMedium: body.utmMedium,
+      utmCampaign: body.utmCampaign,
+      landingPage: body.landingPage,
+      referrer: body.referrer,
+    };
+
     // Persist request in repository
-    const savedRequest = await TripRequestRepository.create(body);
+    const savedRequest = await TripRequestRepository.create(input);
 
     // Format WhatsApp redirection URL
     const whatsappUrl = TripRequestFormatter.buildWhatsAppUrl(savedRequest);
@@ -67,7 +100,27 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  // Secure endpoint against unauthorized exposure of customer contact details
+  const requiredUser = process.env.ADMIN_USER;
+  const requiredPass = process.env.ADMIN_PASS;
+
+  if (requiredUser && requiredPass) {
+    const authHeader = request.headers.get("authorization");
+    if (!authHeader || !authHeader.startsWith("Basic ")) {
+      return NextResponse.json({ error: "Unauthorized access to lead store." }, { status: 401 });
+    }
+    try {
+      const decoded = atob(authHeader.split(" ")[1]);
+      const [user, pass] = decoded.split(":");
+      if (user !== requiredUser || pass !== requiredPass) {
+        return NextResponse.json({ error: "Invalid credentials." }, { status: 401 });
+      }
+    } catch {
+      return NextResponse.json({ error: "Authentication failed." }, { status: 401 });
+    }
+  }
+
   try {
     const requests = await TripRequestRepository.getAll();
     return NextResponse.json({ requests }, { status: 200 });

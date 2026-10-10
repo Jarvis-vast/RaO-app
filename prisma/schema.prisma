@@ -474,6 +474,11 @@ model CustomerLeadRequest {
   rawUserInput       String?
   source             String   @default("PLANNER_WIZARD")
   status             String   @default("NEW")
+  utmSource          String?
+  utmMedium          String?
+  utmCampaign        String?
+  landingPage        String?
+  referrer           String?
 
   @@map("customer_lead_requests")
 }
