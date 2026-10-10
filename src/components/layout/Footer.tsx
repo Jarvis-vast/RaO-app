@@ -27,6 +27,7 @@ export function Footer() {
           <h4 className="font-semibold text-lg">Navigation</h4>
           <nav className="flex flex-col gap-3 text-muted-foreground font-light text-sm">
             <Link href="/plan" className="hover:text-primary transition-colors">Plan a Trip</Link>
+            <Link href="/private-trips" className="hover:text-primary transition-colors">Private Trips</Link>
             <Link href="/upcoming-trips" className="hover:text-primary transition-colors">Upcoming Trips</Link>
             <Link href="/experiences" className="hover:text-primary transition-colors">Experiences</Link>
             <Link href="/destinations" className="hover:text-primary transition-colors">Destinations</Link>

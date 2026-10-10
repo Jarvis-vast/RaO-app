@@ -12,6 +12,7 @@ import { useTripPlanner } from "@/context/TripPlannerContext";
 
 const NAV_LINKS = [
   { href: "/plan", label: "Plan a Trip" },
+  { href: "/private-trips", label: "Private Trips" },
   { href: "/experiences", label: "Journeys / Experiences" },
   { href: "/destinations", label: "Destinations" },
   { href: "/how-it-works", label: "How It Works" },
