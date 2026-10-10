@@ -69,12 +69,12 @@ export function WhatInMindSection() {
 
             <div className="space-y-4">
               <p className="text-[#F2EAE4] text-lg font-light leading-relaxed italic">
-                &ldquo;Sunday. A few people. We want to visit Kolhapur for Mahalakshmi Darshan. Back home by night. We want our own private space and pace.&rdquo;
+                &ldquo;A few of us want to visit Kolhapur for Mahalakshmi Darshan over the weekend. We want our own private space, comfortable travel and a smooth darshan without the rush.&rdquo;
               </p>
             </div>
 
             <div className="pt-4 border-t border-white/10 text-xs text-muted-foreground font-light">
-              You don&apos;t need to solve the transport or itinerary puzzle. Simply tell RaO your idea.
+              You don&apos;t need to solve transport, lodging or itinerary puzzles. Simply tell RaO your idea.
             </div>
           </div>
 
@@ -101,11 +101,11 @@ export function WhatInMindSection() {
 
             <div className="space-y-4">
               <div className="text-xs text-[#E2B28B] font-mono uppercase tracking-wider flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-[#C88D6A]" /> MUMBAI → KOLHAPUR → MUMBAI
+                <MapPin className="w-3.5 h-3.5 text-[#C88D6A]" /> MUMBAI → KOLHAPUR (1-DAY OR OVERNIGHT)
               </div>
 
               <h3 className="text-xl font-bold text-foreground">
-                One-Day Private Sacred Journey
+                Private Sacred Journey
               </h3>
 
               <ul className="space-y-2.5 text-xs text-muted-foreground font-light">
@@ -115,19 +115,19 @@ export function WhatInMindSection() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Clock className="w-3.5 h-3.5 text-[#C88D6A]" />
-                  <span>Mahalakshmi Darshan timing & hassle-free parking</span>
+                  <span>Mahalakshmi Darshan scheduling & hassle-free parking</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#C88D6A]" />
-                  <span>Authentic local lunch & return home by nightfall</span>
+                  <span>Authentic local dining & custom stay/return timing</span>
                 </li>
               </ul>
             </div>
 
             <div className="pt-4 border-t border-white/10 text-[11px] text-muted-foreground/80 italic flex items-center justify-between">
-              <span>*Illustrative sample concept.</span>
+              <span>*Illustrative sample. Schedule customized based on dates & preferences.</span>
               <Link 
-                href="/plan?idea=Sunday%20in%20Kolhapur" 
+                href="/plan?idea=Weekend%20in%20Kolhapur" 
                 className="text-[#C88D6A] hover:underline font-medium not-italic"
               >
                 Plan this trip →

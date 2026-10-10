@@ -60,6 +60,10 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
     setMounted(true);
   }, []);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [serverWhatsAppUrl, setServerWhatsAppUrl] = useState<string | null>(null);
+
   // Parse natural language idea into smart defaults
   const handleIdeaChange = (text: string) => {
     const lower = text.toLowerCase();
@@ -154,12 +158,69 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
   const resetAll = () => {
     setState(initialPlannerState);
     setStep("intake");
+    setSubmitError(null);
+    setServerWhatsAppUrl(null);
+  };
+
+  const handleSubmitRequest = async () => {
+    if (!state.customerName.trim()) {
+      setSubmitError("Please enter your name so we can address your request properly.");
+      return;
+    }
+    const cleanPhone = state.phone.replace(/\D/g, "");
+    if (cleanPhone.length < 10) {
+      setSubmitError("Please enter a valid 10-digit WhatsApp / mobile number.");
+      return;
+    }
+
+    setSubmitError(null);
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch("/api/trips/request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerName: state.customerName.trim(),
+          phone: state.phone.trim(),
+          email: state.email.trim() || undefined,
+          rawIdea: state.rawIdea,
+          destination: state.knowDestination === "yes" && state.destination ? state.destination : "Help me choose",
+          journeyType: state.journeyType,
+          datesOption: state.isFlexibleDates ? "Flexible dates" : state.datesOption,
+          groupType: state.groupType,
+          numTravellers: state.numTravellers,
+          budgetValue: state.budgetValue || "Flexible / Custom",
+          travelMode: state.travelMode,
+          specialRequests: state.specialRequests,
+          origin: state.origin || "Mumbai",
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        if (data.whatsappUrl) {
+          setServerWhatsAppUrl(data.whatsappUrl);
+        }
+        setStep("submitted");
+      } else {
+        setSubmitError(data.error || "Failed to save request. You can still reach us directly on WhatsApp below.");
+      }
+    } catch (err) {
+      console.error("Submission error:", err);
+      setServerWhatsAppUrl(buildWhatsAppUrl());
+      setStep("submitted");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Build WhatsApp prefilled URL
   const buildWhatsAppUrl = () => {
     const lines = [
       "Hi RaO, I want to plan a trip.",
+      state.customerName ? `Name: ${state.customerName}` : "",
+      state.phone ? `Phone: ${state.phone}` : "",
       "",
       `Idea: ${state.rawIdea || "Custom journey request"}`,
       `Destination: ${state.knowDestination === "yes" && state.destination ? state.destination : "Help me choose"}`,
@@ -171,7 +232,7 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
       `Preferences: ${state.specialRequests || "None specified"}`,
       "",
       "Please help me plan it."
-    ];
+    ].filter(Boolean);
     const text = lines.join("\n");
     return `https://wa.me/919326540456?text=${encodeURIComponent(text)}`;
   };
@@ -581,13 +642,13 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
         >
           <div className="space-y-2 border-b border-white/10 pb-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C88D6A]/15 border border-[#C88D6A]/30 text-[#C88D6A] text-xs font-semibold tracking-wider uppercase">
-              SUMMARY CONFIRMATION
+              SUMMARY & CONTACT
             </div>
             <h2 className="text-3xl font-bold text-foreground">
               YOUR <span className="text-[#C88D6A] font-serif italic">RAO REQUEST</span>
             </h2>
             <p className="text-sm text-muted-foreground font-light">
-              “Here’s what we’ve understood.”
+              Review your details and provide contact information so our travel designer can reach you.
             </p>
           </div>
 
@@ -648,6 +709,62 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
             )}
           </div>
 
+          {/* Contact Details Form */}
+          <div className="bg-black/40 border border-white/10 rounded-2xl p-6 space-y-4">
+            <h3 className="text-sm font-semibold text-[#E2B28B] uppercase tracking-wider flex items-center gap-2">
+              <Users className="w-4 h-4 text-[#C88D6A]" /> YOUR CONTACT INFORMATION
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <label htmlFor="customerName" className="text-xs text-muted-foreground block">
+                  Your Name <span className="text-[#C88D6A]">*</span>
+                </label>
+                <input
+                  id="customerName"
+                  type="text"
+                  value={state.customerName}
+                  onChange={(e) => updateState({ customerName: e.target.value })}
+                  placeholder="e.g. Rajesh Sharma"
+                  className="w-full bg-black/50 border border-white/15 rounded-xl p-3 text-sm text-foreground focus:outline-none focus:border-[#C88D6A]"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label htmlFor="customerPhone" className="text-xs text-muted-foreground block">
+                  WhatsApp / Phone Number <span className="text-[#C88D6A]">*</span>
+                </label>
+                <input
+                  id="customerPhone"
+                  type="tel"
+                  value={state.phone}
+                  onChange={(e) => updateState({ phone: e.target.value })}
+                  placeholder="e.g. 9820098200"
+                  className="w-full bg-black/50 border border-white/15 rounded-xl p-3 text-sm text-foreground focus:outline-none focus:border-[#C88D6A]"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label htmlFor="customerEmail" className="text-xs text-muted-foreground block">
+                Email Address (Optional)
+              </label>
+              <input
+                id="customerEmail"
+                type="email"
+                value={state.email}
+                onChange={(e) => updateState({ email: e.target.value })}
+                placeholder="e.g. rajesh@example.com"
+                className="w-full bg-black/50 border border-white/15 rounded-xl p-3 text-sm text-foreground focus:outline-none focus:border-[#C88D6A]"
+              />
+            </div>
+          </div>
+
+          {submitError && (
+            <div className="p-4 rounded-xl bg-red-900/30 border border-red-500/40 text-red-200 text-xs font-medium">
+              {submitError}
+            </div>
+          )}
+
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10">
             <button
@@ -660,10 +777,11 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
 
             <button
               type="button"
-              onClick={() => setStep("submitted")}
-              className="w-full sm:w-auto px-10 py-4 rounded-full bg-[#C88D6A] text-[#1C0A0B] hover:bg-[#E2B28B] text-sm font-bold transition-all shadow-xl shadow-[#C88D6A]/20 flex items-center justify-center gap-2"
+              onClick={handleSubmitRequest}
+              disabled={isSubmitting}
+              className="w-full sm:w-auto px-10 py-4 rounded-full bg-[#C88D6A] text-[#1C0A0B] hover:bg-[#E2B28B] text-sm font-bold transition-all shadow-xl shadow-[#C88D6A]/20 flex items-center justify-center gap-2 disabled:opacity-50"
             >
-              <span>SEND TO RAO</span>
+              <span>{isSubmitting ? "SENDING TO RAO..." : "SEND TO RAO"}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -702,7 +820,7 @@ export function PlannerCore({ initialIdea, initialDest }: PlannerCoreProps) {
           {/* Primary WhatsApp Conversion Link */}
           <div className="pt-2 space-y-4 max-w-md mx-auto">
             <a
-              href={buildWhatsAppUrl()}
+              href={serverWhatsAppUrl || buildWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2.5 w-full py-4 px-8 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-base transition-all shadow-xl shadow-emerald-900/30"

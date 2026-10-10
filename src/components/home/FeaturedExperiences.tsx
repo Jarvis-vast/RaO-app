@@ -8,21 +8,21 @@ const EXPERIENCES = [
     title: "Coastal Escape",
     mood: "Peace + Nature",
     duration: "2D/1N",
-    budget: "₹5k - ₹8k",
+    budget: "Customized to your budget",
     image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
   },
   {
     title: "Mountain Reset",
     mood: "Adventure + Spiritual",
     duration: "3D/2N",
-    budget: "₹8k - ₹12k",
+    budget: "Tailored to your preference",
     image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80"
   },
   {
     title: "Corporate Escape",
     mood: "Team Bonding",
     duration: "2D/1N",
-    budget: "Custom",
+    budget: "Custom itinerary & group rates",
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
   },
 ];

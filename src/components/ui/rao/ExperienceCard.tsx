@@ -39,7 +39,7 @@ export function ExperienceCard({ title, mood, duration, budget, image, index }: 
             <h3 className="text-2xl font-medium text-foreground group-hover:text-primary transition-colors">{title}</h3>
           </div>
           <div className="pt-4 border-t border-border flex items-center justify-between text-sm text-muted-foreground">
-            <span>Starts from {budget}</span>
+            <span>{budget}</span>
           </div>
         </div>
       </Link>

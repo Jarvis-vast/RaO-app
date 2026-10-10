@@ -16,6 +16,11 @@ export type StepId =
   | "proposal";
 
 export interface PlannerState {
+  // Contact & Lead Capture
+  customerName: string;
+  phone: string;
+  email: string;
+
   // Phase 2 Intake Fields
   rawIdea: string;
   knowDestination: "yes" | "no";
@@ -51,6 +56,9 @@ export interface PlannerState {
 }
 
 export const initialPlannerState: PlannerState = {
+  customerName: "",
+  phone: "",
+  email: "",
   rawIdea: "",
   knowDestination: "no",
   destination: "",

@@ -20,14 +20,14 @@ export function Hero() {
       <div className="relative z-10 w-full max-w-3xl px-6 pb-16 md:pb-0 md:mr-[6%] xl:mr-[10%] 2xl:mr-[16%] text-center md:text-left space-y-8">
         <div className="space-y-5">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C88D6A]/15 border border-[#C88D6A]/30 text-[#F2EAE4] text-xs font-semibold tracking-widest uppercase">
-            <Compass className="w-3.5 h-3.5 text-[#C88D6A]" /> PERSONAL TRAVEL PLANNER
+            <Compass className="w-3.5 h-3.5 text-[#C88D6A]" /> YOUR PERSONAL TRAVEL PLANNER · MUMBAI
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white drop-shadow-md">
             HAVE THE DATE. <br />
             <span className="text-[#C88D6A] font-serif italic font-normal">WE&apos;LL HELP WITH THE JOURNEY.</span>
           </h1>
           <p className="text-lg md:text-xl font-light leading-relaxed text-[#F2EAE4]/90 drop-shadow-sm max-w-2xl mx-auto md:mx-0">
-            Tell RaO your travel mood, budget, and dates. We design private, tailored journeys around your people, privacy, and pace — not predefined commercial packages.
+            Private day trips, weekend escapes and meaningful journeys, planned around your people, preferences and budget.
           </p>
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 text-xs md:text-sm font-medium text-[#E2B28B]">
             <span>Explore</span> • <span>Experience</span> • <span>Discover</span>
@@ -37,12 +37,12 @@ export function Hero() {
         <div className="flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-4 pt-2">
           <Button asChild size="lg" className="rounded-full px-8 h-14 text-base bg-[#C88D6A] text-[#1C0A0B] hover:bg-[#E2B28B] transition-all font-semibold w-full sm:w-auto shadow-lg shadow-[#C88D6A]/20">
             <Link href="/plan" className="flex items-center justify-center gap-2">
-              <span>Plan My Trip</span>
+              <span>PLAN MY TRIP</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="rounded-full px-8 h-14 text-base border-[#C88D6A]/40 text-white hover:bg-[#C88D6A]/10 bg-black/20 backdrop-blur-sm transition-all w-full sm:w-auto font-medium">
-            <Link href="/upcoming-trips">Explore Upcoming Journeys</Link>
+            <Link href="/upcoming-trips">EXPLORE UPCOMING JOURNEYS</Link>
           </Button>
         </div>
       </div>
