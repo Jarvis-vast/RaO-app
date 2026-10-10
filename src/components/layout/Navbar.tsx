@@ -48,15 +48,23 @@ export function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group" onClick={() => setMobileOpen(false)}>
+          <Link href="/" className="flex items-center gap-3 group" onClick={() => setMobileOpen(false)}>
             <Image
               src="/images/Logo.jpeg"
-              alt="RaO Travel Agency"
-              width={52}
-              height={52}
-              className="rounded-full object-cover"
+              alt="RaO Personal Travel Planner"
+              width={46}
+              height={46}
+              className="rounded-full object-cover border border-[#C88D6A]/30"
               priority
             />
+            <div className="flex flex-col">
+              <span className="text-xl font-bold tracking-tight text-[#FAF7F4] group-hover:text-[#C88D6A] transition-colors">
+                RaO
+              </span>
+              <span className="text-[10px] tracking-wider uppercase text-[#E2B28B] font-medium hidden sm:inline-block">
+                Personal Travel Planner
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Nav */}
