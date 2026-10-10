@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { TripRequestRepository } from "@/lib/services/TripRequestRepository";
 import { TripRequestFormatter } from "@/lib/services/TripRequestFormatter";
 import { CreateTripRequestInput } from "@/lib/types/trip-request";
+import { authenticateAdminRequest } from "@/lib/auth/adminAuth";
 
 export async function POST(request: NextRequest) {
   try {
@@ -101,24 +102,10 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
-  // Secure endpoint against unauthorized exposure of customer contact details
-  const requiredUser = process.env.ADMIN_USER;
-  const requiredPass = process.env.ADMIN_PASS;
-
-  if (requiredUser && requiredPass) {
-    const authHeader = request.headers.get("authorization");
-    if (!authHeader || !authHeader.startsWith("Basic ")) {
-      return NextResponse.json({ error: "Unauthorized access to lead store." }, { status: 401 });
-    }
-    try {
-      const decoded = atob(authHeader.split(" ")[1]);
-      const [user, pass] = decoded.split(":");
-      if (user !== requiredUser || pass !== requiredPass) {
-        return NextResponse.json({ error: "Invalid credentials." }, { status: 401 });
-      }
-    } catch {
-      return NextResponse.json({ error: "Authentication failed." }, { status: 401 });
-    }
+  // Enforce consistent fail-closed authentication policy for lead retrieval API
+  const auth = authenticateAdminRequest(request);
+  if (!auth.isSuccess && auth.response) {
+    return auth.response;
   }
 
   try {
